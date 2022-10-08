@@ -33,13 +33,14 @@ export const SHeader = {
     right: 0;
     left: 0;
     z-index: 10;
+    background-color: #fff;
 
     box-shadow: ${({ isScrollPage }) => (isScrollPage ? '0 0.2rem 0.5rem #eee' : 'none')};
     transition: box-shadow ${({ theme }) => theme.transition};
   `,
   Content: styled.div`
     ${m.flexBox('space-between', 'center')}
-    ${m.boxSize('85%', '10rem')}
+    ${m.boxSize('70%', '10rem')}
     margin: 0 auto;
 
     .header_home-link {

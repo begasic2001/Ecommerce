@@ -19,7 +19,7 @@ const HeaderFunction = (props) => {
     <SHeader.Function>
       <SSearch.Cover haveSearchValue={searchValue} isShowSearch={openSearchBox}>
         <SSearch.Btn ref={btn}>
-          <SearchSVG />
+          <SearchSVG size={'2.5rem'} />
         </SSearch.Btn>
         {openSearchBox && (
           <>
@@ -31,7 +31,7 @@ const HeaderFunction = (props) => {
               ref={input}
             />
             <SSearch.Del hasValue={searchValue} onClick={deleteSearchValue} ref={del}>
-              <DelSVG />
+              <DelSVG size={'2.5rem'} />
             </SSearch.Del>
           </>
         )}
