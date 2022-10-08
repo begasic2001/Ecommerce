@@ -3,5 +3,7 @@ export const theme = {
     primary: '#fff',
     secondary: '#f3f3f3',
     third: '#fefaf3',
+    border: '#ccc',
   },
+  transition: '0.2s',
 };
