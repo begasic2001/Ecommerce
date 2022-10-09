@@ -1,61 +1,61 @@
 import { PaypalImg, VisaImg } from '~/assets/payment';
-import { SFooter, SInfo, SLink } from './footer.style';
+import * as S from './footer.style';
 
 const Footer = () => {
   return (
-    <SFooter.Cover>
-      <SFooter.Content>
-        <SLink.Cover>
+    <S.Footer>
+      <S.Content>
+        <S.Link>
           <section>
-            <SLink.Title>Customer Service</SLink.Title>
-            <SLink.List>
+            <S.LinkTitle>Customer Service</S.LinkTitle>
+            <S.LinkList>
               <li>Help & Contact Us</li>
               <li>Returns & Refunds</li>
               <li>Online Stores</li>
               <li>Terms & Conditions</li>
-            </SLink.List>
+            </S.LinkList>
           </section>
           <section>
-            <SLink.Title>Company</SLink.Title>
-            <SLink.List>
+            <S.LinkTitle>Company</S.LinkTitle>
+            <S.LinkList>
               <li>About Us</li>
               <li>Blog</li>
               <li>FAQ Page</li>
               <li>Contact Us</li>
-            </SLink.List>
+            </S.LinkList>
           </section>
           <section>
-            <SLink.Title>Social Media</SLink.Title>
-            <SLink.List>
+            <S.LinkTitle>Social Media</S.LinkTitle>
+            <S.LinkList>
               <li>Twitter</li>
               <li>Instagram</li>
               <li>Tumblr</li>
               <li>Pinterest</li>
-            </SLink.List>
+            </S.LinkList>
           </section>
           <section>
-            <SLink.Title>Archive</SLink.Title>
-            <SLink.List>
+            <S.LinkTitle>Archive</S.LinkTitle>
+            <S.LinkList>
               <li>Designer Shoes</li>
               <li>Gallery</li>
               <li>Pricing</li>
               <li>Feature Index</li>
-            </SLink.List>
+            </S.LinkList>
           </section>
-        </SLink.Cover>
-        <SInfo.Cover>
+        </S.Link>
+        <S.Info>
           <p>© 2018 Qode Interactive, All Rights Reserved</p>
-          <SInfo.Payment>
+          <S.InfoPayment>
             <img src={VisaImg} alt="visa img" />
             <img src={PaypalImg} alt="paypal img" />
-          </SInfo.Payment>
-          <SInfo.Social>
+          </S.InfoPayment>
+          <S.InfoSocial>
             <span>Instagram</span>
             <span>Facebook</span>
-          </SInfo.Social>
-        </SInfo.Cover>
-      </SFooter.Content>
-    </SFooter.Cover>
+          </S.InfoSocial>
+        </S.Info>
+      </S.Content>
+    </S.Footer>
   );
 };
 

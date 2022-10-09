@@ -3,7 +3,7 @@ import { useDebounce } from '~/hooks';
 import { IHeaderFunctionRef } from '~/interface';
 import HeaderFunction from './HeaderFunction';
 import HeaderMenu from './HeaderMenu';
-import { SHeader } from './public-header.style';
+import * as S from './public-header.style';
 
 const PublicHeader = () => {
   const headerFunctionRef: IHeaderFunctionRef = {
@@ -103,8 +103,8 @@ const PublicHeader = () => {
   }, []);
 
   return (
-    <SHeader.Cover isScrollPage={isScrollPage}>
-      <SHeader.Content>
+    <S.Header isScrollPage={isScrollPage}>
+      <S.Content>
         <HeaderMenu />
         <HeaderFunction
           functionRef={headerFunctionRef}
@@ -114,8 +114,8 @@ const PublicHeader = () => {
           handleSearchValue={handleSearchValue}
           deleteSearchValue={deleteSearchValue}
         />
-      </SHeader.Content>
-    </SHeader.Cover>
+      </S.Content>
+    </S.Header>
   );
 };
 

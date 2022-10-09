@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { DelSVG, LoginSVG, RegisterSVG, SearchSVG, UserSVG } from '~/components/Icons';
-import { SHeader, SSearch, SUser } from './public-header.style';
+import * as S from './public-header.style';
 
 const HeaderFunction = (props) => {
   const {
@@ -16,42 +16,41 @@ const HeaderFunction = (props) => {
   const { avatar, log } = functionRef.user;
 
   return (
-    <SHeader.Function>
-      <SSearch.Cover haveSearchValue={searchValue} isShowSearch={openSearchBox}>
-        <SSearch.Btn ref={btn}>
+    <S.Function>
+      <S.Search isShowSearch={openSearchBox}>
+        <S.SearchBtn ref={btn}>
           <SearchSVG size={'2.5rem'} />
-        </SSearch.Btn>
+        </S.SearchBtn>
         {openSearchBox && (
           <>
-            <SSearch.Input
-              type="text"
+            <input
               placeholder="Enter flowers..."
               value={searchValue}
               onChange={handleSearchValue}
               ref={input}
             />
-            <SSearch.Del hasValue={searchValue} onClick={deleteSearchValue} ref={del}>
+            <S.SearchDel hasValue={searchValue} onClick={deleteSearchValue} ref={del}>
               <DelSVG size={'2.5rem'} />
-            </SSearch.Del>
+            </S.SearchDel>
           </>
         )}
-      </SSearch.Cover>
-      <SUser.Cover>
+      </S.Search>
+      <S.User>
         <div ref={avatar}>
           <UserSVG size={'3rem'} />
         </div>
-        <SUser.LogBox isOpenUserLog={openLogBox} ref={log}>
-          <Link to={'/account/login'} className="user_log">
+        <S.UserLogBox isOpenUserLog={openLogBox} ref={log}>
+          <Link to={'/account/login'}>
             <LoginSVG size={'2rem'} fill={'#ccc'} />
             <span>Sign in</span>
           </Link>
-          <Link to={'/account/register'} className="user_log">
+          <Link to={'/account/register'}>
             <RegisterSVG size={'2rem'} fill={'#ccc'} />
             <span>Sign up</span>
           </Link>
-        </SUser.LogBox>
-      </SUser.Cover>
-    </SHeader.Function>
+        </S.UserLogBox>
+      </S.User>
+    </S.Function>
   );
 };
 
