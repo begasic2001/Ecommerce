@@ -7,7 +7,7 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 export const Wrapper = styled.section`
-  max-width: 1000vw;
+  max-width: 100vw;
   font-size: 1.4rem;
   font-family: 'Poppins', sans-serif;
   overflow-x: hidden;
