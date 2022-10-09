@@ -1,10 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
-import { PagePublic } from '~/pages/Public';
+import { PublicScreen } from '~/screens/Public';
 
 const route = () => {
   return (
     <Routes>
-      <Route path="/*" element={<PagePublic />} />
+      <Route path="/*" element={<PublicScreen />} />
     </Routes>
   );
 };

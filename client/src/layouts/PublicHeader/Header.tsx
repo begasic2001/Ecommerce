@@ -5,7 +5,7 @@ import HeaderFunction from './HeaderFunction';
 import HeaderMenu from './HeaderMenu';
 import * as S from './public-header.style';
 
-const PublicHeader = () => {
+const Header = () => {
   const headerFunctionRef: IHeaderFunctionRef = {
     search: {
       btn: useRef(null),
@@ -119,4 +119,4 @@ const PublicHeader = () => {
   );
 };
 
-export default PublicHeader;
+export default Header;
