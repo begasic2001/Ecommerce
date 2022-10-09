@@ -4,7 +4,6 @@ import * as m from '~/styles/mixins.style';
 // Slideshow wrapper components CSS
 export const Slideshow = styled.section`
   position: relative;
-  margin-top: 10rem;
   height: 100%;
 `;
 

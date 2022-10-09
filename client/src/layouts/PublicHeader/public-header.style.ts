@@ -33,7 +33,7 @@ export const Header = styled.header`
   left: 0;
   z-index: 10;
 
-  box-shadow: ${({ isScrollPage }) => (isScrollPage ? '0 0.2rem 0.5rem #eee' : 'none')};
+  box-shadow: ${({ isScrollPage }) => (isScrollPage ? '0 0.2rem 0.2rem #eee' : 'none')};
 
   background-color: #fff;
 
@@ -56,7 +56,7 @@ export const Menu = styled(HeaderMainPart)`
 export const Function = styled(HeaderMainPart)``;
 
 // Menu child components CSS
-export const Nav = styled.nav`
+export const Nav = styled.section`
   margin-left: 2rem;
 
   a {
