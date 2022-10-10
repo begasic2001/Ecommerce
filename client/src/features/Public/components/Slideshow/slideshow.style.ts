@@ -5,20 +5,19 @@ import * as m from '~/styles/mixins.style';
 export const Slideshow = styled.section`
   position: relative;
   height: 100%;
-`;
 
-export const Overlay = styled.div`
-  position: absolute;
-  inset: 0;
-
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), transparent);
+  .slideshow__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), transparent);
+  }
 `;
 
 // Image child components CSS
 export const Img = styled.section`
   height: calc(100vh / 2);
 
-  img {
+  .slideshow__img {
     ${m.boxSize('100%')}
 
     display: block;
@@ -34,24 +33,22 @@ export const Content = styled.div`
   transform: translateY(-40%);
   left: 10%;
 
-  p {
+  .slideshow__desc {
     margin-top: 2rem;
     max-width: 50%;
-
     color: #555;
-
     font-size: 1.6rem;
     line-height: 1.5;
   }
-`;
 
-export const Title = styled.h2`
-  font-size: 6rem;
-  font-family: 'Source Serif Pro', serif;
-  font-weight: 400;
-  max-width: 50%;
+  .slideshow__title {
+    max-width: 50%;
+    font-size: 6rem;
+    font-family: 'Source Serif Pro', serif;
+    font-weight: 400;
+  }
 
-  span {
+  .slideshow__emphasize {
     color: ${({ theme: { colors } }) => colors.emphasize};
   }
 `;

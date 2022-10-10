@@ -16,15 +16,6 @@ export const HeaderMainPart = styled.section`
   ${m.flexCenter('ver')}
 `;
 
-export const HeaderSearchBtn = styled.button`
-  ${m.flexCenter()}
-  ${m.boxSize('3.5rem', '100%')}
-
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
 // Header main part components CSS
 export const Header = styled.header`
   position: fixed;
@@ -32,20 +23,19 @@ export const Header = styled.header`
   right: 0;
   left: 0;
   z-index: 10;
-
   box-shadow: ${({ isScrollPage }) => (isScrollPage ? '0 0.2rem 0.2rem #eee' : 'none')};
-
   background-color: #fff;
-
   transition: box-shadow ${({ theme }) => theme.transition};
+
+  .header__content {
+    ${m.flexBox('space-between', 'center')}
+    ${m.boxSize('70%', '10rem')}
+
+    margin: 0 auto;
+  }
 `;
 
-export const Content = styled.div`
-  ${m.flexBox('space-between', 'center')}
-  ${m.boxSize('70%', '10rem')}
-  margin: 0 auto;
-`;
-
+// Menu child components CSS
 export const Menu = styled(HeaderMainPart)`
   .menu_home-link {
     text-decoration: none;
@@ -53,17 +43,12 @@ export const Menu = styled(HeaderMainPart)`
   }
 `;
 
-export const Function = styled(HeaderMainPart)``;
-
-// Menu child components CSS
-export const Nav = styled.section`
+export const List = styled.section`
   margin-left: 2rem;
 
-  a {
+  .list__item {
     margin-left: 2rem;
-
     color: #000;
-
     font-size: 1.6rem;
     font-weight: 600;
     text-decoration: none;
@@ -77,6 +62,8 @@ export const Nav = styled.section`
 `;
 
 // Function child components CSS
+export const Function = styled(HeaderMainPart)``;
+
 export const Search = styled.section`
   ${({ isShowSearch, theme: { colors } }) =>
     isShowSearch
@@ -92,21 +79,33 @@ export const Search = styled.section`
 
   padding: 0.25rem;
   height: 4rem;
-
   background-color: #fff;
-
   transition: ${({ theme }) => theme.transition};
 
-  input {
+  .search__btn {
+    ${m.flexCenter()}
+    ${m.boxSize('3.5rem', '100%')}
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .search__input {
     height: 100%;
     animation: ${AnimationSliderInput} 0.5s;
   }
 `;
 
-export const SearchBtn = styled(HeaderSearchBtn)``;
+export const SearchDel = styled.button`
+  ${m.flexCenter()}
+  ${m.boxSize('3.5rem', '100%')}
 
-export const SearchDel = styled(HeaderSearchBtn)`
   animation: ${AnimationSliderInput} 0.5s;
+
+  &:hover {
+    cursor: pointer;
+  }
 
   .del-svg {
     stroke: ${({ hasValue }) => (hasValue ? '#000' : '#ccc')};
@@ -137,37 +136,31 @@ export const UserLogBox = styled.section`
   position: absolute;
   top: 160%;
   right: -50%;
-
   box-shadow: 0 0 0.5rem #ccc;
   min-width: 12rem;
-
   background-color: #fff;
-
   transform-origin: top center;
   transition: ${({ theme }) => theme.transition};
 
   &::after {
     ${m.boxSize('1.5rem')}
     content: '';
-    
     position: absolute;
     top: 0;
     right: 20%;
-
     box-shadow: -0.2rem -0.2rem 0.2rem #eee;
-
     background-color: #fff;
     transform: translateY(-50%) rotate(45deg);
   }
 
-  a {
+  .log-box__link {
     ${m.flexCenter('ver')}
     padding: 2rem 1rem;
     text-decoration: none;
     color: #000;
   }
 
-  span {
+  .log-box__txt {
     margin-left: 1rem;
   }
 `;

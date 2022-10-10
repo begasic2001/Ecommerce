@@ -4,10 +4,10 @@ import * as S from './footer.style';
 const Footer = () => {
   return (
     <S.Footer>
-      <S.Content>
+      <div className="footer__content">
         <S.Link>
           <section>
-            <S.LinkTitle>Customer Service</S.LinkTitle>
+            <p className="item__title">Customer Service</p>
             <S.LinkList>
               <li>Help & Contact Us</li>
               <li>Returns & Refunds</li>
@@ -16,7 +16,7 @@ const Footer = () => {
             </S.LinkList>
           </section>
           <section>
-            <S.LinkTitle>Company</S.LinkTitle>
+            <p className="item__title">Company</p>
             <S.LinkList>
               <li>About Us</li>
               <li>Blog</li>
@@ -25,7 +25,7 @@ const Footer = () => {
             </S.LinkList>
           </section>
           <section>
-            <S.LinkTitle>Social Media</S.LinkTitle>
+            <p className="item__title">Social Media</p>
             <S.LinkList>
               <li>Twitter</li>
               <li>Instagram</li>
@@ -34,7 +34,7 @@ const Footer = () => {
             </S.LinkList>
           </section>
           <section>
-            <S.LinkTitle>Archive</S.LinkTitle>
+            <p className="item__title">Archive</p>
             <S.LinkList>
               <li>Designer Shoes</li>
               <li>Gallery</li>
@@ -43,18 +43,19 @@ const Footer = () => {
             </S.LinkList>
           </section>
         </S.Link>
+
         <S.Info>
           <p>© 2018 Qode Interactive, All Rights Reserved</p>
-          <S.InfoPayment>
-            <img src={VisaImg} alt="visa img" />
-            <img src={PaypalImg} alt="paypal img" />
-          </S.InfoPayment>
+          <S.InfoImg>
+            <img src={VisaImg} alt="visa image" />
+            <img src={PaypalImg} alt="paypal image" className="img__paypal" />
+          </S.InfoImg>
           <S.InfoSocial>
-            <span>Instagram</span>
-            <span>Facebook</span>
+            <span className="social__txt">Instagram</span>
+            <span className="social__txt social__txt--facebook">Facebook</span>
           </S.InfoSocial>
         </S.Info>
-      </S.Content>
+      </div>
     </S.Footer>
   );
 };

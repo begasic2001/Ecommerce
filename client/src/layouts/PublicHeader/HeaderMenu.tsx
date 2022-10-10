@@ -8,11 +8,17 @@ const HeaderMenu = () => {
       <Link to={'/'} className="menu_home-link">
         <Logo />
       </Link>
-      <S.Nav>
-        <NavLink to={'/'}>Home</NavLink>
-        <NavLink to={'/products'}>Products</NavLink>
-        <NavLink to={'/blog'}>Blog</NavLink>
-      </S.Nav>
+      <S.List>
+        <NavLink to={'/'} className="list__item">
+          Home
+        </NavLink>
+        <NavLink to={'/products'} className="list__item">
+          Products
+        </NavLink>
+        <NavLink to={'/blog'} className="list__item">
+          Blog
+        </NavLink>
+      </S.List>
     </S.Menu>
   );
 };
