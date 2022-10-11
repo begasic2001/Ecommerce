@@ -1,36 +1,37 @@
 import { Link } from 'react-router-dom';
 import { DelSVG, LoginSVG, RegisterSVG, SearchSVG, UserSVG } from '~/components/Icons';
+import { IFunctionProps } from './interface';
 import * as S from './public-header.style';
 
-const HeaderFunction = (props) => {
+export const HeaderFunction = ({ functionProps }: IFunctionProps) => {
+  if (!functionProps) return null;
+
   const {
-    functionRef,
-    openSearchBox,
+    searchListRef,
+    userListRef,
+    toggleSearchBox,
     searchValue,
-    openLogBox,
+    toggleLogBox,
     handleSearchValue,
     deleteSearchValue,
-  } = props;
-
-  const { btn, input, del } = functionRef.search;
-  const { avatar, log } = functionRef.user;
+  } = functionProps;
 
   return (
     <S.Function>
-      <S.Search isShowSearch={openSearchBox}>
-        <button className="search__btn" ref={btn}>
+      <S.Search isShowSearch={toggleSearchBox}>
+        <button className="search__btn" ref={searchListRef.btn}>
           <SearchSVG size={'2.5rem'} />
         </button>
-        {openSearchBox && (
+        {toggleSearchBox && (
           <>
             <input
               placeholder="Enter flowers..."
               value={searchValue}
               onChange={handleSearchValue}
-              ref={input}
+              ref={searchListRef.input}
               className="search__input"
             />
-            <S.SearchDel onClick={deleteSearchValue} ref={del} hasValue={searchValue}>
+            <S.SearchDel onClick={deleteSearchValue} hasValue={searchValue} ref={searchListRef.del}>
               <DelSVG size={'2.5rem'} />
             </S.SearchDel>
           </>
@@ -38,10 +39,10 @@ const HeaderFunction = (props) => {
       </S.Search>
 
       <S.User>
-        <div ref={avatar}>
+        <div ref={userListRef.avatar}>
           <UserSVG size={'3rem'} />
         </div>
-        <S.UserLogBox isOpenUserLog={openLogBox} ref={log}>
+        <S.UserLogBox isOpenUserLog={toggleLogBox} ref={userListRef.log}>
           <Link to={'/account/login'} className="log-box__link">
             <LoginSVG size={'2rem'} fill={'#ccc'} />
             <span className="log-box__txt">Sign in</span>
@@ -55,5 +56,3 @@ const HeaderFunction = (props) => {
     </S.Function>
   );
 };
-
-export default HeaderFunction;

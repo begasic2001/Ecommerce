@@ -5,12 +5,12 @@ export const Nav = styled.nav`
   ${m.flexCenter('hor')}
   margin-top: 10rem;
   border-top: solid 1px #eee;
+`;
 
-  .nav__content {
-    margin-left: -5rem;
-    padding: 2rem 0;
-    width: 70%;
-  }
+export const Content = styled.div`
+  margin-left: -5rem;
+  padding: 2rem 0;
+  width: 70%;
 
   .nav__item {
     margin-left: 5rem;

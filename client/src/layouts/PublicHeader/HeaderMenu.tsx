@@ -2,7 +2,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { Logo } from '~/components/Logo';
 import * as S from './public-header.style';
 
-const HeaderMenu = () => {
+export const HeaderMenu = () => {
   return (
     <S.Menu>
       <Link to={'/'} className="menu_home-link">
@@ -22,5 +22,3 @@ const HeaderMenu = () => {
     </S.Menu>
   );
 };
-
-export default HeaderMenu;

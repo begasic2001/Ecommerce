@@ -4,8 +4,9 @@ import { Homepage } from '~/features/Public/pages/Home';
 import { HeaderLayout } from '~/layouts/PublicHeader';
 import { NavLayout } from '~/layouts/PublicNav';
 import { FooterLayout } from '~/layouts/Footer';
+import { IPublicRoutes } from './interface';
 
-const publicRoutes = [{ path: '', component: Homepage }];
+const publicRoutes: IPublicRoutes[] = [{ path: '', component: Homepage }];
 
 const PublicScreen = () => {
   return (

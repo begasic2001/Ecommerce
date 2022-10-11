@@ -1,35 +1,31 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDebounce } from '~/hooks';
-import { IHeaderFunctionRef } from '~/interface';
-import HeaderFunction from './HeaderFunction';
-import HeaderMenu from './HeaderMenu';
+import { HeaderFunction } from './HeaderFunction';
+import { HeaderMenu } from './HeaderMenu';
+import { ISearchBox, ISearchListRef, IUserListRef } from './interface';
 import * as S from './public-header.style';
 
 const Header = () => {
-  const headerFunctionRef: IHeaderFunctionRef = {
-    search: {
-      btn: useRef(null),
-      input: useRef(null),
-      del: useRef(null),
-    },
-    user: {
-      avatar: useRef(null),
-      log: useRef(null),
-    },
-  };
-
-  const [searchBox, setSearchBox] = useState({
+  const [searchBox, setSearchBox] = useState<ISearchBox>({
     toggle: false,
     value: '',
   });
-  const [openLogBox, setLogBox] = useState(false);
-  const [isScrollPage, setScrollPage] = useState(false);
+  const [toggleLogBox, setLogBox] = useState<boolean>(false);
+  const [isScrollPage, setScrollPage] = useState<boolean>(false);
 
-  const debounceSearchValue = useDebounce(searchBox.value, 500);
+  const debounceSearchValue: string = useDebounce(searchBox.value, 500);
+  const searchListRef: ISearchListRef = {
+    btn: useRef(null),
+    input: useRef(null),
+    del: useRef(null),
+  };
+  const userListRef: IUserListRef = {
+    avatar: useRef(null),
+    log: useRef(null),
+  };
 
   const handleSearchValue = (e) => {
     const searchValue = e.target.value;
-
     setSearchBox({
       ...searchBox,
       value: searchValue,
@@ -45,8 +41,7 @@ const Header = () => {
 
   useEffect(() => {
     const toggleInput = (e) => {
-      const { btn, input, del } = headerFunctionRef.search;
-
+      const { btn, input, del } = searchListRef;
       const nodeBtn = btn.current;
       const nodeInput = input.current;
       const nodeDel = del.current;
@@ -75,25 +70,23 @@ const Header = () => {
 
   useEffect(() => {
     const toggleUserLogBox = (e) => {
-      const { avatar, log } = headerFunctionRef.user;
-
+      const { avatar, log } = userListRef;
       const nodeAvatar = avatar.current;
       const nodeLog = log.current;
       const nodeTarget = e.target;
 
-      if (nodeAvatar && nodeAvatar.contains(nodeTarget)) setLogBox(!openLogBox);
+      if (nodeAvatar && nodeAvatar.contains(nodeTarget)) setLogBox(!toggleLogBox);
       else if (nodeLog && nodeLog.contains(nodeTarget)) setLogBox(true);
       else if (nodeAvatar && !nodeAvatar.contains(nodeTarget)) setLogBox(false);
     };
 
     document.addEventListener('click', toggleUserLogBox);
     return () => document.removeEventListener('click', toggleUserLogBox);
-  }, [openLogBox, setLogBox]);
+  }, [toggleLogBox, setLogBox]);
 
   useEffect(() => {
     const handleScrollPage = () => {
       const getCoordinateY = window.scrollY;
-
       if (getCoordinateY >= 100) setScrollPage(true);
       else setScrollPage(false);
     };
@@ -102,18 +95,21 @@ const Header = () => {
     return () => document.removeEventListener('scroll', handleScrollPage);
   }, []);
 
+  const functionProps = {
+    searchListRef: searchListRef,
+    userListRef: userListRef,
+    toggleSearchBox: searchBox.toggle,
+    searchValue: searchBox.value,
+    toggleLogBox: toggleLogBox,
+    handleSearchValue: handleSearchValue,
+    deleteSearchValue: deleteSearchValue,
+  };
+
   return (
     <S.Header isScrollPage={isScrollPage}>
-      <div className='header__content'>
+      <div className="header__content">
         <HeaderMenu />
-        <HeaderFunction
-          functionRef={headerFunctionRef}
-          openSearchBox={searchBox.toggle}
-          searchValue={searchBox.value}
-          openLogBox={openLogBox}
-          handleSearchValue={handleSearchValue}
-          deleteSearchValue={deleteSearchValue}
-        />
+        <HeaderFunction functionProps={functionProps} />
       </div>
     </S.Header>
   );

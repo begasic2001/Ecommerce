@@ -1,4 +1,4 @@
-import * as S from './spcial.style';
+import * as S from './special.style';
 
 const Special = () => {
   return (

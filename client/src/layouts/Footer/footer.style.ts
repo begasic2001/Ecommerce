@@ -5,12 +5,12 @@ import * as m from '~/styles/mixins.style';
 export const Footer = styled.footer`
   margin-top: 5rem;
   background-color: ${({ theme: { colors } }) => colors.secondary};
+`;
 
-  .footer__content {
-    margin: 0 auto;
-    width: 70%;
-    color: #aaa;
-  }
+export const Content = styled.div`
+  margin: 0 auto;
+  width: 70%;
+  color: #aaa;
 `;
 
 // Link child components CSS
