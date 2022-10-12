@@ -38,7 +38,8 @@ export const Internal = css`
   input,
   button,
   textarea {
-    all: unset;
+    outline: none;
+    background-color: transparent;
   }
 `;
 

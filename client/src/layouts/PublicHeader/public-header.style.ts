@@ -86,12 +86,15 @@ export const Search = styled.section`
     ${m.flexCenter()}
     ${m.boxSize('3.5rem', '100%')}
 
+    border: none;
+    
     &:hover {
       cursor: pointer;
     }
   }
-
+  
   .search__input {
+    border: none;
     height: 100%;
     animation: ${AnimationSliderInput} 0.5s;
   }
@@ -101,6 +104,7 @@ export const SearchDel = styled.button`
   ${m.flexCenter()}
   ${m.boxSize('3.5rem', '100%')}
 
+  border: none;
   animation: ${AnimationSliderInput} 0.5s;
 
   &:hover {
