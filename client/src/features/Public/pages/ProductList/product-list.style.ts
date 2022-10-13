@@ -115,6 +115,34 @@ export const List = styled.section`
     font-size: 3.5rem;
     font-weight: bold;
   }
+
+  .list-pagination {
+    ${m.flexBox('center', 'center')}
+
+    list-style-type: none;
+    margin-top: 4rem;
+
+    li {
+      margin: 0 1.5rem;
+      color: #b8b8b8;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &.selected {
+        background-color: #ccc;
+        color: #fff;
+      }
+    }
+  }
+
+  a {
+    ${m.boxSize('4rem')}
+    ${m.flexCenter()}
+
+    font-size: 2rem;
+  }
 `;
 
 export const ListProduct = styled.section`

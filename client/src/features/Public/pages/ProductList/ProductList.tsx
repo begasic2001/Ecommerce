@@ -1,8 +1,31 @@
+import { useState, useEffect } from 'react';
+import { ArrowLeftSVG, ArrowRightSVG } from '~/components/Icons';
+import { v4 as uuidv4 } from 'uuid';
 import { FilterSVG, CheckSVG } from '~/components/Icons';
 import { ProductItem } from '~/components/ProductItem';
+import ReactPaginate from 'react-paginate';
 import * as S from './product-list.style';
 
+const items: number[] = Array(20).fill(0);
+
 const ProductList = () => {
+  const [currentItems, setCurrentItems] = useState<number[]>();
+  const [pageCount, setPageCount] = useState(0);
+  const [itemOffset, setItemOffset] = useState(0);
+  const itemsPerPage = 9;
+
+  useEffect(() => {
+    const endOffset = itemOffset + itemsPerPage;
+    setCurrentItems(items.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(items.length / itemsPerPage));
+  }, [itemOffset, itemsPerPage]);
+
+  const handlePageClick = (e) => {
+    console.log(e);
+    const newOffset = (e.selected * itemsPerPage) % items.length;
+    setItemOffset(newOffset);
+  };
+
   return (
     <S.Products>
       <S.Content>
@@ -79,12 +102,17 @@ const ProductList = () => {
         <S.List>
           <h3 className="list__title">Kết quả tìm kiếm</h3>
           <S.ListProduct>
-            {Array(10)
-              .fill(0)
-              .map(() => (
-                <ProductItem />
-              ))}
+            {currentItems && currentItems.map(() => <ProductItem key={uuidv4()} />)}
           </S.ListProduct>
+          <ReactPaginate
+            breakLabel="..."
+            nextLabel={<ArrowRightSVG />}
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={3}
+            pageCount={pageCount}
+            previousLabel={<ArrowLeftSVG />}
+            className="list-pagination"
+          />
         </S.List>
       </S.Content>
     </S.Products>
