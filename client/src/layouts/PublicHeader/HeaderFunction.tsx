@@ -29,7 +29,6 @@ export const HeaderFunction = ({ functionProps }: IFunctionProps) => {
               value={searchValue}
               onChange={handleSearchValue}
               ref={searchListRef.input}
-              className="search__input"
             />
             <S.SearchDel onClick={deleteSearchValue} hasValue={searchValue} ref={searchListRef.del}>
               <DelSVG size={'2.5rem'} />
@@ -43,13 +42,13 @@ export const HeaderFunction = ({ functionProps }: IFunctionProps) => {
           <UserSVG size={'3rem'} />
         </div>
         <S.UserLogBox isOpenUserLog={toggleLogBox} ref={userListRef.log}>
-          <Link to={'/account/login'} className="log-box__link">
+          <Link to={'/account/login'}>
             <LoginSVG size={'2rem'} fill={'#ccc'} />
-            <span className="log-box__txt">Sign in</span>
+            <span>Sign in</span>
           </Link>
-          <Link to={'/account/register'} className="log-box__link">
+          <Link to={'/account/register'}>
             <RegisterSVG size={'2rem'} fill={'#ccc'} />
-            <span className="log-box__txt">Sign up</span>
+            <span>Sign up</span>
           </Link>
         </S.UserLogBox>
       </S.User>

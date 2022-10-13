@@ -26,18 +26,17 @@ export const Header = styled.header`
   box-shadow: ${({ isScrollPage }) => (isScrollPage ? '0 0.2rem 0.2rem #eee' : 'none')};
   background-color: #fff;
   transition: box-shadow ${({ theme }) => theme.transition};
+`;
 
-  .header__content {
-    ${m.flexBox('space-between', 'center')}
-    ${m.boxSize('70%', '10rem')}
-
-    margin: 0 auto;
-  }
+export const Content = styled.div`
+  ${m.flexBox('space-between', 'center')}
+  ${m.boxSize('70%', '10rem')}
+  margin: 0 auto;
 `;
 
 // Menu child components CSS
 export const Menu = styled(HeaderMainPart)`
-  .menu_home-link {
+  .home-link {
     text-decoration: none;
     color: #000;
   }
@@ -46,7 +45,7 @@ export const Menu = styled(HeaderMainPart)`
 export const List = styled.section`
   margin-left: 2rem;
 
-  .list__item {
+  a {
     margin-left: 2rem;
     color: #000;
     font-size: 1.6rem;
@@ -87,13 +86,13 @@ export const Search = styled.section`
     ${m.boxSize('3.5rem', '100%')}
 
     border: none;
-    
+
     &:hover {
       cursor: pointer;
     }
   }
-  
-  .search__input {
+
+  input {
     border: none;
     height: 100%;
     animation: ${AnimationSliderInput} 0.5s;
@@ -157,14 +156,14 @@ export const UserLogBox = styled.section`
     transform: translateY(-50%) rotate(45deg);
   }
 
-  .log-box__link {
+  a {
     ${m.flexCenter('ver')}
     padding: 2rem 1rem;
     text-decoration: none;
     color: #000;
   }
 
-  .log-box__txt {
+  span {
     margin-left: 1rem;
   }
 `;

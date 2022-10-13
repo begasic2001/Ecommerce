@@ -12,7 +12,7 @@ export const Content = styled.div`
   padding: 2rem 0;
   width: 70%;
 
-  .nav__item {
+  span {
     margin-left: 5rem;
     font-size: 1.6rem;
     font-weight: 500;

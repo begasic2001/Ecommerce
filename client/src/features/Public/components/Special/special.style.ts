@@ -17,7 +17,7 @@ export const Img = styled.section`
   flex-basis: 45%;
   width: 45%;
 
-  .special__img {
+  img {
     ${m.boxSize('100%')}
     display: block;
   }
@@ -27,18 +27,18 @@ export const Announce = styled.section`
   flex-basis: 50%;
   width: 50%;
 
-  .announce__title {
+  h3 {
     font: 400 4rem 'Source Serif Pro', serif;
     line-height: 1.4;
   }
 
-  .announce__desc {
+  span {
     margin-top: 2.5rem;
     font-size: 1.6rem;
     color: #aaa;
   }
 
-  .announce__emphasize {
+  p {
     color: #f00;
   }
 `;

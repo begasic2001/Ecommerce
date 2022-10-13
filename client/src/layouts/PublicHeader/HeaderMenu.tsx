@@ -5,19 +5,13 @@ import * as S from './public-header.style';
 export const HeaderMenu = () => {
   return (
     <S.Menu>
-      <Link to={'/home'} className="menu_home-link">
+      <Link to={'/home'} className="home-link">
         <Logo />
       </Link>
       <S.List>
-        <NavLink to={'/home'} className="list__item">
-          Home
-        </NavLink>
-        <NavLink to={'/products'} className="list__item">
-          Products
-        </NavLink>
-        <NavLink to={'/blog'} className="list__item">
-          Blog
-        </NavLink>
+        <NavLink to={'/home'}>Home</NavLink>
+        <NavLink to={'/products'}>Products</NavLink>
+        <NavLink to={'/blog'}>Blog</NavLink>
       </S.List>
     </S.Menu>
   );

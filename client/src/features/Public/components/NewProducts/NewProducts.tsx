@@ -11,7 +11,7 @@ const NewProducts = () => {
     <S.NewProduct>
       <S.Content>
         <h3 className="new-product__title">Sản phẩm mới</h3>
-        <div className="new-product__slideshow">
+        <S.Slideshow>
           <Swiper modules={[Navigation]} slidesPerView={5} navigation>
             {Array(10)
               .fill(0)
@@ -21,7 +21,7 @@ const NewProducts = () => {
                 </SwiperSlide>
               ))}
           </Swiper>
-        </div>
+        </S.Slideshow>
       </S.Content>
     </S.NewProduct>
   );

@@ -13,14 +13,25 @@ export const Content = styled.div`
     border-bottom: solid 1px #eee;
     font: 400 3.5rem 'Source Serif Pro', serif;
   }
+`;
 
-  .hot-sale__flex-between {
-    ${m.flexBox('space-between')}
-    margin-top: 3rem;
-  }
+export const FlexboxBetween = styled.div`
+  ${m.flexBox('space-between')}
+  margin-top: 3rem;
 `;
 
 // Big sale product components CSS
+export const BigImg = styled.section`
+  transition: ${({ theme }) => theme.transition};
+
+  img {
+    ${m.boxSize('100%', '50rem')}
+    display: block;
+    object-fit: cover;
+    object-position: center;
+  }
+`;
+
 export const HotBig = styled.section`
   display: flex;
   flex-direction: column;
@@ -35,16 +46,8 @@ export const HotBig = styled.section`
     cursor: pointer;
   }
 
-  &:hover .big__img {
+  &:hover ${BigImg} {
     transform: scale(1.1);
-  }
-
-  .big__img {
-    ${m.boxSize('100%', '50rem')}
-    display: block;
-    object-fit: cover;
-    object-position: center;
-    transition: ${({ theme }) => theme.transition};
   }
 `;
 
@@ -75,11 +78,11 @@ export const HotBigRemain = styled.section`
   ${m.flexBox('space-between', 'baseline')}
   margin-top: 3rem;
 
-  .remaining__txt {
+  .remain__txt {
     font-size: 2rem;
   }
 
-  .remaining__time {
+  .remain__time {
     font-size: 3.5rem;
   }
 `;

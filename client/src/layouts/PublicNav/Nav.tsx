@@ -4,11 +4,11 @@ const Nav = () => {
   return (
     <S.Nav>
       <S.Content>
-        <span className="nav__item">Kệ chúc mừng</span>
-        <span className="nav__item">Sinh nhận</span>
-        <span className="nav__item">Chia buồn</span>
-        <span className="nav__item">Hoa Ngoại Nhập</span>
-        <span className="nav__item">Lan Hồ Điệp</span>
+        <span>Kệ chúc mừng</span>
+        <span>Sinh nhận</span>
+        <span>Chia buồn</span>
+        <span>Hoa Ngoại Nhập</span>
+        <span>Lan Hồ Điệp</span>
       </S.Content>
     </S.Nav>
   );

@@ -107,10 +107,10 @@ const Header = () => {
 
   return (
     <S.Header isScrollPage={isScrollPage}>
-      <div className="header__content">
+      <S.Content>
         <HeaderMenu />
         <HeaderFunction functionProps={functionProps} />
-      </div>
+      </S.Content>
     </S.Header>
   );
 };

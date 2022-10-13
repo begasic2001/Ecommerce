@@ -4,7 +4,7 @@ export const FooterLink = () => {
   return (
     <S.Link>
       <section>
-        <p className="item__title">Customer Service</p>
+        <p>Customer Service</p>
         <S.LinkList>
           <li>Help & Contact Us</li>
           <li>Returns & Refunds</li>
@@ -13,7 +13,7 @@ export const FooterLink = () => {
         </S.LinkList>
       </section>
       <section>
-        <p className="item__title">Company</p>
+        <p>Company</p>
         <S.LinkList>
           <li>About Us</li>
           <li>Blog</li>
@@ -22,7 +22,7 @@ export const FooterLink = () => {
         </S.LinkList>
       </section>
       <section>
-        <p className="item__title">Social Media</p>
+        <p>Social Media</p>
         <S.LinkList>
           <li>Twitter</li>
           <li>Instagram</li>
@@ -31,7 +31,7 @@ export const FooterLink = () => {
         </S.LinkList>
       </section>
       <section>
-        <p className="item__title">Archive</p>
+        <p>Archive</p>
         <S.LinkList>
           <li>Designer Shoes</li>
           <li>Gallery</li>

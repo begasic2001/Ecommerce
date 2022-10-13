@@ -19,7 +19,7 @@ export const Link = styled.section`
   padding: 5rem 0;
   border-bottom: solid 1px #ccc;
 
-  .item__title {
+  p {
     color: #000;
     font-size: 1.5rem;
     font-weight: bold;
