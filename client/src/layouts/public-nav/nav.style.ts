@@ -12,10 +12,12 @@ export const Content = styled.div`
   padding: 2rem 0;
   width: 70%;
 
-  span {
+  a {
     margin-left: 5rem;
+    color: #000;
     font-size: 1.6rem;
     font-weight: 500;
+    text-decoration: none;
 
     &:hover {
       cursor: pointer;
