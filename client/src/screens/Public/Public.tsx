@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
-import { Homepage } from '~/features/Public/pages/Home';
-import { ProductList } from '~/features/Public/pages/ProductList';
-import { ProductDetail } from '~/features/Public/pages/ProductDetail';
-import { FooterLayout } from '~/layouts/Footer';
-import { HeaderLayout } from '~/layouts/PublicHeader';
-import { NavLayout } from '~/layouts/PublicNav';
+import { Homepage } from '~/pages/public/home';
+import { ProductList } from '~/pages/public/product-list';
+import { ProductDetail } from '~/pages/public/product-detail';
+import { FooterLayout } from '~/layouts/footer';
+import { HeaderLayout } from '~/layouts/public-header';
+import { NavLayout } from '~/layouts/public-nav';
 import { IPublicRoutes } from './interface';
 
 const publicRoutes: IPublicRoutes[] = [

@@ -55,16 +55,16 @@ export const InfoImg = styled.section`
 `;
 
 export const InfoSocial = styled.section`
-  .social__txt {
+  span {
     text-transform: uppercase;
-
-    &--facebook {
-      margin-left: 1rem;
-    }
 
     &:hover {
       cursor: pointer;
       color: #888;
     }
+  }
+
+  .social__facebook {
+    margin-left: 1rem;
   }
 `;

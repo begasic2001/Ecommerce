@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
-import { PublicScreen } from '~/screens/Public';
+import { PublicScreen } from '~/screens/public';
 
-const route = () => {
+const AllRoutes = () => {
   return (
     <Routes>
       <Route path="/*" element={<PublicScreen />} />
@@ -9,4 +9,4 @@ const route = () => {
   );
 };
 
-export default route;
+export default AllRoutes;

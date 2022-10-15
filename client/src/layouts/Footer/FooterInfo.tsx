@@ -10,8 +10,8 @@ export const FooterInfo = () => {
         <img src={PaypalImg} alt="paypal image" className="img__paypal" />
       </S.InfoImg>
       <S.InfoSocial>
-        <span className="social__txt">Instagram</span>
-        <span className="social__txt social__txt--facebook">Facebook</span>
+        <span>Instagram</span>
+        <span className="social__facebook">Facebook</span>
       </S.InfoSocial>
     </S.Info>
   );
