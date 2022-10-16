@@ -10,9 +10,9 @@ import { NavLayout } from '~/layouts/public-nav';
 import { IPublicRoutes } from './interface';
 
 const publicRoutes: IPublicRoutes[] = [
-  { path: '/home', component: Homepage },
-  { path: '/products', component: ProductList },
-  { path: '/products/:productsId', component: ProductDetail },
+  { id: uuidv4(), path: '/home', component: Homepage },
+  { id: uuidv4(), path: '/products', component: ProductList },
+  { id: uuidv4(), path: '/products/:productsId', component: ProductDetail },
 ];
 
 const PublicScreen = () => {
@@ -30,7 +30,7 @@ const PublicScreen = () => {
       <Routes>
         {publicRoutes.map((route) => {
           const Page = route.component;
-          return <Route key={uuidv4()} path={route.path} element={<Page />} />;
+          return <Route key={route.id} path={route.path} element={<Page />} />;
         })}
       </Routes>
       <FooterLayout />

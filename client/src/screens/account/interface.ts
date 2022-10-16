@@ -1,4 +1,4 @@
-export interface IPublicRoutes {
+export interface ILogRoutes {
   id: string;
   path: string;
   component;

@@ -34,12 +34,12 @@ export const Announce = styled.section`
 
   span {
     margin-top: 2.5rem;
-    font-size: 1.6rem;
-    color: #aaa;
+    color: #f00;
+    font-weight: 600;
   }
 
   p {
-    color: #f00;
+    color: ${({ theme: { colors } }) => colors.secondaryText};
   }
 `;
 
@@ -49,7 +49,7 @@ export const AnnounceList = styled.ul`
   font-size: 1.8rem;
 
   li {
-    color: #aaa;
+    color: ${({ theme: { colors } }) => colors.secondaryText};
     list-style-image: url('https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/h1-custom-icon.png');
 
     &:not(:first-child) {

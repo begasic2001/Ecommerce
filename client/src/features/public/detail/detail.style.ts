@@ -105,9 +105,9 @@ export const SummaryTable = styled.table`
 
     span {
       margin-right: 1.5rem;
-      color: #aaa;
+      color: ${({ theme: { colors } }) => colors.secondaryText};
       font-size: 2rem;
-      text-decoration: line-through 1px #aaa;
+      text-decoration: line-through 1px ${({ theme: { colors } }) => colors.secondaryText};
     }
   }
 
@@ -117,7 +117,7 @@ export const SummaryTable = styled.table`
 
     &.summary__code {
       font-style: italic;
-      color: #aaa;
+      color: ${({ theme: { colors } }) => colors.secondaryText};
     }
 
     &.summary__quantity {
@@ -126,7 +126,7 @@ export const SummaryTable = styled.table`
       & .summary__input {
         ${m.flexCenter('ver')}
         padding: 0 0.5rem;
-        border: solid 2px #ccc;
+        border: solid 2px ${({ theme: { colors } }) => colors.border};
         width: 30%;
       }
 
@@ -134,8 +134,8 @@ export const SummaryTable = styled.table`
         margin: 0 0.5rem;
         padding: 0.5rem;
         border: none;
-        border-left: solid 2px #ccc;
-        border-right: solid 2px #ccc;
+        border-left: solid 2px ${({ theme: { colors } }) => colors.border};
+        border-right: solid 2px ${({ theme: { colors } }) => colors.border};
         width: 50%;
         font-size: 1.3rem;
         text-align: center;
@@ -148,7 +148,7 @@ export const SummaryTable = styled.table`
 
       p {
         margin-left: 1.5rem;
-        color: #aaa;
+        color: ${({ theme: { colors } }) => colors.secondaryText};
         font-style: italic;
         font-size: 1.2rem;
       }

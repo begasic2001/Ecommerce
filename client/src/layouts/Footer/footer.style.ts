@@ -10,14 +10,14 @@ export const Footer = styled.footer`
 export const Content = styled.div`
   margin: 0 auto;
   width: 70%;
-  color: #aaa;
+  color: ${({ theme: { colors } }) => colors.secondaryText};
 `;
 
 // Link child components CSS
 export const Link = styled.section`
   ${m.flexBox('space-between')}
   padding: 5rem 0;
-  border-bottom: solid 1px #ccc;
+  border-bottom: solid 1px ${({ theme: { colors } }) => colors.border};
 
   p {
     color: #000;
