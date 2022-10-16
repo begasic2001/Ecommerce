@@ -3,9 +3,13 @@ import { v4 as uuidv4 } from 'uuid';
 import { FooterLayout } from '~/layouts/footer';
 import { HeaderLayout } from '~/layouts/public-header';
 import { LoginPage } from '~/pages/account/login';
+import { RegisterPage } from '~/pages/account/register';
 import { ILogRoutes } from './interface';
 
-const logRoutes: ILogRoutes[] = [{ id: uuidv4(), path: 'login', component: LoginPage }];
+const logRoutes: ILogRoutes[] = [
+  { id: uuidv4(), path: 'login', component: LoginPage },
+  { id: uuidv4(), path: 'register', component: RegisterPage },
+];
 
 const Account = () => {
   return (

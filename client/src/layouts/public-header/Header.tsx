@@ -97,7 +97,7 @@ const Header = () => {
   useEffect(() => {
     const handleScrollPage = () => {
       const getCoordinateY = window.scrollY;
-      if (getCoordinateY >= 100) setScrollPage(true);
+      if (getCoordinateY >= 50) setScrollPage(true);
       else setScrollPage(false);
     };
 

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import * as m from '~/styles/mixins.style';
 
-export const Login = styled.section`
+export const Register = styled.section`
   margin-top: 15rem;
 `;
 
@@ -9,6 +9,7 @@ export const Content = styled.div`
   margin: 0 auto;
   padding: 4rem;
   border: solid 1px #eee;
+  border-radius: ${({ theme }) => theme.borderRadius};
   width: 50rem;
 
   h3 {
@@ -92,17 +93,11 @@ export const FormItem = styled.section`
   }
 `;
 
-export const ForgotPass = styled.div`
-  ${m.flexBox('flex-end')}
-  margin-top: 2rem;
-  font-style: italic;
-`;
-
-export const Register = styled.p`
+export const Login = styled.p`
   margin-top: 5rem;
   padding-top: 3rem;
   border-top: solid 1px #eee;
   color: ${({ theme: { colors } }) => colors.secondaryText};
   font-style: italic;
   text-align: center;
-  `;
+`;
