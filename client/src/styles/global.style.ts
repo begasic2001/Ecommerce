@@ -13,16 +13,25 @@ import SourceSerifProSemi from '~/fonts/source_serif_pro/SourceSerifPro-SemiBold
 export const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'Poppins';
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
     src: url(${PoppinsRegular}), url(${PoppinsLight}), url(${PoppinsMedium}), url(${PoppinsSemi}), url(${PoppinsBold});
   }
 
   @font-face {
     font-family: 'Dancing Script';
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
     src: url(${DancingScriptMedium});
   }
 
   @font-face {
     font-family: 'Source Serif Pro';
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
     src: url(${SourceSerifProLight}), url(${SourceSerifProRegular}), url(${SourceSerifProSemi});
   }
 
@@ -33,6 +42,5 @@ export const GlobalStyle = createGlobalStyle`
 export const Wrapper = styled.section`
   max-width: 100vw;
   font-size: 1.4rem;
-  font-family: 'Poppins';
   overflow-x: hidden;
 `;

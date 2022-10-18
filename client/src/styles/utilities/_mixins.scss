@@ -1,0 +1,29 @@
+@mixin boxSize($width: '1rem', $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+@mixin flexBox($justify: flex-start, $align: flex-start, $direct: row, $wrap: nowrap) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direct;
+  flex-wrap: $wrap;
+}
+
+@mixin flexCenter($pos: cen) {
+  display: flex;
+
+  @if $pos == cen {
+    align-items: center;
+    justify-content: center;
+  }
+
+  @if $pos == ver {
+    align-items: center;
+  }
+
+  @if $pos == hor {
+    justify-content: center;
+  }
+}

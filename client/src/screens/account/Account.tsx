@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { FooterLayout } from '~/layouts/footer';
 import { HeaderLayout } from '~/layouts/public-header';
+import { NewInfoPage } from '~/pages/account/info';
 import { LoginPage } from '~/pages/account/login';
 import { RegisterPage } from '~/pages/account/register';
 import { ILogRoutes } from './interface';
@@ -9,6 +10,7 @@ import { ILogRoutes } from './interface';
 const logRoutes: ILogRoutes[] = [
   { id: uuidv4(), path: 'login', component: LoginPage },
   { id: uuidv4(), path: 'register', component: RegisterPage },
+  { id: uuidv4(), path: 'new-info', component: NewInfoPage },
 ];
 
 const Account = () => {

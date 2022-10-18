@@ -1,9 +1,9 @@
-import { Routes } from '~/routes';
+import { AllMainRoutes } from '~/routes';
 
 const App = () => {
   return (
     <section className="routes">
-      <Routes />
+      <AllMainRoutes />
     </section>
   );
 };
