@@ -1,11 +1,5 @@
-import { AllMainRoutes } from '~/routes';
-
 const App = () => {
-  return (
-    <section className="routes">
-      <AllMainRoutes />
-    </section>
-  );
+  return <section className="routes"></section>;
 };
 
 export default App;
