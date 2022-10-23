@@ -1,0 +1,177 @@
+@use '~/styles/utils' as utils;
+
+.header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+  background-color: #fff;
+  transition: box-shadow utils.$transition-02-effect;
+
+  &__container {
+    max-width: 1400px;
+
+    @include utils.breakpoint(xl) {
+      max-width: 1200px;
+    }
+    @include utils.breakpoint(lg) {
+      max-width: 992px;
+    }
+    @include utils.breakpoint(md) {
+      max-width: 768px;
+    }
+    @include utils.breakpoint(sm) {
+      max-width: 576px;
+    }
+    @include utils.breakpoint(xs) {
+      max-width: 100%;
+    }
+  }
+
+  &__row {
+    @include utils.flexBox(space-between, center, row);
+    height: 10rem;
+  }
+
+  &__column {
+    @include utils.flexBox(flex-start, center, row);
+  }
+}
+
+.drawer {
+  &__box {
+    padding: 1.5rem;
+    min-width: 30rem;
+    font-size: 1.6rem;
+  }
+
+  &__logo {
+    display: block;
+    margin-bottom: 3rem;
+    color: utils.$primary-text-color;
+    font-size: 2.5rem;
+    text-decoration: none;
+    text-align: center;
+  }
+
+  &__nav-item {
+    display: block;
+    color: utils.$primary-text-color;
+    font-size: 1.6rem;
+    text-decoration: none;
+
+    &:global(.active) {
+      color: utils.$secondary-text-color;
+      font-weight: bold;
+    }
+  }
+
+  &__btn-log {
+    width: 100%;
+
+    a {
+      flex-basis: 100%;
+      display: block;
+      color: utils.$primary-text-color;
+      font-size: 1.4rem;
+      text-decoration: none;
+      text-transform: capitalize;
+    }
+  }
+}
+
+.home-link {
+  display: inline-block;
+  color: utils.$primary-text-color;
+  font-size: 4rem;
+  text-decoration: none;
+
+  @include utils.breakpoint(lg) {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+  }
+}
+
+.nav {
+  margin-left: 2rem;
+
+  @include utils.breakpoint(lg) {
+    margin-left: 1rem;
+  }
+
+  a {
+    color: utils.$primary-text-color;
+    font-size: 1.6rem;
+    text-decoration: none;
+    margin-left: 2rem;
+
+    @include utils.breakpoint(lg) {
+      margin-left: 1rem;
+    }
+
+    &:global(.active) {
+      color: utils.$secondary-text-color;
+      font-weight: bold;
+    }
+  }
+}
+
+.search {
+  &__input {
+    @include utils.boxSize(25rem, 4rem);
+
+    @include utils.breakpoint(md) {
+      @include utils.boxSize(15rem, 4rem);
+    }
+
+    @include utils.breakpoint(sm) {
+      @include utils.boxSize(25rem, 4rem);
+    }
+
+    & :global(.MuiOutlinedInput-input) {
+      padding: 1rem 0.5rem;
+      font-size: 1.4rem;
+
+      &::placeholder {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+.user {
+  margin-left: 2rem;
+
+  &__menu {
+    & :global(.MuiPaper-root) {
+      margin-top: 1.2rem;
+      overflow: visible;
+      filter: drop-shadow(0px 0.2rem 0.8rem rgba(0, 0, 0, 0.32));
+
+      &::before {
+        @include utils.boxSize(1rem);
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 1.4rem;
+        display: block;
+        background-color: utils.$primary-color;
+        transform: translateY(-50%) rotate(45deg);
+        z-index: 0;
+      }
+    }
+
+    & :global(.MuiMenuItem-root) {
+      font-size: 1.4rem;
+    }
+  }
+
+  &__link {
+    color: utils.$primary-text-color;
+    text-decoration: none;
+  }
+}

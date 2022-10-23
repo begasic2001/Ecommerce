@@ -1,0 +1,9 @@
+@use '~/styles/utils' as utils;
+
+.logo {
+  font-family: 'Dancing Script', cursive;
+
+  em {
+    color: utils.$emphasize-color;
+  }
+}

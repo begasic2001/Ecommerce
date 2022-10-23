@@ -27,3 +27,27 @@
     justify-content: center;
   }
 }
+
+@mixin breakpoint($bp) {
+  @if $bp == xl {
+    @media only screen and (max-width: calc($xxl - 1px)) {
+      @content;
+    }
+  } @else if $bp == lg {
+    @media only screen and (max-width: calc($xl - 1px)) {
+      @content;
+    }
+  } @else if $bp == md {
+    @media only screen and (max-width: calc($lg - 1px)) {
+      @content;
+    }
+  } @else if $bp == sm {
+    @media only screen and (max-width: calc($md - 1px)) {
+      @content;
+    }
+  } @else if $bp == xs {
+    @media only screen and (max-width: calc($sm - 1px)) {
+      @content;
+    }
+  }
+}
