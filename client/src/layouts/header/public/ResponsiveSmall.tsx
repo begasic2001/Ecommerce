@@ -68,17 +68,19 @@ export const HeaderPublicSmall = (props: IHeaderPublicProps) => {
         <LogoWebsite />
       </Link>
       <List>
-        {accountLinkPath.map((item) => {
+        {navLinkPath.map((item) => {
           const Icon = item.icon;
           return (
             <ListItem key={item.id} disablePadding>
               <ListItemButton>
-                <Button variant={'contained'} className={s['drawer__btn-log']}>
-                  <IconButton>
-                    <Icon />
-                  </IconButton>
-                  <Link to={`${item.path}`}>{item.name}</Link>
-                </Button>
+                <ListItemIcon>
+                  <Icon />
+                </ListItemIcon>
+                <ListItemText>
+                  <NavLink to={`${item.path}`} className={s['drawer__nav-item']}>
+                    {item.name}
+                  </NavLink>
+                </ListItemText>
               </ListItemButton>
             </ListItem>
           );
@@ -86,7 +88,7 @@ export const HeaderPublicSmall = (props: IHeaderPublicProps) => {
       </List>
       <Divider />
       <List>
-        {navLinkPath.map((item) => {
+        {accountLinkPath.map((item) => {
           const Icon = item.icon;
           return (
             <ListItem key={item.id} disablePadding>
@@ -108,41 +110,39 @@ export const HeaderPublicSmall = (props: IHeaderPublicProps) => {
   );
 
   return (
-    <header className={s.header}>
-      <Container component={'section'} className={s['header__container']}>
-        <Stack component={'section'} className={s['header__row']}>
-          <>
-            <Button onClick={() => toggleDrawer(true)}>
-              <MenuIcon sx={{ fill: '#000', width: '2.5rem', height: '2.5rem' }} />
-            </Button>
-            <Drawer anchor={'left'} open={openDrawer} onClose={() => toggleDrawer(false)}>
-              {list()}
-            </Drawer>
-          </>
-          <>
-            {showSearch ? (
-              <TextField
-                type={'search'}
-                value={props.searchValue}
-                onChange={props.handleSearchValue}
-                placeholder={'Nhập hoa, chậu yêu thích...'}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start" onClick={toggleSearch}>
-                      <SearchIcon sx={{ width: '2rem', height: '2rem' }} />
-                    </InputAdornment>
-                  ),
-                }}
-                className={s['search__input']}
-              />
-            ) : (
-              <IconButton onClick={toggleSearch}>
-                <SearchIcon sx={{ width: '2.5rem', height: '2.5rem' }} />
-              </IconButton>
-            )}
-          </>
-        </Stack>
-      </Container>
-    </header>
+    <Container component={'section'} className={s['header__container']}>
+      <Stack component={'section'} className={s['header__row']}>
+        <>
+          <Button onClick={() => toggleDrawer(true)}>
+            <MenuIcon sx={{ fill: '#000', width: '2.5rem', height: '2.5rem' }} />
+          </Button>
+          <Drawer anchor={'left'} open={openDrawer} onClose={() => toggleDrawer(false)}>
+            {list()}
+          </Drawer>
+        </>
+        <>
+          {showSearch ? (
+            <TextField
+              type={'search'}
+              value={props.searchValue}
+              onChange={props.handleSearchValue}
+              placeholder={'Nhập hoa, chậu yêu thích...'}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start" onClick={toggleSearch}>
+                    <SearchIcon sx={{ width: '2rem', height: '2rem' }} />
+                  </InputAdornment>
+                ),
+              }}
+              className={s['search__input']}
+            />
+          ) : (
+            <IconButton onClick={toggleSearch}>
+              <SearchIcon sx={{ width: '2.5rem', height: '2.5rem' }} />
+            </IconButton>
+          )}
+        </>
+      </Stack>
+    </Container>
   );
 };

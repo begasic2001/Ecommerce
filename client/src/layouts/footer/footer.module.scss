@@ -1,0 +1,91 @@
+@use '~/styles/utils' as utils;
+
+.footer {
+  margin-top: 5rem;
+  background-color: utils.$secondary-color;
+
+  &__container {
+    max-width: 1400px;
+    color: utils.$secondary-text-color;
+
+    @include utils.breakpoint(xl) {
+      max-width: 1200px;
+    }
+    @include utils.breakpoint(lg) {
+      max-width: 992px;
+    }
+    @include utils.breakpoint(md) {
+      max-width: 768px;
+    }
+    @include utils.breakpoint(sm) {
+      max-width: 576px;
+    }
+    @include utils.breakpoint(xs) {
+      max-width: 100%;
+    }
+  }
+}
+
+.link {
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 5rem 0;
+  border-bottom: solid 1px utils.$border-primary-color;
+
+  &__title {
+    color: utils.$primary-text-color;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  &__item {
+    flex-basis: calc(100% / 4);
+
+    @include utils.breakpoint(sm) {
+      flex-basis: calc(100% / 2);
+    }
+  }
+
+  &__list {
+    li {
+      list-style-type: none;
+      padding-top: 1.5rem;
+
+      &:hover {
+        cursor: pointer;
+        color: utils.$third-text-color;
+      }
+    }
+  }
+}
+
+.social {
+  @include utils.flexBox(space-between, center, row);
+  padding: 2rem 0;
+  font-size: 1.2rem;
+
+  @include utils.breakpoint(sm) {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  &__icn {
+    &--paypal {
+      margin-left: 1rem;
+    }
+  }
+
+  &__txt {
+    text-transform: uppercase;
+
+    &:hover {
+      cursor: pointer;
+      color: #888;
+    }
+
+    &:not(:first-child) {
+      margin-left: 1rem;
+    }
+  }
+}

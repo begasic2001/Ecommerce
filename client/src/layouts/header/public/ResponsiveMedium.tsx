@@ -108,40 +108,38 @@ export const HeaderPublicMedium = (props: IHeaderPublicProps) => {
   );
 
   return (
-    <header className={s.header}>
-      <Container component={'section'} className={s['header__container']}>
-        <Stack component={'section'} className={s['header__row']}>
-          <Button onClick={() => toggleDrawer(true)}>
-            <MenuIcon sx={{ fill: '#000', width: '2.5rem', height: '2.5rem' }} />
-          </Button>
-          <Drawer anchor={'left'} open={openDrawer} onClose={() => toggleDrawer(false)}>
-            {list()}
-          </Drawer>
-          <Link to={'/home'} className={s['home-link']}>
-            <LogoWebsite />
-          </Link>
-          {showSearch ? (
-            <TextField
-              type={'search'}
-              value={props.searchValue}
-              onChange={props.handleSearchValue}
-              placeholder={'Nhập hoa, chậu yêu thích...'}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start" onClick={toggleSearch}>
-                    <SearchIcon sx={{ width: '2rem', height: '2rem' }} />
-                  </InputAdornment>
-                ),
-              }}
-              className={s['search__input']}
-            />
-          ) : (
-            <IconButton onClick={toggleSearch}>
-              <SearchIcon sx={{ width: '2.5rem', height: '2.5rem' }} />
-            </IconButton>
-          )}
-        </Stack>
-      </Container>
-    </header>
+    <Container component={'section'} className={s['header__container']}>
+      <Stack component={'section'} className={s['header__row']}>
+        <Button onClick={() => toggleDrawer(true)}>
+          <MenuIcon sx={{ fill: '#000', width: '2.5rem', height: '2.5rem' }} />
+        </Button>
+        <Drawer anchor={'left'} open={openDrawer} onClose={() => toggleDrawer(false)}>
+          {list()}
+        </Drawer>
+        <Link to={'/home'} className={s['home-link']}>
+          <LogoWebsite />
+        </Link>
+        {showSearch ? (
+          <TextField
+            type={'search'}
+            value={props.searchValue}
+            onChange={props.handleSearchValue}
+            placeholder={'Nhập hoa, chậu yêu thích...'}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start" onClick={toggleSearch}>
+                  <SearchIcon sx={{ width: '2rem', height: '2rem' }} />
+                </InputAdornment>
+              ),
+            }}
+            className={s['search__input']}
+          />
+        ) : (
+          <IconButton onClick={toggleSearch}>
+            <SearchIcon sx={{ width: '2.5rem', height: '2.5rem' }} />
+          </IconButton>
+        )}
+      </Stack>
+    </Container>
   );
 };

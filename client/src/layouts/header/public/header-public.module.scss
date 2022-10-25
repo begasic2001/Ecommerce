@@ -9,6 +9,10 @@
   background-color: #fff;
   transition: box-shadow utils.$transition-02-effect;
 
+  &--isScroll {
+    box-shadow: 0 0.2rem 0.2rem utils.$border-secondary-color;
+  }
+
   &__container {
     max-width: 1400px;
 
@@ -84,7 +88,7 @@
 .home-link {
   display: inline-block;
   color: utils.$primary-text-color;
-  font-size: 4rem;
+  font-size: 3rem;
   text-decoration: none;
 
   @include utils.breakpoint(lg) {
@@ -92,7 +96,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 }
 
