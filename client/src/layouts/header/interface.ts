@@ -1,8 +1,3 @@
-export interface IHeaderPublicProps {
-  searchValue: string;
-  handleSearchValue: any;
-}
-
 export interface IMenuProps {
   media: {
     large: boolean;

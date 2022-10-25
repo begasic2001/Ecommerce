@@ -1,0 +1,1 @@
+export {default as SlideshowFeature} from './Slideshow'

@@ -1,0 +1,82 @@
+@use '~/styles/utils' as utils;
+
+.slideshow {
+  position: relative;
+  margin-top: 10rem;
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(#000, 0.5), transparent);
+  }
+}
+
+.image {
+  height: calc(100vh / 2);
+
+  img {
+    @include utils.boxSize(100%);
+    display: block;
+    object-fit: cover;
+    object-position: top center;
+  }
+}
+
+.content {
+  position: absolute;
+  top: 40%;
+  left: 10%;
+  transform: translateY(-40%);
+
+  &__title {
+    max-width: 50%;
+    font-size: 6rem;
+    font-family: 'Source Serif Pro', serif;
+    font-weight: 400;
+
+    span {
+      color: utils.$emphasize-color;
+    }
+  }
+
+  &__paragraph {
+    margin-top: 2rem;
+    max-width: 50%;
+    color: #555;
+    font-size: 1.6rem;
+    line-height: 1.5;
+  }
+}
+
+@include utils.breakpoint(lg) {
+  .image {
+    height: calc(100vh / 3);
+  }
+
+  .content {
+    &__title {
+      max-width: 60%;
+      font-size: 4.5rem;
+      font-family: 'Source Serif Pro', serif;
+      font-weight: 400;
+  
+      span {
+        color: utils.$emphasize-color;
+      }
+    }
+  
+    &__paragraph {
+      margin-top: 2rem;
+      max-width: 60%;
+      color: #555;
+      font-size: 1.6rem;
+      line-height: 1.5;
+    }
+  }
+}
+
+@include utils.breakpoint(sm) {
+  .image {
+    height: calc(100vh / 4);
+  }
+}
