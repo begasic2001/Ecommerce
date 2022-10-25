@@ -7,22 +7,6 @@
   &__container {
     max-width: 1400px;
     color: utils.$secondary-text-color;
-
-    @include utils.breakpoint(xl) {
-      max-width: 1200px;
-    }
-    @include utils.breakpoint(lg) {
-      max-width: 992px;
-    }
-    @include utils.breakpoint(md) {
-      max-width: 768px;
-    }
-    @include utils.breakpoint(sm) {
-      max-width: 576px;
-    }
-    @include utils.breakpoint(xs) {
-      max-width: 100%;
-    }
   }
 }
 
@@ -65,11 +49,6 @@
   padding: 2rem 0;
   font-size: 1.2rem;
 
-  @include utils.breakpoint(sm) {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
   &__icn {
     &--paypal {
       margin-left: 1rem;
@@ -87,5 +66,40 @@
     &:not(:first-child) {
       margin-left: 1rem;
     }
+  }
+}
+
+@include utils.breakpoint(xl) {
+  .footer__container {
+    max-width: 1200px;
+  }
+}
+
+@include utils.breakpoint(lg) {
+  .footer__container {
+    max-width: 992px;
+  }
+}
+
+@include utils.breakpoint(md) {
+  .footer__container {
+    max-width: 768px;
+  }
+}
+
+@include utils.breakpoint(sm) {
+  .footer__container {
+    max-width: 576px;
+  }
+
+  .social {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@include utils.breakpoint(xs) {
+  .footer__container {
+    max-width: 100%;
   }
 }

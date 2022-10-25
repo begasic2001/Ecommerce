@@ -15,22 +15,6 @@
 
   &__container {
     max-width: 1400px;
-
-    @include utils.breakpoint(xl) {
-      max-width: 1200px;
-    }
-    @include utils.breakpoint(lg) {
-      max-width: 992px;
-    }
-    @include utils.breakpoint(md) {
-      max-width: 768px;
-    }
-    @include utils.breakpoint(sm) {
-      max-width: 576px;
-    }
-    @include utils.breakpoint(xs) {
-      max-width: 100%;
-    }
   }
 
   &__row {
@@ -90,32 +74,16 @@
   color: utils.$primary-text-color;
   font-size: 3rem;
   text-decoration: none;
-
-  @include utils.breakpoint(lg) {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 2.5rem;
-  }
 }
 
 .nav {
   margin-left: 2rem;
-
-  @include utils.breakpoint(lg) {
-    margin-left: 1rem;
-  }
 
   a {
     color: utils.$primary-text-color;
     font-size: 1.6rem;
     text-decoration: none;
     margin-left: 2rem;
-
-    @include utils.breakpoint(lg) {
-      margin-left: 1rem;
-    }
 
     &:global(.active) {
       color: utils.$secondary-text-color;
@@ -124,25 +92,15 @@
   }
 }
 
-.search {
-  &__input {
-    @include utils.boxSize(25rem, 4rem);
+.search__input {
+  @include utils.boxSize(25rem, 4rem);
 
-    @include utils.breakpoint(md) {
-      @include utils.boxSize(15rem, 4rem);
-    }
+  & :global(.MuiOutlinedInput-input) {
+    padding: 1rem 0.5rem;
+    font-size: 1.4rem;
 
-    @include utils.breakpoint(sm) {
-      @include utils.boxSize(25rem, 4rem);
-    }
-
-    & :global(.MuiOutlinedInput-input) {
-      padding: 1rem 0.5rem;
-      font-size: 1.4rem;
-
-      &::placeholder {
-        font-size: 1.2rem;
-      }
+    &::placeholder {
+      font-size: 1.2rem;
     }
   }
 }
@@ -177,5 +135,59 @@
   &__link {
     color: utils.$primary-text-color;
     text-decoration: none;
+  }
+}
+
+@include utils.breakpoint(xl) {
+  .header__container {
+    max-width: 1200px;
+  }
+}
+
+@include utils.breakpoint(lg) {
+  .header__container {
+    max-width: 992px;
+  }
+
+  .home-link {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+  }
+
+  .nav {
+    margin-left: 1rem;
+
+    a {
+      margin-left: 1rem;
+    }
+  }
+}
+
+@include utils.breakpoint(md) {
+  .header__container {
+    max-width: 768px;
+  }
+
+  .search__input {
+    @include utils.boxSize(15rem, 4rem);
+  }
+}
+
+@include utils.breakpoint(sm) {
+  .header__container {
+    max-width: 576px;
+  }
+
+  .search__input {
+    @include utils.boxSize(25rem, 4rem);
+  }
+}
+
+@include utils.breakpoint(xs) {
+  .header__container {
+    max-width: 100%;
   }
 }

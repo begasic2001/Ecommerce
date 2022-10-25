@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { HeaderPublic } from '~/layouts/header/public';
+import { HeaderLayout } from '~/layouts/header';
 import { FooterLayout } from '~/layouts/footer';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -13,7 +13,7 @@ const PublicScreens = () => {
 
   return (
     <>
-      <HeaderPublic />
+      <HeaderLayout />
       <FooterLayout />
     </>
   );

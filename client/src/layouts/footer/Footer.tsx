@@ -4,8 +4,6 @@ import VisaIcon from '~/assets/logo/visa.png';
 import s from './footer.module.scss';
 
 const FooterLayout = () => {
-  console.log(s);
-
   return (
     <footer className={s.footer}>
       <Container component={'section'} className={s['footer__container']}>
