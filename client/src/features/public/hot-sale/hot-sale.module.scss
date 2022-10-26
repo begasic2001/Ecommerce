@@ -18,9 +18,9 @@
 }
 
 .big {
-  padding: 2.5rem;
-  box-shadow: 0 0 1rem #eee;
   flex-basis: 30%;
+  padding: 2.5rem;
+  border: 1px solid #eee;
   width: 30%;
   min-height: 70rem;
   overflow: hidden;
@@ -78,5 +78,21 @@
     &__time {
       font-size: 3.5rem;
     }
+  }
+}
+
+.other {
+  flex-basis: 65%;
+  width: 65%;
+}
+
+@include utils.breakpoint(lg) {
+  .content {
+    justify-content: flex-start;
+  }
+
+  .other {
+    flex-basis: 100%;
+    width: 100%;
   }
 }
