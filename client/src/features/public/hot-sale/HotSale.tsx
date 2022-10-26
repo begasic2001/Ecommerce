@@ -5,13 +5,13 @@ import s from './hot-sale.module.scss';
 
 const HotSaleFeature = () => {
   const theme = useTheme();
-  const largeMedia = useMediaQuery(theme.breakpoints.up('lg'));
+  const largeMedia = useMediaQuery(theme.breakpoints.up('xl'));
   const mediumMedia = useMediaQuery(theme.breakpoints.between('sm', 'lg'));
   const smallMedia = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
-    <Container className={s.footer}>
-      <h3 className={s['footer__title']}>Hot sale</h3>
+    <Container component={'section'} className={s.hot}>
+      <h3 className={s['hot__title']}>Hot sale</h3>
       <Stack className={s.content}>
         {largeMedia && (
           <Stack className={s.big}>

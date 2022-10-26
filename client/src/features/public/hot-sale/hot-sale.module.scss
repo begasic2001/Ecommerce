@@ -1,6 +1,6 @@
 @use '~/styles/utils' as utils;
 
-.footer {
+.hot {
   max-width: 1400px;
   margin: 5rem auto 0;
 
@@ -74,7 +74,7 @@
     &__txt {
       font-size: 2rem;
     }
-  
+
     &__time {
       font-size: 3.5rem;
     }
@@ -86,7 +86,17 @@
   width: 65%;
 }
 
+@include utils.breakpoint(xl) {
+  .hot {
+    max-width: 1200px;
+  }
+}
+
 @include utils.breakpoint(lg) {
+  .hot {
+    max-width: 992px;
+  }
+
   .content {
     justify-content: flex-start;
   }
@@ -94,5 +104,27 @@
   .other {
     flex-basis: 100%;
     width: 100%;
+  }
+}
+
+@include utils.breakpoint(md) {
+  .hot {
+    max-width: 768px;
+  }
+
+  .search__input {
+    @include utils.boxSize(15rem, 4rem);
+  }
+}
+
+@include utils.breakpoint(sm) {
+  .hot {
+    max-width: 576px;
+  }
+}
+
+@include utils.breakpoint(xs) {
+  .hot {
+    max-width: 100%;
   }
 }
