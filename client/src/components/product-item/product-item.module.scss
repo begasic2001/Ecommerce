@@ -1,0 +1,38 @@
+@use '~/styles/utils' as utils;
+
+.item {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  min-height: 35rem;
+  box-shadow: 0 0 0.5rem #eee;
+  overflow: hidden;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:hover &__img {
+    transform: scale(1.1);
+  }
+
+  &__img {
+    @include utils.boxSize(100%, 20rem);
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    transition: utils.$transition-02-effect;
+  }
+
+  &__name {
+    margin-top: auto;
+    font-weight: bold;
+    font-size: 1.6rem;
+    text-align: center;
+  }
+
+  &__price {
+    margin-top: 3rem;
+    text-align: center;
+  }
+}
