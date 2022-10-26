@@ -1,0 +1,54 @@
+@use '~/styles/utils' as utils;
+
+.new {
+  margin-top: 8rem;
+
+  &__container {
+    max-width: 1400px;
+  }
+}
+
+.title {
+  padding-bottom: 1rem;
+  border-bottom: solid 1px #eee;
+  font: 400 3.5rem 'Source Serif Pro', serif;
+}
+
+.slideshow {
+  margin-top: 3rem;
+
+  & :global(.swiper-button-next::after),
+  & :global(.swiper-button-prev::after) {
+    color: #fff;
+  }
+}
+
+@include utils.breakpoint(xl) {
+  .new__container {
+    max-width: 1200px;
+  }
+}
+
+@include utils.breakpoint(lg) {
+  .new__container {
+    max-width: 992px;
+  }
+}
+
+@include utils.breakpoint(md) {
+  .new__container {
+    max-width: 768px;
+  }
+}
+
+@include utils.breakpoint(sm) {
+  .special__container {
+    max-width: 576px;
+  }
+}
+
+@include utils.breakpoint(xs) {
+  .new__container {
+    max-width: 100%;
+  }
+}
