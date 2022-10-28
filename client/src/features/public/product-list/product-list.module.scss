@@ -1,0 +1,56 @@
+@use '~/styles/utils' as utils;
+
+.products {
+  margin-top: 15rem;
+  max-width: 1400px;
+
+  &__row {
+    @include utils.flexBox(space-between, flex-start, row);
+  }
+}
+
+.filter {
+  flex-basis: 25%;
+  width: 25%;
+
+  &-box {
+    margin-top: 3rem;
+
+    &__title {
+      margin-top: 2rem;
+      font-size: 1.8rem;
+      font-weight: 600;
+      text-align: center;
+    }
+  }
+}
+
+@include utils.breakpoint(xl) {
+  .products {
+    max-width: 1200px;
+  }
+}
+
+@include utils.breakpoint(lg) {
+  .products {
+    max-width: 992px;
+  }
+}
+
+@include utils.breakpoint(md) {
+  .products {
+    max-width: 768px;
+  }
+}
+
+@include utils.breakpoint(sm) {
+  .products {
+    max-width: 576px;
+  }
+}
+
+@include utils.breakpoint(xs) {
+  .products {
+    max-width: 100%;
+  }
+}
