@@ -4,17 +4,17 @@
   max-width: 1400px;
   margin: 5rem auto 0;
 
-  &__title {
+  h3 {
     padding-bottom: 1rem;
     border-bottom: solid 1px #eee;
     font: 400 3.5rem 'Source Serif Pro', serif;
   }
-}
 
-.content {
-  justify-content: space-between;
-  flex-direction: row;
-  margin-top: 3rem;
+  &__content {
+    justify-content: space-between;
+    flex-direction: row;
+    margin-top: 3rem;
+  }
 }
 
 .big {
@@ -95,10 +95,10 @@
 @include utils.breakpoint(lg) {
   .hot {
     max-width: 992px;
-  }
 
-  .content {
-    justify-content: flex-start;
+    &__content {
+      justify-content: flex-start;
+    }
   }
 
   .other {
@@ -110,10 +110,6 @@
 @include utils.breakpoint(md) {
   .hot {
     max-width: 768px;
-  }
-
-  .search__input {
-    @include utils.boxSize(15rem, 4rem);
   }
 }
 

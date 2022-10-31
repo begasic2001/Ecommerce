@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
-import { HeaderLayout } from '~/layouts/header';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 import { FooterLayout } from '~/layouts/footer';
-import { useNavigate, useLocation, Routes, Route } from 'react-router-dom';
+import { HeaderLayout } from '~/layouts/header';
 import { Homepage } from '~/pages/public/home';
 import { ProductsPage } from '~/pages/public/products';
-import { v4 as uuidv4 } from 'uuid';
 import { IPublicRoutes } from './interface';
 
 const publicRoutes: IPublicRoutes[] = [
@@ -12,10 +12,11 @@ const publicRoutes: IPublicRoutes[] = [
   { id: uuidv4(), path: '/products', component: ProductsPage },
 ];
 
-const PublicScreens = () => {
+function PublicScreens() {
   const location = useLocation();
   const navigate = useNavigate();
 
+  // Check if path name is '/', then change it '/home'
   useEffect(() => {
     if (location.pathname === '/') navigate('/home');
   }, [location.pathname]);
@@ -32,6 +33,6 @@ const PublicScreens = () => {
       <FooterLayout />
     </>
   );
-};
+}
 
 export default PublicScreens;

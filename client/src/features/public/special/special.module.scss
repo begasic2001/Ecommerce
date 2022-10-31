@@ -28,7 +28,7 @@
   flex-basis: 50%;
   width: 50%;
 
-  &__title {
+  h3 {
     font: 400 3.5rem 'Source Serif Pro', serif;
     line-height: 1.4;
 
@@ -38,12 +38,12 @@
     }
   }
 
-  &__txt {
+  p {
     margin-top: 2.5rem;
     color: utils.$secondary-text-color;
   }
 
-  &__list {
+  &-list {
     margin-top: 2.5rem;
     margin-left: 2rem;
     font-size: 1.8rem;
@@ -71,7 +71,7 @@
   }
 
   .announce {
-    &__title {
+    h3 {
       font-size: 3rem;
     }
   }
@@ -97,7 +97,7 @@
   .image {
     flex-basis: 100%;
     width: 100%;
-  
+
     img {
       @include utils.boxSize(100%);
       display: block;
@@ -109,11 +109,11 @@
     flex-basis: 100%;
     width: 100%;
 
-    &__title {
+    h3 {
       font-size: 2.5rem;
     }
 
-    &__list {
+    &-list {
       font-size: 1.4rem;
     }
   }

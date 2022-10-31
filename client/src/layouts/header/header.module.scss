@@ -28,11 +28,9 @@
 }
 
 .drawer {
-  &__box {
-    padding: 1.5rem;
-    min-width: 30rem;
-    font-size: 1.6rem;
-  }
+  padding: 1.5rem;
+  min-width: 30rem;
+  font-size: 1.6rem;
 
   &__logo {
     display: block;
@@ -43,7 +41,7 @@
     text-align: center;
   }
 
-  &__nav-item {
+  &-nav__item {
     display: block;
     color: utils.$primary-text-color;
     font-size: 1.6rem;

@@ -9,9 +9,9 @@ import s from './new-products.module.scss';
 
 const NewProductsFeature = () => {
   const theme = useTheme();
-  const mediumMedia = useMediaQuery(theme.breakpoints.between('lg', 'xl'));
-  const smallMedia = useMediaQuery(theme.breakpoints.between('sm', 'lg'));
-  const extraSmallMedia = useMediaQuery(theme.breakpoints.down('sm'));
+  const mediumMedia = useMediaQuery<boolean>(theme.breakpoints.between('lg', 'xl'));
+  const smallMedia = useMediaQuery<boolean>(theme.breakpoints.between('sm', 'lg'));
+  const extraSmallMedia = useMediaQuery<boolean>(theme.breakpoints.down('sm'));
 
   return (
     <section className={s.new}>

@@ -1,6 +1,6 @@
 import { AllMainRoutes } from '~/routes';
 
-const App = () => {
+function App() {
   return (
     <section className="routes">
       <AllMainRoutes />

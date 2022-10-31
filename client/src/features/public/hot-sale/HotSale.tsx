@@ -3,16 +3,16 @@ import { ProductItem } from '~/components/product-item';
 import { useTheme, useMediaQuery } from '@mui/material';
 import s from './hot-sale.module.scss';
 
-const HotSaleFeature = () => {
+function HotSaleFeature() {
   const theme = useTheme();
-  const largeMedia = useMediaQuery(theme.breakpoints.up('xl'));
-  const mediumMedia = useMediaQuery(theme.breakpoints.between('sm', 'lg'));
-  const smallMedia = useMediaQuery(theme.breakpoints.down('sm'));
+  const largeMedia = useMediaQuery<boolean>(theme.breakpoints.up('xl'));
+  const mediumMedia = useMediaQuery<boolean>(theme.breakpoints.between('sm', 'lg'));
+  const smallMedia = useMediaQuery<boolean>(theme.breakpoints.down('sm'));
 
   return (
-    <Container component={'section'} className={s.hot}>
-      <h3 className={s['hot__title']}>Hot sale</h3>
-      <Stack className={s.content}>
+    <Container className={s.hot}>
+      <h3>Hot sale</h3>
+      <Stack className={s['hot__content']}>
         {largeMedia && (
           <Stack className={s.big}>
             <section className={s['big__image']}>
@@ -24,7 +24,7 @@ const HotSaleFeature = () => {
             <Stack className={s['big-info']}>
               <p className={s['big-info__name']}>Hoa Tang</p>
               <p className={s['big-info__price']}>
-                <span>$300</span> $225
+                <em>$300</em> $225
               </p>
             </Stack>
             <Stack className={s['big-remain']}>
@@ -47,6 +47,6 @@ const HotSaleFeature = () => {
       </Stack>
     </Container>
   );
-};
+}
 
 export default HotSaleFeature;

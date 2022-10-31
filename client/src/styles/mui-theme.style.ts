@@ -22,23 +22,4 @@ export const theme = createTheme({
       xxl: 1400,
     },
   },
-  palette: {
-    mode: 'light',
-    primary: {
-      main: '#fff',
-    },
-    secondary: {
-      main: '#f7f7f7',
-    },
-    warning: {
-      main: '#f34f3f',
-    },
-    text: {
-      primary: '#000',
-      secondary: '#aaa',
-    },
-    background: {
-      default: '#fff',
-    },
-  },
 });

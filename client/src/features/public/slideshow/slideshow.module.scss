@@ -30,9 +30,7 @@
 
   &__title {
     max-width: 50%;
-    font-size: 6rem;
-    font-family: 'Source Serif Pro', serif;
-    font-weight: 400;
+    font: 400 6rem 'Source Serif Pro', serif;
 
     span {
       color: utils.$emphasize-color;
@@ -63,7 +61,7 @@
       }
     }
 
-    &__paragraph {
+    p {
       margin-top: 2rem;
       max-width: 60%;
       color: #555;

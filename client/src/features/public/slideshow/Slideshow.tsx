@@ -1,9 +1,9 @@
 import { useMediaQuery, useTheme } from '@mui/material';
 import s from './slideshow.module.scss';
 
-const SlideshowFeature = () => {
+function SlideshowFeature() {
   const theme = useTheme();
-  const smallMedia = useMediaQuery(theme.breakpoints.down('md'));
+  const smallMedia = useMediaQuery<boolean>(theme.breakpoints.down('md'));
 
   return (
     <section className={s.slideshow}>
@@ -19,7 +19,7 @@ const SlideshowFeature = () => {
           <h2 className={s['content__title']}>
             Send <span>flowers</span> like you mean it.
           </h2>
-          <p className={s['content__paragraph']}>
+          <p>
             Where flowers are our inspiration to create lasting memories. Whatever the occasion, our
             flowers will make it special cursus a sit amet mauris.
           </p>
@@ -27,6 +27,6 @@ const SlideshowFeature = () => {
       )}
     </section>
   );
-};
+}
 
 export default SlideshowFeature;

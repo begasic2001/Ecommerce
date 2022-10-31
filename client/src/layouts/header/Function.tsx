@@ -25,11 +25,13 @@ export const FunctionPart = (props: IFunctionProps) => {
 
   const [showSearch, setShowSearch] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  
   const open = Boolean(anchorEl);
 
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(e.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -63,7 +65,7 @@ export const FunctionPart = (props: IFunctionProps) => {
         )}
       </>
       <>
-        {media.large && (
+        {media.upXlMedia && (
           <>
             <IconButton onClick={handleClick} className={s.user}>
               <AccountCircleIcon sx={{ width: '3rem', height: '3rem' }} />

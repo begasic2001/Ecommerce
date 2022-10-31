@@ -3,7 +3,7 @@ import { HotSaleFeature } from '~/features/public/hot-sale';
 import { SpecialFeature } from '~/features/public/special';
 import { NewProductsFeature } from '~/features/public/new-products';
 
-const Homepage = () => {
+function Homepage() {
   return (
     <>
       <SlideshowFeature />
@@ -12,6 +12,6 @@ const Homepage = () => {
       <NewProductsFeature />
     </>
   );
-};
+}
 
 export default Homepage;

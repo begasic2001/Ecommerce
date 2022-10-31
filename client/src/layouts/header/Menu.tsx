@@ -4,7 +4,7 @@ import {
   Home as HomeIcon,
   Login as LoginIcon,
   Logout as LogoutIcon,
-  Menu as MenuIcon,
+  Menu as MenuIcon
 } from '@mui/icons-material';
 import {
   Button,
@@ -16,26 +16,30 @@ import {
   ListItemIcon,
   ListItemText,
   Stack,
+  SvgIconTypeMap
 } from '@mui/material';
+import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { LogoWebsite } from '~/components/logo';
 import s from './header.module.scss';
+import { IMenuLinkPath, IMenuProps } from './interface';
 
-const navLinkPath = [
+const navLinkPath: IMenuLinkPath[] = [
   { id: uuidv4(), name: 'Trang chủ', path: '/home', icon: HomeIcon },
   { id: uuidv4(), name: 'Sản phẩm', path: '/products', icon: CategoryIcon },
   { id: uuidv4(), name: 'Blog', path: '/blog', icon: ArticleIcon },
 ];
 
-const accountLinkPath = [
+const accountLinkPath: IMenuLinkPath[] = [
   { id: uuidv4(), name: 'Đăng nhập', path: '/account/login', icon: LoginIcon },
   { id: uuidv4(), name: 'Đăng ký', path: '/account/register', icon: LogoutIcon },
 ];
 
-export const MenuPart = (props) => {
+export function MenuPart(props: IMenuProps) {
   if (!props) return null;
+  const { media } = props;
 
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
 
@@ -43,21 +47,17 @@ export const MenuPart = (props) => {
     setOpenDrawer(toggle);
   };
 
-  const { media } = props;
-
+  // Drawer data when true
   const list = () => (
-    <section
-      onClick={() => toggleDrawer(false)}
-      onKeyDown={() => toggleDrawer(false)}
-      className={s['drawer__box']}
-    >
+    <section onClick={() => toggleDrawer(false)} className={s.drawer}>
       <Link to={'/home'} className={s['drawer__logo']}>
         <LogoWebsite />
       </Link>
       <>
         <List>
           {navLinkPath.map((item) => {
-            const Icon = item.icon;
+            const Icon: OverridableComponent<SvgIconTypeMap<{}, 'svg'>> & { muiName: string } =
+              item.icon;
             return (
               <ListItem key={item.id} disablePadding>
                 <ListItemButton>
@@ -65,7 +65,7 @@ export const MenuPart = (props) => {
                     <Icon />
                   </ListItemIcon>
                   <ListItemText>
-                    <NavLink to={`${item.path}`} className={s['drawer__nav-item']}>
+                    <NavLink to={`${item.path}`} className={s['drawer-nav__item']}>
                       {item.name}
                     </NavLink>
                   </ListItemText>
@@ -77,7 +77,8 @@ export const MenuPart = (props) => {
         <Divider />
         <List>
           {accountLinkPath.map((item) => {
-            const Icon = item.icon;
+            const Icon: OverridableComponent<SvgIconTypeMap<{}, 'svg'>> & { muiName: string } =
+              item.icon;
             return (
               <ListItem key={item.id} disablePadding>
                 <ListItemButton>
@@ -85,7 +86,7 @@ export const MenuPart = (props) => {
                     <Icon />
                   </ListItemIcon>
                   <ListItemText>
-                    <NavLink to={`${item.path}`} className={s['drawer__nav-item']}>
+                    <NavLink to={`${item.path}`} className={s['drawer-nav__item']}>
                       {item.name}
                     </NavLink>
                   </ListItemText>
@@ -99,8 +100,8 @@ export const MenuPart = (props) => {
   );
 
   return (
-    <Stack component={'section'} className={s['header__column']}>
-      {(media.medium || media.small) && (
+    <Stack className={s['header__column']}>
+      {(media.betweenMdXlMedia || media.downMdMedia) && (
         <>
           <Button onClick={() => toggleDrawer(true)}>
             <MenuIcon sx={{ fill: '#000', width: '2.5rem', height: '2.5rem' }} />
@@ -110,12 +111,12 @@ export const MenuPart = (props) => {
           </Drawer>
         </>
       )}
-      {(media.medium || media.large) && (
+      {(media.betweenMdXlMedia || media.upXlMedia) && (
         <Link to={'/home'} className={s['home-link']}>
           <LogoWebsite />
         </Link>
       )}
-      {media.large && (
+      {media.upXlMedia && (
         <nav className={s.nav}>
           <NavLink to={'/home'}>Trang chủ</NavLink>
           <NavLink to={'/products'}>Sản phẩm</NavLink>
@@ -124,4 +125,4 @@ export const MenuPart = (props) => {
       )}
     </Stack>
   );
-};
+}
