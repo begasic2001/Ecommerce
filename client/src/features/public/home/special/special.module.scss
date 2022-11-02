@@ -28,7 +28,7 @@
   flex-basis: 50%;
   width: 50%;
 
-  h3 {
+  &__title {
     font: 400 3.5rem 'Source Serif Pro', serif;
     line-height: 1.4;
 
@@ -38,7 +38,7 @@
     }
   }
 
-  p {
+  &__paragraph {
     margin-top: 2.5rem;
     color: utils.$secondary-text-color;
   }
@@ -51,7 +51,6 @@
     li {
       color: utils.$secondary-text-color;
       list-style-image: url('https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/h1-custom-icon.png');
-
       &:not(:first-child) {
         margin-top: 2rem;
       }

@@ -31,11 +31,10 @@
     }
   }
 
-  &__list {
+  &-list {
     li {
       list-style-type: none;
       padding-top: 1.5rem;
-
       &:hover {
         cursor: pointer;
         color: utils.$third-text-color;
@@ -49,20 +48,16 @@
   padding: 2rem 0;
   font-size: 1.2rem;
 
-  &__icn {
-    &--paypal {
-      margin-left: 1rem;
-    }
+  &__paypal {
+    margin-left: 1rem;
   }
 
   &__txt {
     text-transform: uppercase;
-
     &:hover {
       cursor: pointer;
       color: #888;
     }
-
     &:not(:first-child) {
       margin-left: 1rem;
     }

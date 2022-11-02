@@ -13,15 +13,28 @@
   flex-basis: 20%;
   width: 20%;
 
+  &--isDrawer {
+    margin: 3rem auto;
+    flex-basis: 100%;
+    width: 85%;
+    overflow: hidden;
+  }
+
   &__title {
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 2.2rem;
+  }
+
+  &__drawer {
+    & :global(.MuiPaper-root) {
+      width: 30rem;
+    }
   }
 
   &-box {
     margin: 2.5rem 0;
 
-    p {
+    &__title {
       margin-top: 2rem;
       font-size: 1.8rem;
       font-weight: 600;
@@ -68,17 +81,14 @@
       @include utils.boxSize(45%, 3rem);
       padding: 0.5rem;
       border: 1px solid utils.$border-primary-color;
-
       &:focus {
         border-color: #000;
       }
-
       &::-webkit-outer-spin-button,
       &::-webkit-inner-spin-button {
         -webkit-appearance: none;
         margin: 0;
       }
-
       &::placeholder {
         font-size: 1.2rem;
       }
@@ -88,7 +98,33 @@
 
 .result {
   flex-basis: 75%;
-  max-width: 75%;
+  width: 75%;
+
+  &-title {
+    @include utils.flexBox(space-between, center, row);
+    margin-bottom: 3rem;
+
+    h3 {
+      font-size: 2.5rem;
+    }
+  }
+
+  &-pagination {
+    margin-top: 3rem;
+
+    & :global(.MuiPagination-ul) {
+      justify-content: center;
+    }
+
+    & :global(.MuiButtonBase-root) {
+      font-size: 1.6rem;
+      color: utils.$secondary-text-color;
+    }
+
+    & :global(.Mui-selected) {
+      color: utils.$primary-text-color;
+    }
+  }
 }
 
 @include utils.breakpoint(xl) {
@@ -107,11 +143,21 @@
   .products {
     max-width: 768px;
   }
+
+  .result {
+    flex-basis: 100%;
+    width: 100%;
+  }
 }
 
 @include utils.breakpoint(sm) {
   .products {
     max-width: 576px;
+  }
+
+  .result {
+    flex-basis: 100%;
+    width: 100%;
   }
 }
 

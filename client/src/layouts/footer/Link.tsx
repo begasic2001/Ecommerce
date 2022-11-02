@@ -3,10 +3,10 @@ import s from './footer.module.scss';
 
 export function LinkPart() {
   return (
-    <Grid container rowSpacing={'3rem'} className={s.link}>
+    <Grid container rowSpacing="3rem" className={s.link}>
       <Grid item className={s['link__item']}>
         <p className={s['link__title']}>Customer Service</p>
-        <ul className={s['link__list']}>
+        <ul className={s['link-list']}>
           <li>Help & Contact Us</li>
           <li>Returns & Refunds</li>
           <li>Online Stores</li>
@@ -15,7 +15,7 @@ export function LinkPart() {
       </Grid>
       <Grid item className={s['link__item']}>
         <p className={s['link__title']}>Company</p>
-        <ul className={s['link__list']}>
+        <ul className={s['link-list']}>
           <li>About Us</li>
           <li>Blog</li>
           <li>FAQ Page</li>
@@ -24,7 +24,7 @@ export function LinkPart() {
       </Grid>
       <Grid item className={s['link__item']}>
         <p className={s['link__title']}>Social Media</p>
-        <ul className={s['link__list']}>
+        <ul className={s['link-list']}>
           <li>Twitter</li>
           <li>Instagram</li>
           <li>Tumblr</li>
@@ -33,7 +33,7 @@ export function LinkPart() {
       </Grid>
       <Grid item className={s['link__item']}>
         <p className={s['link__title']}>Archive</p>
-        <ul className={s['link__list']}>
+        <ul className={s['link-list']}>
           <li>Designer Shoes</li>
           <li>Gallery</li>
           <li>Pricing</li>

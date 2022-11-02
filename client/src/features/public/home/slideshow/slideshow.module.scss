@@ -56,12 +56,12 @@
       max-width: 60%;
       font: 400 4.5rem 'Source Serif Pro', serif;
 
-      span {
+      em {
         color: utils.$emphasize-color;
       }
     }
 
-    p {
+    &__paragraph {
       margin-top: 2rem;
       max-width: 60%;
       color: #555;

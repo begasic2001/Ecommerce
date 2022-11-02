@@ -9,9 +9,9 @@ import s from './new-products.module.scss';
 
 const NewProductsFeature = () => {
   const theme = useTheme();
-  const mediumMedia = useMediaQuery<boolean>(theme.breakpoints.between('lg', 'xl'));
-  const smallMedia = useMediaQuery<boolean>(theme.breakpoints.between('sm', 'lg'));
-  const extraSmallMedia = useMediaQuery<boolean>(theme.breakpoints.down('sm'));
+  const laptopMedia = useMediaQuery<boolean>(theme.breakpoints.between('lg', 'xl'));
+  const tabletMedia = useMediaQuery<boolean>(theme.breakpoints.between('sm', 'lg'));
+  const mobileMedia = useMediaQuery<boolean>(theme.breakpoints.down('sm'));
 
   return (
     <section className={s.new}>
@@ -21,7 +21,7 @@ const NewProductsFeature = () => {
           <Swiper
             modules={[Navigation]}
             spaceBetween={20}
-            slidesPerView={mediumMedia ? 4 : smallMedia ? 3 : extraSmallMedia ? 2 : 5}
+            slidesPerView={laptopMedia ? 4 : tabletMedia ? 3 : mobileMedia ? 2 : 5}
             navigation
           >
             {Array(10)

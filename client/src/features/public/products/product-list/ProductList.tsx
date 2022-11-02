@@ -1,4 +1,4 @@
-import { Container, Stack } from '@mui/material';
+import { Container, Stack, useTheme, useMediaQuery } from '@mui/material';
 import { useState } from 'react';
 import { FilterPart } from './Filter';
 import { IFilterPart, IResultPart } from './interface';
@@ -10,6 +10,12 @@ const minPrice = 0;
 const maxPrice = 100;
 
 const ProductList = () => {
+  const theme = useTheme();
+  const laptopMedia = useMediaQuery<boolean>(theme.breakpoints.up('lg'));
+  const tabletMedia = useMediaQuery<boolean>(theme.breakpoints.between('md', 'lg'));
+  const smallTabletMedia = useMediaQuery<boolean>(theme.breakpoints.between('sm', 'md'));
+  const mobileMedia = useMediaQuery<boolean>(theme.breakpoints.down('sm'));
+
   const [sliderPriceValue, setSliderPriceValue] = useState<number[]>([minPrice, maxPrice]);
   const [arrangePrice, setArrangePrice] = useState<{
     min: number;
@@ -48,9 +54,9 @@ const ProductList = () => {
   };
 
   const handlePriceValue = (e: React.ChangeEvent<HTMLInputElement>, num: number) => {
-    const min = arrangePrice.min;
-    const max = arrangePrice.max;
-    const inputValue = Number(e.target.value);
+    const min: number = arrangePrice.min;
+    const max: number = arrangePrice.max;
+    const inputValue: number = Number(e.target.value);
 
     if (num === 0) {
       if (min > max || min < 0) {
@@ -83,23 +89,32 @@ const ProductList = () => {
     }
   };
 
+  const media = {
+    laptopMedia,
+    tabletMedia,
+    smallTabletMedia,
+    mobileMedia,
+  };
+
   const filterPartProps: IFilterPart = {
     sliderPriceValue,
     handleChangePriceValue,
     arrangePrice,
     handlePriceValue,
+    media,
   };
 
   const resultPartProps: IResultPart = {
     currentPage,
     handleChangeCurrentPage,
+    media,
   };
 
   return (
     <Container className={s.products}>
       <Stack className={s['products__row']}>
         <FilterPart filterPartProps={filterPartProps} />
-        <Result resultPartProps={resultPartProps} />
+        <Result resultPartProps={resultPartProps} filterPartProps={filterPartProps} />
       </Stack>
     </Container>
   );

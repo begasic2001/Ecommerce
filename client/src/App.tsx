@@ -6,6 +6,6 @@ function App() {
       <AllMainRoutes />
     </section>
   );
-};
+}
 
 export default App;

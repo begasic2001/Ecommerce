@@ -1,4 +1,4 @@
-import { ProductList } from '~/features/public/product-list';
+import { ProductList } from '~/features/public/products/product-list';
 
 const ProductsPage = () => {
   return <ProductList />;

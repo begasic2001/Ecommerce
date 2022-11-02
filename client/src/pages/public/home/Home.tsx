@@ -1,7 +1,7 @@
-import { SlideshowFeature } from '~/features/public/slideshow';
-import { HotSaleFeature } from '~/features/public/hot-sale';
-import { SpecialFeature } from '~/features/public/special';
-import { NewProductsFeature } from '~/features/public/new-products';
+import { HotSaleFeature } from '~/features/public/home/hot-sale';
+import { NewProductsFeature } from '~/features/public/home/new-products';
+import { SlideshowFeature } from '~/features/public/home/slideshow';
+import { SpecialFeature } from '~/features/public/home/special';
 
 function Homepage() {
   return (

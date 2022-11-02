@@ -1,31 +1,31 @@
-import { useState } from 'react';
-import { IFunctionProps } from './interface';
 import {
-  Stack,
-  TextField,
-  InputAdornment,
-  IconButton,
-  Menu,
-  MenuItem,
-  ListItemIcon,
-  Divider,
-} from '@mui/material';
-import { Link } from 'react-router-dom';
-import {
-  Search as SearchIcon,
   AccountCircle as AccountCircleIcon,
   Login as LoginIcon,
   Logout as LogoutIcon,
+  Search as SearchIcon,
 } from '@mui/icons-material';
+import {
+  Divider,
+  IconButton,
+  InputAdornment,
+  ListItemIcon,
+  Menu,
+  MenuItem,
+  Stack,
+  TextField,
+} from '@mui/material';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import s from './header.module.scss';
+import { IFunctionProps } from './interface';
 
 export const FunctionPart = (props: IFunctionProps) => {
   if (!props) return null;
-  const { media } = props;
+  const { media, searchValue, handleSearchValue } = props;
 
   const [showSearch, setShowSearch] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  
+
   const open = Boolean(anchorEl);
 
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
@@ -41,14 +41,14 @@ export const FunctionPart = (props: IFunctionProps) => {
   };
 
   return (
-    <Stack component={'section'} className={s['header__column']}>
+    <Stack className={s['header__column']}>
       <>
         {showSearch ? (
           <TextField
-            type={'search'}
-            value={props.searchValue}
-            onChange={props.handleSearchValue}
-            placeholder={'Nhập hoa, chậu yêu thích...'}
+            type="search"
+            value={searchValue}
+            onChange={handleSearchValue}
+            placeholder="Nhập hoa, chậu yêu thích..."
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start" onClick={toggleSearch}>
@@ -56,7 +56,7 @@ export const FunctionPart = (props: IFunctionProps) => {
                 </InputAdornment>
               ),
             }}
-            className={s['search__input']}
+            className={s.search}
           />
         ) : (
           <IconButton onClick={toggleSearch}>
@@ -65,7 +65,7 @@ export const FunctionPart = (props: IFunctionProps) => {
         )}
       </>
       <>
-        {media.upXlMedia && (
+        {media.desktopMedia && (
           <>
             <IconButton onClick={handleClick} className={s.user}>
               <AccountCircleIcon sx={{ width: '3rem', height: '3rem' }} />
@@ -80,10 +80,10 @@ export const FunctionPart = (props: IFunctionProps) => {
               }}
               transformOrigin={{ horizontal: 'right', vertical: 'top' }}
               anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-              className={s['user__menu']}
+              className={s['user-menu']}
             >
               <MenuItem>
-                <Link to={'/account/login'} className={s['user__link']}>
+                <Link to="/account/login" className={s['user__link']}>
                   <ListItemIcon>
                     <LoginIcon />
                   </ListItemIcon>
@@ -92,7 +92,7 @@ export const FunctionPart = (props: IFunctionProps) => {
               </MenuItem>
               <Divider />
               <MenuItem>
-                <Link to={'/account/register'} className={s['user__link']}>
+                <Link to="/account/register" className={s['user__link']}>
                   <ListItemIcon>
                     <LogoutIcon />
                   </ListItemIcon>

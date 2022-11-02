@@ -13,10 +13,10 @@ function SpecialFeature() {
             />
           </div>
           <section className={s.announce}>
-            <h3>
+            <h3 className={s['announce__title']}>
               Suprise Your <em>Special Day</em>! Let us arrange a smile.
             </h3>
-            <p>
+            <p className={s['announce__paragraph']}>
               Where flowers are our inspiration to create lasting memories. Whatever the occasion...
             </p>
             <ul className={s['announce-list']}>

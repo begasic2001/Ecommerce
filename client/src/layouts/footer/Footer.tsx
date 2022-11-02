@@ -6,7 +6,7 @@ import { SocialPart } from './Social';
 function FooterLayout() {
   return (
     <footer className={s.footer}>
-      <Container component={'section'} className={s['footer__container']}>
+      <Container className={s['footer__container']}>
         <LinkPart />
         <SocialPart />
       </Container>

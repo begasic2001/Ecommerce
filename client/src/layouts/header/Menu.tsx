@@ -4,7 +4,7 @@ import {
   Home as HomeIcon,
   Login as LoginIcon,
   Logout as LogoutIcon,
-  Menu as MenuIcon
+  Menu as MenuIcon,
 } from '@mui/icons-material';
 import {
   Button,
@@ -16,9 +16,7 @@ import {
   ListItemIcon,
   ListItemText,
   Stack,
-  SvgIconTypeMap
 } from '@mui/material';
-import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
@@ -43,6 +41,7 @@ export function MenuPart(props: IMenuProps) {
 
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
 
+  // Handle drawer on/off
   const toggleDrawer = (toggle: boolean) => {
     setOpenDrawer(toggle);
   };
@@ -50,14 +49,13 @@ export function MenuPart(props: IMenuProps) {
   // Drawer data when true
   const list = () => (
     <section onClick={() => toggleDrawer(false)} className={s.drawer}>
-      <Link to={'/home'} className={s['drawer__logo']}>
+      <Link to="/home" className={s['drawer__logo']}>
         <LogoWebsite />
       </Link>
       <>
         <List>
           {navLinkPath.map((item) => {
-            const Icon: OverridableComponent<SvgIconTypeMap<{}, 'svg'>> & { muiName: string } =
-              item.icon;
+            const Icon = item.icon;
             return (
               <ListItem key={item.id} disablePadding>
                 <ListItemButton>
@@ -65,7 +63,7 @@ export function MenuPart(props: IMenuProps) {
                     <Icon />
                   </ListItemIcon>
                   <ListItemText>
-                    <NavLink to={`${item.path}`} className={s['drawer-nav__item']}>
+                    <NavLink to={`${item.path}`} className={s['drawer__item']}>
                       {item.name}
                     </NavLink>
                   </ListItemText>
@@ -77,8 +75,7 @@ export function MenuPart(props: IMenuProps) {
         <Divider />
         <List>
           {accountLinkPath.map((item) => {
-            const Icon: OverridableComponent<SvgIconTypeMap<{}, 'svg'>> & { muiName: string } =
-              item.icon;
+            const Icon = item.icon;
             return (
               <ListItem key={item.id} disablePadding>
                 <ListItemButton>
@@ -86,7 +83,7 @@ export function MenuPart(props: IMenuProps) {
                     <Icon />
                   </ListItemIcon>
                   <ListItemText>
-                    <NavLink to={`${item.path}`} className={s['drawer-nav__item']}>
+                    <NavLink to={`${item.path}`} className={s['drawer__item']}>
                       {item.name}
                     </NavLink>
                   </ListItemText>
@@ -101,26 +98,32 @@ export function MenuPart(props: IMenuProps) {
 
   return (
     <Stack className={s['header__column']}>
-      {(media.betweenMdXlMedia || media.downMdMedia) && (
+      {(media.tabletMedia || media.mobileMedia) && (
         <>
           <Button onClick={() => toggleDrawer(true)}>
             <MenuIcon sx={{ fill: '#000', width: '2.5rem', height: '2.5rem' }} />
           </Button>
-          <Drawer anchor={'left'} open={openDrawer} onClose={() => toggleDrawer(false)}>
+          <Drawer anchor="left" open={openDrawer} onClose={() => toggleDrawer(false)}>
             {list()}
           </Drawer>
         </>
       )}
-      {(media.betweenMdXlMedia || media.upXlMedia) && (
-        <Link to={'/home'} className={s['home-link']}>
+      {(media.tabletMedia || media.desktopMedia) && (
+        <Link to="/home" className={s['home-link']}>
           <LogoWebsite />
         </Link>
       )}
-      {media.upXlMedia && (
+      {media.desktopMedia && (
         <nav className={s.nav}>
-          <NavLink to={'/home'}>Trang chủ</NavLink>
-          <NavLink to={'/products'}>Sản phẩm</NavLink>
-          <NavLink to={'/blog'}>Blog</NavLink>
+          <NavLink to="/home" className={s['nav__item']}>
+            Trang chủ
+          </NavLink>
+          <NavLink to="/products" className={s['nav__item']}>
+            Sản phẩm
+          </NavLink>
+          <NavLink to="/blog" className={s['nav__item']}>
+            Blog
+          </NavLink>
         </nav>
       )}
     </Stack>

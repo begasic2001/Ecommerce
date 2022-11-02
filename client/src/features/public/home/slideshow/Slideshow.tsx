@@ -3,7 +3,7 @@ import s from './slideshow.module.scss';
 
 function SlideshowFeature() {
   const theme = useTheme();
-  const smallMedia = useMediaQuery<boolean>(theme.breakpoints.down('md'));
+  const mobileMedia = useMediaQuery<boolean>(theme.breakpoints.down('md'));
 
   return (
     <section className={s.slideshow}>
@@ -14,12 +14,12 @@ function SlideshowFeature() {
           alt="slideshow image"
         />
       </section>
-      {!smallMedia && (
+      {!mobileMedia && (
         <section className={s.content}>
           <h2 className={s['content__title']}>
-            Send <span>flowers</span> like you mean it.
+            Send <em>flowers</em> like you mean it.
           </h2>
-          <p>
+          <p className={s['content__paragraph']}>
             Where flowers are our inspiration to create lasting memories. Whatever the occasion, our
             flowers will make it special cursus a sit amet mauris.
           </p>

@@ -8,27 +8,24 @@ import { MenuPart } from './Menu';
 
 function HeaderLayout() {
   const theme = useTheme();
-  const upXlMedia = useMediaQuery<boolean>(theme.breakpoints.up('xl'));
-  const betweenMdXlMedia = useMediaQuery<boolean>(theme.breakpoints.between('md', 'xl'));
-  const downMdMedia = useMediaQuery<boolean>(theme.breakpoints.down('md'));
+  const desktopMedia = useMediaQuery<boolean>(theme.breakpoints.up('xl'));
+  const tabletMedia = useMediaQuery<boolean>(theme.breakpoints.between('md', 'xl'));
+  const mobileMedia = useMediaQuery<boolean>(theme.breakpoints.down('md'));
 
   const [scrollPage, setScrollPage] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>('');
 
   const debounceSearchValue = useDebounce<string>(searchValue, 300);
-  const media: {
-    upXlMedia: boolean;
-    betweenMdXlMedia: boolean;
-    downMdMedia: boolean;
-  } = {
-    upXlMedia,
-    betweenMdXlMedia,
-    downMdMedia,
-  };
 
   // Set search Value for input onChange event
   const handleSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
+  };
+
+  const media = {
+    desktopMedia,
+    tabletMedia,
+    mobileMedia,
   };
 
   useEffect(() => {
@@ -57,6 +54,6 @@ function HeaderLayout() {
       </Container>
     </header>
   );
-};
+}
 
 export default HeaderLayout;

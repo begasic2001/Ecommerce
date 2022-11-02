@@ -1,20 +1,18 @@
 import { SvgIconTypeMap } from '@mui/material';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 
+interface IMedia {
+  desktopMedia: boolean;
+  tabletMedia: boolean;
+  mobileMedia: boolean;
+}
+
 export interface IMenuProps {
-  media: {
-    upXlMedia: boolean;
-    betweenMdXlMedia: boolean;
-    downMdMedia: boolean;
-  };
+  media: IMedia;
 }
 
 export interface IFunctionProps {
-  media: {
-    upXlMedia: boolean;
-    betweenMdXlMedia: boolean;
-    downMdMedia: boolean;
-  };
+  media: IMedia;
   searchValue: string;
   handleSearchValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }

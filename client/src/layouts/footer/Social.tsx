@@ -9,7 +9,7 @@ export function SocialPart() {
       <p>© 2018 Qode Interactive, All Rights Reserved</p>
       <section>
         <img src={VisaIcon} alt="visa image" />
-        <img src={PaypalIcon} alt="paypal image" className={s['social__icn--paypal']} />
+        <img src={PaypalIcon} alt="paypal image" className={s['social__paypal']} />
       </section>
       <section>
         <span className={s['social__txt']}>Instagram</span>
