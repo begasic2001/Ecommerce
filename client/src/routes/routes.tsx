@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { PublicScreens } from '~/screens/public';
 
-function AllMainRoutes(): JSX.Element {
+function AllMainRoutes() {
   return (
     <Routes>
       <Route path="/*" element={<PublicScreens />} />

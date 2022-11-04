@@ -12,12 +12,11 @@ const publicRoutes: IPublicRoutes[] = [
   { id: uuidv4(), path: '/products', component: ProductsPage },
 ];
 
-function PublicScreens(): JSX.Element {
+function PublicScreens() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Check if path name is '/', then change it '/home'
-  useEffect((): void => {
+  useEffect(() => {
     if (location.pathname === '/') navigate('/home');
   }, [location.pathname]);
 

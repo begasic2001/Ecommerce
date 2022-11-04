@@ -1,6 +1,6 @@
 import { AllMainRoutes } from '~/routes';
 
-function App(): JSX.Element {
+function App() {
   return (
     <section className="routes">
       <AllMainRoutes />

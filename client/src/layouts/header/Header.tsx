@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useDebounce } from '~/hooks';
 import { FunctionPart } from './Function';
 import s from './header.module.scss';
-import { IMedia, ISHeader } from './interface';
+import { ISHeader } from './interface';
 import { MenuPart } from './Menu';
 
 const styles: ISHeader = {
@@ -14,7 +14,7 @@ const styles: ISHeader = {
   headerRow: s['header__row'],
 };
 
-function HeaderLayout(): JSX.Element {
+function HeaderLayout() {
   const theme = useTheme();
   const desktopMedia = useMediaQuery<boolean>(theme.breakpoints.up('xl'));
   const tabletMedia = useMediaQuery<boolean>(theme.breakpoints.between('md', 'xl'));
@@ -25,21 +25,19 @@ function HeaderLayout(): JSX.Element {
 
   const debounceSearchValue = useDebounce<string>(searchValue, 300);
 
-  // Set search Value for input onChange event
-  const handleSearchValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
 
-  const media: IMedia = {
+  const media = {
     desktopMedia,
     tabletMedia,
     mobileMedia,
   };
 
   useEffect(() => {
-    // Set bottom box-shadow true if the page is scrolled, which coordinate >= 100
-    const handleScrollPage = (): void => {
-      const getCoordinateY: number = window.scrollY;
+    const handleScrollPage = () => {
+      const getCoordinateY = window.scrollY;
       if (getCoordinateY >= 100) setScrollPage(true);
       else setScrollPage(false);
     };

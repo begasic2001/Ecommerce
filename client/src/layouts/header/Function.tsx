@@ -1,7 +1,7 @@
 import {
   AccountCircle as AccountCircleIcon,
   Login as LoginIcon,
-  Logout as LogoutIcon,
+  PersonAdd as RegisterIcon,
   Search as SearchIcon,
 } from '@mui/icons-material';
 import {
@@ -17,7 +17,7 @@ import {
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import s from './header.module.scss';
-import { IFunctionProps } from './interface';
+import { IFunctionAccountItem, IFunctionProps } from './interface';
 
 export const FunctionPart = (props: IFunctionProps) => {
   if (!props) return null;
@@ -28,25 +28,23 @@ export const FunctionPart = (props: IFunctionProps) => {
 
   const open = Boolean(anchorEl);
 
-  const handleClick = (e: React.MouseEvent<HTMLElement>): void => {
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(e.currentTarget);
   };
 
-  const handleClose = (): void => {
+  const handleClose = () => {
     setAnchorEl(null);
   };
 
-  const toggleSearch = (): void => {
+  const toggleSearch = () => {
     setShowSearch(!showSearch);
   };
 
-  const accountMenuItem = () => (
+  const AccountMenuItem = ({ path, icon, title }: IFunctionAccountItem) => (
     <MenuItem>
-      <Link to="/account/login" className={s['user__link']}>
-        <ListItemIcon>
-          <LoginIcon />
-        </ListItemIcon>
-        Login
+      <Link to={path} className={s['user__link']}>
+        <ListItemIcon>{icon}</ListItemIcon>
+        {title}
       </Link>
     </MenuItem>
   );
@@ -91,23 +89,9 @@ export const FunctionPart = (props: IFunctionProps) => {
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             className={s['user-menu']}
           >
-            <MenuItem>
-              <Link to="/account/login" className={s['user__link']}>
-                <ListItemIcon>
-                  <LoginIcon />
-                </ListItemIcon>
-                Login
-              </Link>
-            </MenuItem>
+            <AccountMenuItem path="/account/login" icon={<LoginIcon />} title="Login" />
             <Divider />
-            <MenuItem>
-              <Link to="/account/register" className={s['user__link']}>
-                <ListItemIcon>
-                  <LogoutIcon />
-                </ListItemIcon>
-                Logout
-              </Link>
-            </MenuItem>
+            <AccountMenuItem path="/account/register" icon={<RegisterIcon />} title="Register" />
           </Menu>
         </>
       )}

@@ -4,7 +4,7 @@ import {
   Home as HomeIcon,
   Login as LoginIcon,
   Logout as LogoutIcon,
-  Menu as MenuIcon
+  Menu as MenuIcon,
 } from '@mui/icons-material';
 import {
   Button,
@@ -15,7 +15,7 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Stack
+  Stack,
 } from '@mui/material';
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
@@ -27,7 +27,7 @@ import {
   IMenuLinkPathDrawer,
   IMenuLinkPathProps,
   IMenuProps,
-  ISMenuHeader
+  ISMenuHeader,
 } from './interface';
 
 const styles: ISMenuHeader = {
@@ -57,18 +57,18 @@ const navLinkPath: IMenuLinkPath[] = [
   { id: uuidv4(), name: 'Blog', path: '/blog' },
 ];
 
-export function MenuPart(props: IMenuProps): JSX.Element | null {
+export function MenuPart(props: IMenuProps) {
   if (!props) return null;
   const { media } = props;
 
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
 
   // Handle drawer on/off
-  const toggleDrawer = (toggle: boolean): void => {
+  const toggleDrawer = (toggle: boolean) => {
     setOpenDrawer(toggle);
   };
 
-  const ListItemDrawer = ({ item }: IMenuLinkPathProps): JSX.Element => {
+  const ListItemDrawer = ({ item }: IMenuLinkPathProps) => {
     const Icon = item.icon;
     return (
       <ListItem key={item.id} disablePadding>
@@ -87,25 +87,21 @@ export function MenuPart(props: IMenuProps): JSX.Element | null {
   };
 
   // Drawer data when true
-  const list = (): JSX.Element => (
+  const list = () => (
     <section onClick={() => toggleDrawer(false)} className={styles.drawer}>
       <Link to="/home" className={styles.drawerLogo}>
         <LogoWebsite />
       </Link>
       <List>
-        {navLinkPathDrawer.map(
-          (item: IMenuLinkPathDrawer): JSX.Element => (
-            <ListItemDrawer item={item} />
-          )
-        )}
+        {navLinkPathDrawer.map((item) => (
+          <ListItemDrawer item={item} />
+        ))}
       </List>
       <Divider />
       <List>
-        {accountLinkPathDrawer.map(
-          (item: IMenuLinkPathDrawer): JSX.Element => (
-            <ListItemDrawer item={item} />
-          )
-        )}
+        {accountLinkPathDrawer.map((item) => (
+          <ListItemDrawer item={item} />
+        ))}
       </List>
     </section>
   );
@@ -129,13 +125,11 @@ export function MenuPart(props: IMenuProps): JSX.Element | null {
       )}
       {media.desktopMedia && (
         <nav className={styles.nav}>
-          {navLinkPath.map(
-            (item: IMenuLinkPath): JSX.Element => (
-              <NavLink key={item.id} to={item.path} className={styles.navItem}>
-                {item.name}
-              </NavLink>
-            )
-          )}
+          {navLinkPath.map((item) => (
+            <NavLink key={item.id} to={item.path} className={styles.navItem}>
+              {item.name}
+            </NavLink>
+          ))}
         </nav>
       )}
     </Stack>
