@@ -17,6 +17,7 @@ export interface IMenuLinkPath {
   name: string;
   path: string;
 }
+
 export interface IMenuLinkPathDrawer extends IMenuLinkPath {
   icon: OverridableComponent<SvgIconTypeMap<{}, 'svg'>> & { muiName: string };
 }

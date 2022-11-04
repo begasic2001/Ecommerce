@@ -7,17 +7,24 @@ import { v4 as uuidv4 } from 'uuid';
 import { ProductItem } from '~/components/product-item';
 import s from './new-products.module.scss';
 
-const NewProductsFeature = () => {
+const styles = {
+  new: s.new,
+  newContainer: s['new__container'],
+  title: s.title,
+  slideshow: s.slideshow,
+};
+
+function NewProductsFeature() {
   const theme = useTheme();
   const laptopMedia = useMediaQuery<boolean>(theme.breakpoints.between('lg', 'xl'));
   const tabletMedia = useMediaQuery<boolean>(theme.breakpoints.between('sm', 'lg'));
   const mobileMedia = useMediaQuery<boolean>(theme.breakpoints.down('sm'));
 
   return (
-    <section className={s.new}>
-      <Container className={s['new__container']}>
-        <h3 className={s.title}>Sản phẩm mới</h3>
-        <section className={s.slideshow}>
+    <section className={styles.new}>
+      <Container className={styles.newContainer}>
+        <h3 className={styles.title}>Sản phẩm mới</h3>
+        <section className={styles.slideshow}>
           <Swiper
             modules={[Navigation]}
             spaceBetween={20}
@@ -36,6 +43,6 @@ const NewProductsFeature = () => {
       </Container>
     </section>
   );
-};
+}
 
 export default NewProductsFeature;

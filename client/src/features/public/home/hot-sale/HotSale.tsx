@@ -2,6 +2,13 @@ import { Container, Stack, useMediaQuery, useTheme } from '@mui/material';
 import { BigSale } from './BigSale';
 import s from './hot-sale.module.scss';
 import { OtherSale } from './OtherSale';
+import { ISHotSale } from './interface';
+
+const styles: ISHotSale = {
+  hot: s.hot,
+  hotTitle: s['hot__title'],
+  hotContent: s['hot__content'],
+};
 
 function HotSaleFeature() {
   const theme = useTheme();
@@ -15,9 +22,9 @@ function HotSaleFeature() {
   };
 
   return (
-    <Container className={s.hot}>
-      <h3 className={s['hot__title']}>Hot sale</h3>
-      <Stack className={s['hot__content']}>
+    <Container className={styles.hot}>
+      <h3 className={styles.hotTitle}>Hot sale</h3>
+      <Stack className={styles.hotContent}>
         {desktopMedia && <BigSale />}
         <OtherSale media={media} />
       </Stack>

@@ -1,71 +1,84 @@
 import { FilterAlt as FilterAltIcon } from '@mui/icons-material';
 import { Checkbox, Divider, FormControlLabel, FormGroup, Slider, Stack } from '@mui/material';
 import s from './product-list.module.scss';
-import { IFilterPartProps } from './interface';
+import { IFilterPartProps, ISFilter } from './interface';
 import clsx from 'clsx';
+
+const styles: ISFilter = {
+  filter: s.filter,
+  filterIsDrawer: s['filter--isDrawer'],
+  filterTitle: s['filter_title'],
+  filterBox: s['filter-box'],
+  filterBoxTitle: s['filter-box__title'],
+  filterBoxItem: s['filter-box__item'],
+  filterBoxSlider: s['filter-box__slider'],
+  filterPrice: s['filter-price'],
+  filterPriceInput: s['filter-price__input'],
+  filterPricDivider: s['filter-price__div'],
+};
 
 export function FilterPartContent({ filterPartProps }: IFilterPartProps) {
   const { arrangePrice, handleChangePriceValue, handlePriceValue, sliderPriceValue } =
     filterPartProps;
 
   return (
-    <section className={clsx(s.filter, filterPartProps?.isDrawer && s['filter--isDrawer'])}>
-      <h3 className={s['filter__title']}>
+    <section className={clsx(styles.filter, filterPartProps?.isDrawer && styles.filterIsDrawer)}>
+      <h3 className={styles.filterTitle}>
         <FilterAltIcon sx={{ width: '2rem', height: '2rem', mr: '1rem' }} />
         Bộ lọc
       </h3>
-      <section className={s['filter-box']}>
-        <p className={s['filter-box__title']}>Các ngày lễ</p>
+      <section className={styles.filterBox}>
+        <p className={styles.filterBoxTitle}>Các ngày lễ</p>
         <FormGroup>
           <FormControlLabel
             control={<Checkbox />}
             labelPlacement="start"
             label="Nhà giáo Việt Nam"
-            className={s['filter-box__item']}
+            className={styles.filterBoxItem}
           />
           <FormControlLabel
             control={<Checkbox />}
             labelPlacement="start"
             label="Phụ nữ Việt Nam"
-            className={s['filter-box__item']}
+            className={styles.filterBoxItem}
           />
           <FormControlLabel
             control={<Checkbox />}
             labelPlacement="start"
             label="Sinh nhật"
-            className={s['filter-box__item']}
+            className={styles.filterBoxItem}
           />
         </FormGroup>
       </section>
       <Divider />
-      <section className={s['filter-box']}>
-        <p className={s['filter-box__title']}>Các kệ hoa</p>
+      <section className={styles.filterBox}>
+        <p className={styles.filterBoxTitle}>Các kệ hoa</p>
         <FormGroup>
           <FormControlLabel
             control={<Checkbox />}
             labelPlacement="start"
             label="Kệ sinh nhật"
-            className={s['filter-box__item']}
+            className={styles.filterBoxItem}
           />
           <FormControlLabel
             control={<Checkbox />}
             labelPlacement="start"
             label="Kệ khai trương"
-            className={s['filter-box__item']}
+            className={styles.filterBoxItem}
           />
         </FormGroup>
       </section>
       <Divider />
-      <section className={s['filter-box']}>
-        <p className={s['filter-box__title']}>Chọn mức giá</p>
+      <section className={styles.filterBox}>
+        <p className={styles.filterBoxTitle}>Chọn mức giá</p>
         <Slider
           value={sliderPriceValue}
           onChange={handleChangePriceValue}
           step={10}
           disableSwap
-          className={s['filter-box__slider']}
+          className={styles.filterBoxSlider}
         />
-        <Stack className={s['filter-price']}>
+        <Stack className={styles.filterPrice}>
           <input
             type="number"
             value={arrangePrice.min}
@@ -73,9 +86,9 @@ export function FilterPartContent({ filterPartProps }: IFilterPartProps) {
             min={0}
             step={1000}
             onChange={(e) => handlePriceValue(e, 0)}
-            className={s['filter-price__input']}
+            className={styles.filterPriceInput}
           />
-          <Divider className={s['filter-price__div']} />
+          <Divider className={styles.filterPricDivider} />
           <input
             type="number"
             value={arrangePrice.max}
@@ -83,7 +96,7 @@ export function FilterPartContent({ filterPartProps }: IFilterPartProps) {
             step={1000}
             placeholder="Đến 999.999đ"
             onChange={(e) => handlePriceValue(e, 1)}
-            className={s['filter-price__input']}
+            className={styles.filterPriceInput}
           />
         </Stack>
       </section>

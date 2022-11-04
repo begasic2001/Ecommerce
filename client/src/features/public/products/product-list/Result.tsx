@@ -4,8 +4,15 @@ import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { ProductItem } from '~/components/product-item';
 import { FilterPartContent } from './Filter';
-import { IResultPartProps } from './interface';
+import { IResultPartProps, ISReuslt } from './interface';
 import s from './product-list.module.scss';
+
+const styles: ISReuslt = {
+  result: s.result,
+  resultTitle: s['result-title'],
+  resultPagination: s['result-pagination'],
+  filterDrawer: s['filter__drawer'],
+};
 
 export function Result({ resultPartProps, filterPartProps }: IResultPartProps) {
   if (!resultPartProps) return null;
@@ -25,12 +32,9 @@ export function Result({ resultPartProps, filterPartProps }: IResultPartProps) {
     isDrawer: isFilterDrawer,
   };
 
-  // Drawer data when true
-  const list = () => <FilterPartContent filterPartProps={filterPartContentProps} />;
-
   return (
-    <section className={s.result}>
-      <Stack className={s['result-title']}>
+    <section className={styles.result}>
+      <Stack className={styles.resultTitle}>
         <h3>Kết quả tìm kiếm</h3>
         {(tabletMedia || smallTabletMedia || mobileMedia) && (
           <>
@@ -38,12 +42,12 @@ export function Result({ resultPartProps, filterPartProps }: IResultPartProps) {
               <FilterAltIcon sx={{ width: '2.5rem', height: '2.5rem', color: '#000' }} />
             </Button>
             <Drawer
-              anchor={'right'}
+              anchor="right"
               open={openDrawer}
               onClose={() => toggleDrawer(false)}
-              className={s['filter__drawer']}
+              className={styles.filterDrawer}
             >
-              {list()}
+              <FilterPartContent filterPartProps={filterPartContentProps} />
             </Drawer>
           </>
         )}
@@ -61,7 +65,7 @@ export function Result({ resultPartProps, filterPartProps }: IResultPartProps) {
         count={5}
         page={currentPage}
         onChange={handleChangeCurrentPage}
-        className={s['result-pagination']}
+        className={styles.resultPagination}
       />
     </section>
   );
