@@ -9,11 +9,11 @@ const styles: ISOtherSale = {
 
 export function OtherSale({ media }: IOtherSaleProps) {
   if (!media) return null;
-  const { tabletMedia, mobileMedia } = media;
+  const { mobTabMedia, mobMedia } = media;
 
   return (
     <Stack className={styles.other}>
-      <ImageList cols={tabletMedia ? 3 : mobileMedia ? 2 : 4} gap={20}>
+      <ImageList cols={mobTabMedia ? 3 : mobMedia ? 2 : 4} gap={20}>
         {Array(8)
           .fill(0)
           .map(() => (

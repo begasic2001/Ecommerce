@@ -17,7 +17,7 @@ const styles: ISReuslt = {
 export function Result({ resultPartProps, filterPartProps }: IResultPartProps) {
   if (!resultPartProps) return null;
   const { currentPage, handleChangeCurrentPage, media } = resultPartProps;
-  const { laptopMedia, tabletMedia, mobileMedia, smallTabletMedia } = media;
+  const { tabMedia, landTabMedia, mobMedia, mobLandMedia } = media;
 
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
 
@@ -36,7 +36,7 @@ export function Result({ resultPartProps, filterPartProps }: IResultPartProps) {
     <section className={styles.result}>
       <Stack className={styles.resultTitle}>
         <h3>Kết quả tìm kiếm</h3>
-        {(tabletMedia || smallTabletMedia || mobileMedia) && (
+        {(landTabMedia || mobLandMedia || mobMedia) && (
           <>
             <Button onClick={() => toggleDrawer(true)}>
               <FilterAltIcon sx={{ width: '2.5rem', height: '2.5rem', color: '#000' }} />
@@ -52,7 +52,7 @@ export function Result({ resultPartProps, filterPartProps }: IResultPartProps) {
           </>
         )}
       </Stack>
-      <ImageList cols={laptopMedia || tabletMedia ? 4 : mobileMedia ? 2 : 3} gap={20}>
+      <ImageList cols={tabMedia || landTabMedia ? 4 : mobMedia ? 2 : 3} gap={20}>
         {Array(8)
           .fill(0)
           .map(() => (

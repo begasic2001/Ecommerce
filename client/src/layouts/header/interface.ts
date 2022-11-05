@@ -3,9 +3,9 @@ import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { ReactNode } from 'react';
 
 interface IMedia {
-  desktopMedia: boolean;
-  tabletMedia: boolean;
-  mobileMedia: boolean;
+  lapMedia: boolean;
+  landLapMedia: boolean;
+  downLandMedia: boolean;
 }
 
 export interface IMenuProps {
@@ -53,4 +53,12 @@ export interface ISMenuHeader {
   drawer: string;
   drawerLogo: string;
   drawerItem: string;
+}
+
+export interface ISFunction {
+  headerColumn: string;
+  search: string;
+  user: string;
+  userMenu: string;
+  userLink: string;
 }

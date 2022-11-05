@@ -7,7 +7,7 @@ import { Result } from './Result';
 
 const styles: ISProductList = {
   products: s.products,
-  productsRow: s['product__row'],
+  productsRow: s['products__row'],
 };
 
 const minPriceDistance = 10;
@@ -16,10 +16,10 @@ const initMaxPrice = 100;
 
 const ProductList = () => {
   const theme = useTheme();
-  const laptopMedia = useMediaQuery<boolean>(theme.breakpoints.up('lg'));
-  const tabletMedia = useMediaQuery<boolean>(theme.breakpoints.between('md', 'lg'));
-  const smallTabletMedia = useMediaQuery<boolean>(theme.breakpoints.between('sm', 'md'));
-  const mobileMedia = useMediaQuery<boolean>(theme.breakpoints.down('sm'));
+  const tabMedia = useMediaQuery<boolean>(theme.breakpoints.up('lg'));
+  const landTabMedia = useMediaQuery<boolean>(theme.breakpoints.between('md', 'lg'));
+  const mobLandMedia = useMediaQuery<boolean>(theme.breakpoints.between('sm', 'md'));
+  const mobMedia = useMediaQuery<boolean>(theme.breakpoints.down('sm'));
 
   const [sliderPriceValue, setSliderPriceValue] = useState<number[]>([initMinPrice, initMaxPrice]);
   const [arrangePrice, setArrangePrice] = useState<IInitArrangePrice>({
@@ -92,10 +92,10 @@ const ProductList = () => {
   };
 
   const media = {
-    laptopMedia,
-    tabletMedia,
-    smallTabletMedia,
-    mobileMedia,
+    tabMedia,
+    landTabMedia,
+    mobLandMedia,
+    mobMedia,
   };
 
   const filterPartProps: IFilterPart = {

@@ -59,7 +59,7 @@ const navLinkPath: IMenuLinkPath[] = [
 
 export function MenuPart(props: IMenuProps) {
   if (!props) return null;
-  const { media } = props;
+  const { lapMedia, landLapMedia, downLandMedia } = props.media;
 
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
 
@@ -108,7 +108,7 @@ export function MenuPart(props: IMenuProps) {
 
   return (
     <Stack className={styles.headerColumn}>
-      {(media.tabletMedia || media.mobileMedia) && (
+      {(landLapMedia || downLandMedia) && (
         <>
           <Button onClick={() => toggleDrawer(true)}>
             <MenuIcon sx={{ fill: '#000', width: '2.5rem', height: '2.5rem' }} />
@@ -118,12 +118,12 @@ export function MenuPart(props: IMenuProps) {
           </Drawer>
         </>
       )}
-      {(media.tabletMedia || media.desktopMedia) && (
+      {(landLapMedia || lapMedia) && (
         <Link to="/home" className={styles.homeLink}>
           <LogoWebsite />
         </Link>
       )}
-      {media.desktopMedia && (
+      {lapMedia && (
         <nav className={styles.nav}>
           {navLinkPath.map((item) => (
             <NavLink key={item.id} to={item.path} className={styles.navItem}>

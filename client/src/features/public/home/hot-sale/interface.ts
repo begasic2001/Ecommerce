@@ -1,6 +1,6 @@
 interface IOtherSale {
-  tabletMedia: boolean;
-  mobileMedia: boolean;
+  mobTabMedia: boolean;
+  mobMedia: boolean;
 }
 
 export interface IOtherSaleProps {

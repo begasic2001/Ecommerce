@@ -17,11 +17,20 @@ import {
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import s from './header.module.scss';
-import { IFunctionAccountItem, IFunctionProps } from './interface';
+import { IFunctionAccountItem, IFunctionProps, ISFunction } from './interface';
+
+const styles: ISFunction = {
+  headerColumn: s['header__column'],
+  search: s.search,
+  user: s.user,
+  userMenu: s['user-menu'],
+  userLink: s['user__link'],
+};
 
 export const FunctionPart = (props: IFunctionProps) => {
   if (!props) return null;
   const { media, searchValue, handleSearchValue } = props;
+  const { lapMedia } = media;
 
   const [showSearch, setShowSearch] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -42,7 +51,7 @@ export const FunctionPart = (props: IFunctionProps) => {
 
   const AccountMenuItem = ({ path, icon, title }: IFunctionAccountItem) => (
     <MenuItem>
-      <Link to={path} className={s['user__link']}>
+      <Link to={path} className={styles.userLink}>
         <ListItemIcon>{icon}</ListItemIcon>
         {title}
       </Link>
@@ -50,7 +59,7 @@ export const FunctionPart = (props: IFunctionProps) => {
   );
 
   return (
-    <Stack className={s['header__column']}>
+    <Stack className={styles.headerColumn}>
       {showSearch && (
         <TextField
           type="search"
@@ -64,7 +73,7 @@ export const FunctionPart = (props: IFunctionProps) => {
               </InputAdornment>
             ),
           }}
-          className={s.search}
+          className={styles.search}
         />
       )}
       {!showSearch && (
@@ -72,9 +81,9 @@ export const FunctionPart = (props: IFunctionProps) => {
           <SearchIcon sx={{ width: '2.5rem', height: '2.5rem' }} />
         </IconButton>
       )}
-      {media.desktopMedia && (
+      {lapMedia && (
         <>
-          <IconButton onClick={handleClick} className={s.user}>
+          <IconButton onClick={handleClick} className={styles.user}>
             <AccountCircleIcon sx={{ width: '3rem', height: '3rem' }} />
           </IconButton>
           <Menu
@@ -87,7 +96,7 @@ export const FunctionPart = (props: IFunctionProps) => {
             }}
             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-            className={s['user-menu']}
+            className={styles.userMenu}
           >
             <AccountMenuItem path="/account/login" icon={<LoginIcon />} title="Login" />
             <Divider />

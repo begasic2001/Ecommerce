@@ -16,9 +16,9 @@ const styles: ISHeader = {
 
 function HeaderLayout() {
   const theme = useTheme();
-  const desktopMedia = useMediaQuery<boolean>(theme.breakpoints.up('xl'));
-  const tabletMedia = useMediaQuery<boolean>(theme.breakpoints.between('md', 'xl'));
-  const mobileMedia = useMediaQuery<boolean>(theme.breakpoints.down('md'));
+  const lapMedia = useMediaQuery<boolean>(theme.breakpoints.up('xl'));
+  const landLapMedia = useMediaQuery<boolean>(theme.breakpoints.between('md', 'xl'));
+  const downLandMedia = useMediaQuery<boolean>(theme.breakpoints.down('md'));
 
   const [scrollPage, setScrollPage] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>('');
@@ -30,9 +30,9 @@ function HeaderLayout() {
   };
 
   const media = {
-    desktopMedia,
-    tabletMedia,
-    mobileMedia,
+    lapMedia,
+    landLapMedia,
+    downLandMedia,
   };
 
   useEffect(() => {

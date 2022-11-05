@@ -16,9 +16,9 @@ const styles = {
 
 function NewProductsFeature() {
   const theme = useTheme();
-  const laptopMedia = useMediaQuery<boolean>(theme.breakpoints.between('lg', 'xl'));
-  const tabletMedia = useMediaQuery<boolean>(theme.breakpoints.between('sm', 'lg'));
-  const mobileMedia = useMediaQuery<boolean>(theme.breakpoints.down('sm'));
+  const tabLapMedia = useMediaQuery<boolean>(theme.breakpoints.between('lg', 'xl'));
+  const mobTabMedia = useMediaQuery<boolean>(theme.breakpoints.between('sm', 'lg'));
+  const mobMedia = useMediaQuery<boolean>(theme.breakpoints.down('sm'));
 
   return (
     <section className={styles.new}>
@@ -28,7 +28,7 @@ function NewProductsFeature() {
           <Swiper
             modules={[Navigation]}
             spaceBetween={20}
-            slidesPerView={laptopMedia ? 4 : tabletMedia ? 3 : mobileMedia ? 2 : 5}
+            slidesPerView={tabLapMedia ? 4 : mobTabMedia ? 3 : mobMedia ? 2 : 5}
             navigation
           >
             {Array(10)

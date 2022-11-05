@@ -4,10 +4,10 @@ export interface IInitArrangePrice {
 }
 
 export interface IMedia {
-  laptopMedia: boolean;
-  tabletMedia: boolean;
-  smallTabletMedia: boolean;
-  mobileMedia: boolean;
+  tabMedia: boolean;
+  landTabMedia: boolean;
+  mobLandMedia: boolean;
+  mobMedia: boolean;
 }
 
 export interface IFilterPart {

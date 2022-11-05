@@ -107,9 +107,9 @@ export function FilterPartContent({ filterPartProps }: IFilterPartProps) {
 export function FilterPart({ filterPartProps }: IFilterPartProps) {
   if (!filterPartProps) return null;
   const { media } = filterPartProps;
-  const { mobileMedia, tabletMedia, smallTabletMedia } = media;
+  const { mobMedia, landTabMedia, mobLandMedia } = media;
 
-  if (tabletMedia || mobileMedia || smallTabletMedia) return null;
+  if (landTabMedia || mobMedia || mobLandMedia) return null;
   return <FilterPartContent filterPartProps={filterPartProps} />;
 }
 

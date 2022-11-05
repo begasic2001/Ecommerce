@@ -12,20 +12,20 @@ const styles: ISHotSale = {
 
 function HotSaleFeature() {
   const theme = useTheme();
-  const desktopMedia = useMediaQuery<boolean>(theme.breakpoints.up('xl'));
-  const tabletMedia = useMediaQuery<boolean>(theme.breakpoints.between('sm', 'lg'));
-  const mobileMedia = useMediaQuery<boolean>(theme.breakpoints.down('sm'));
+  const lapMedia = useMediaQuery<boolean>(theme.breakpoints.up('xl'));
+  const mobTabMedia = useMediaQuery<boolean>(theme.breakpoints.between('sm', 'lg'));
+  const mobMedia = useMediaQuery<boolean>(theme.breakpoints.down('sm'));
 
   const media = {
-    tabletMedia,
-    mobileMedia,
+    mobTabMedia,
+    mobMedia,
   };
 
   return (
     <Container className={styles.hot}>
       <h3 className={styles.hotTitle}>Hot sale</h3>
       <Stack className={styles.hotContent}>
-        {desktopMedia && <BigSale />}
+        {lapMedia && <BigSale />}
         <OtherSale media={media} />
       </Stack>
     </Container>
