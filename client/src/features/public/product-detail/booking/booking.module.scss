@@ -1,0 +1,150 @@
+@use '~/styles/utils' as utils;
+
+.booking {
+  margin-top: 15rem;
+  max-width: 1400px;
+
+  &__row {
+    @include utils.flexBox(space-between, flex-start, row);
+  }
+}
+
+.gallery {
+  @include utils.flexBox(space-between, flex-start, row);
+  flex-basis: 40%;
+  width: 40%;
+
+  &-list {
+    flex-basis: 20%;
+    width: 20%;
+
+    &__item {
+      &:hover {
+        cursor: pointer;
+      }
+
+      &--selected {
+        border: solid 3px #6f76f7;
+      }
+    }
+
+    &__img {
+      @include utils.boxSize(100%);
+      display: block;
+    }
+
+    & :global(.swiper) {
+      height: 45rem;
+    }
+  }
+
+  &-spec {
+    flex-basis: 75%;
+    width: 75%;
+
+    &__img {
+      @include utils.boxSize(100%, 45rem);
+      display: block;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+}
+
+.summary {
+  flex-basis: 55%;
+  width: 55%;
+
+  &__title {
+    font-size: 2.5rem;
+    font-weight: 400;
+  }
+
+  &__confirm {
+    margin-top: 4rem;
+    border: none;
+    min-height: 5rem;
+    min-width: 20rem;
+    background-color: #000;
+    color: #fff;
+    transition: utils.$transition-02-effect;
+
+    &:hover {
+      cursor: pointer;
+      background-color: utils.$secondary-color;
+      color: #000;
+    }
+  }
+}
+
+.table {
+  margin-top: 2rem;
+  width: 100%;
+  text-align: left;
+  font-size: 1.6rem;
+
+  th {
+    padding: 1.5rem 0;
+    font-weight: 400;
+    width: 20%;
+  }
+
+  td {
+    padding: 1.5rem 2rem;
+  }
+
+  &__code {
+    font-style: italic;
+    color: utils.$secondary-text-color;
+  }
+
+  &-price {
+    background-color: #fafafa;
+    color: #f00;
+    font-size: 3.5rem;
+
+    &__old {
+      margin-right: 1.5rem;
+      color: utils.$secondary-text-color;
+      font-size: 2rem;
+      text-decoration: line-through 1px utils.$secondary-text-color;
+    }
+  }
+
+  &-quantity {
+    @include utils.flexCenter(ver);
+
+    &__box {
+      @include utils.flexCenter(ver);
+      @include utils.boxSize(30%, 3.5rem);
+      border: solid 2px utils.$border-primary-color;
+    }
+
+    &__input {
+      @include utils.boxSize(60%, 100%);
+      margin: 0 0.5rem;
+      padding: 0.5rem;
+      border: none;
+      border-left: solid 2px utils.$border-primary-color;
+      border-right: solid 2px utils.$border-primary-color;
+      text-align: center;
+
+      &::-webkit-inner-spin-button,
+      &::-webkit-outer-spin-button {
+        appearance: none;
+      }
+    }
+
+    &__btn {
+      @include utils.flexCenter();
+      @include utils.boxSize(3.5rem);
+    }
+
+    &__remain {
+      margin-left: 1.5rem;
+      color: utils.$border-primary-color;
+      font-style: italic;
+      font-size: 1.2rem;
+    }
+  }
+}

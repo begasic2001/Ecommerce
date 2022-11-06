@@ -2,6 +2,7 @@ import { ImageList, ImageListItem, Stack } from '@mui/material';
 import { ProductItem } from '~/components/product-item';
 import s from './hot-sale.module.scss';
 import { IOtherSaleProps, ISOtherSale } from './interface';
+import { v4 as uuidv4 } from 'uuid';
 
 const styles: ISOtherSale = {
   other: s.other,
@@ -17,7 +18,7 @@ export function OtherSale({ media }: IOtherSaleProps) {
         {Array(8)
           .fill(0)
           .map(() => (
-            <ImageListItem>
+            <ImageListItem key={uuidv4()}>
               <ProductItem />
             </ImageListItem>
           ))}

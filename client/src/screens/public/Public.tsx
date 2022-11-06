@@ -6,10 +6,12 @@ import { HeaderLayout } from '~/layouts/header';
 import { Homepage } from '~/pages/public/home';
 import { ProductsPage } from '~/pages/public/products';
 import { IPublicRoutes } from './interface';
+import { ProductDetailPage } from '~/pages/public/product-detail';
 
 const publicRoutes: IPublicRoutes[] = [
   { id: uuidv4(), path: '/home', component: Homepage },
   { id: uuidv4(), path: '/products', component: ProductsPage },
+  { id: uuidv4(), path: '/products/:productId', component: ProductDetailPage },
 ];
 
 function PublicScreens() {
