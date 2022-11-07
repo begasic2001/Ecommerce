@@ -3,9 +3,9 @@ import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { ReactNode } from 'react';
 
 interface IMedia {
-  lapMedia: boolean;
-  landLapMedia: boolean;
-  downLandMedia: boolean;
+  upMdMedia: boolean;
+  upXlMedia: boolean;
+  downMdMedia: boolean;
 }
 
 export interface IMenuProps {
@@ -40,13 +40,13 @@ export interface IFunctionAccountItem {
 
 export interface ISHeader {
   header: string;
-  headerIsScroll: string;
-  headerContainer: string;
-  headerRow: string;
+  headerScroll: string;
+  container: string;
+  row: string;
 }
 
 export interface ISMenuHeader {
-  headerColumn: string;
+  column: string;
   homeLink: string;
   nav: string;
   navItem: string;
@@ -56,7 +56,7 @@ export interface ISMenuHeader {
 }
 
 export interface ISFunction {
-  headerColumn: string;
+  column: string;
   search: string;
   user: string;
   userMenu: string;

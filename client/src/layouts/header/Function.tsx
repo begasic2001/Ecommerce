@@ -11,7 +11,6 @@ import {
   ListItemIcon,
   Menu,
   MenuItem,
-  Stack,
   TextField,
 } from '@mui/material';
 import { useState } from 'react';
@@ -20,7 +19,7 @@ import s from './header.module.scss';
 import { IFunctionAccountItem, IFunctionProps, ISFunction } from './interface';
 
 const styles: ISFunction = {
-  headerColumn: s['header__column'],
+  column: s['header__column'],
   search: s.search,
   user: s.user,
   userMenu: s['user-menu'],
@@ -30,7 +29,7 @@ const styles: ISFunction = {
 export const FunctionPart = (props: IFunctionProps) => {
   if (!props) return null;
   const { media, searchValue, handleSearchValue } = props;
-  const { lapMedia } = media;
+  const { upXlMedia } = media;
 
   const [showSearch, setShowSearch] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -59,7 +58,7 @@ export const FunctionPart = (props: IFunctionProps) => {
   );
 
   return (
-    <Stack className={styles.headerColumn}>
+    <section className={styles.column}>
       {showSearch && (
         <TextField
           type="search"
@@ -81,7 +80,7 @@ export const FunctionPart = (props: IFunctionProps) => {
           <SearchIcon sx={{ width: '2.5rem', height: '2.5rem' }} />
         </IconButton>
       )}
-      {lapMedia && (
+      {upXlMedia && (
         <>
           <IconButton onClick={handleClick} className={styles.user}>
             <AccountCircleIcon sx={{ width: '3rem', height: '3rem' }} />
@@ -104,6 +103,6 @@ export const FunctionPart = (props: IFunctionProps) => {
           </Menu>
         </>
       )}
-    </Stack>
+    </section>
   );
 };

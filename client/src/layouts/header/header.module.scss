@@ -7,9 +7,8 @@
   left: 0;
   z-index: 10;
   background-color: #fff;
-  transition: box-shadow utils.$transition-02-effect;
 
-  &--isScroll {
+  &--scroll {
     box-shadow: 0 0.2rem 0.2rem utils.$border-secondary-color;
   }
 
@@ -64,7 +63,7 @@
 .nav {
   margin-left: 2rem;
 
-  &__item {
+  a {
     margin-left: 2rem;
     color: utils.$primary-text-color;
     font-size: 1.6rem;
@@ -98,7 +97,7 @@
       margin-top: 1.2rem;
       overflow: visible;
       filter: drop-shadow(0px 0.2rem 0.8rem rgba(0, 0, 0, 0.32));
-      
+
       &::before {
         @include utils.boxSize(1rem);
         content: '';

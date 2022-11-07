@@ -25,12 +25,14 @@ function PublicScreens() {
   return (
     <>
       <HeaderLayout />
-      <Routes>
-        {publicRoutes.map((route) => {
-          const Page = route.component;
-          return <Route key={route.id} path={route.path} element={<Page />} />;
-        })}
-      </Routes>
+      <section className="main">
+        <Routes>
+          {publicRoutes.map((route) => {
+            const Page = route.component;
+            return <Route key={route.id} path={route.path} element={<Page />} />;
+          })}
+        </Routes>
+      </section>
       <FooterLayout />
     </>
   );

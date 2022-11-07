@@ -9,13 +9,18 @@ import { MenuPart } from './Menu';
 
 const styles: ISHeader = {
   header: s.header,
-  headerIsScroll: s['header--isScroll'],
-  headerContainer: s['header__container'],
-  headerRow: s['header__row'],
+  headerScroll: s['header--scroll'],
+  container: s['header__container'],
+  row: s['header__row'],
 };
 
 function HeaderLayout() {
   const theme = useTheme();
+  const media = {
+    upMdMedia: useMediaQuery<boolean>(theme.breakpoints.up('md')),
+    upXlMedia: useMediaQuery<boolean>(theme.breakpoints.up('xl')),
+    downMdMedia: useMediaQuery<boolean>(theme.breakpoints.down('md')),
+  };
   const lapMedia = useMediaQuery<boolean>(theme.breakpoints.up('xl'));
   const landLapMedia = useMediaQuery<boolean>(theme.breakpoints.between('md', 'xl'));
   const downLandMedia = useMediaQuery<boolean>(theme.breakpoints.down('md'));
@@ -29,17 +34,14 @@ function HeaderLayout() {
     setSearchValue(e.target.value);
   };
 
-  const media = {
-    lapMedia,
-    landLapMedia,
-    downLandMedia,
-  };
-
   useEffect(() => {
     const handleScrollPage = () => {
       const getCoordinateY = window.scrollY;
-      if (getCoordinateY >= 100) setScrollPage(true);
-      else setScrollPage(false);
+      if (getCoordinateY >= 100) {
+        setScrollPage(true);
+      } else {
+        setScrollPage(false);
+      }
     };
 
     window.addEventListener('scroll', handleScrollPage);
@@ -47,16 +49,16 @@ function HeaderLayout() {
   }, [scrollPage, setScrollPage]);
 
   return (
-    <header className={clsx(styles.header, scrollPage && styles.headerIsScroll)}>
-      <Container className={styles.headerContainer}>
-        <Stack className={styles.headerRow}>
+    <header className={clsx(styles.header, scrollPage && styles.headerScroll)}>
+      <Container className={styles.container}>
+        <section className={styles.row}>
           <MenuPart media={media} />
           <FunctionPart
             media={media}
             searchValue={searchValue}
             handleSearchValue={handleSearchValue}
           />
-        </Stack>
+        </section>
       </Container>
     </header>
   );

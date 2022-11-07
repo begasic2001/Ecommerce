@@ -15,7 +15,6 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Stack,
 } from '@mui/material';
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
@@ -31,7 +30,7 @@ import {
 } from './interface';
 
 const styles: ISMenuHeader = {
-  headerColumn: s['header__column'],
+  column: s['header__column'],
   homeLink: s['home-link'],
   nav: s.nav,
   navItem: s['nav__item'],
@@ -59,7 +58,7 @@ const navLinkPath: IMenuLinkPath[] = [
 
 export function MenuPart(props: IMenuProps) {
   if (!props) return null;
-  const { lapMedia, landLapMedia, downLandMedia } = props.media;
+  const { downMdMedia, upMdMedia, upXlMedia } = props.media;
 
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
 
@@ -107,8 +106,8 @@ export function MenuPart(props: IMenuProps) {
   );
 
   return (
-    <Stack className={styles.headerColumn}>
-      {(landLapMedia || downLandMedia) && (
+    <section className={styles.column}>
+      {downMdMedia && (
         <>
           <Button onClick={() => toggleDrawer(true)}>
             <MenuIcon sx={{ fill: '#000', width: '2.5rem', height: '2.5rem' }} />
@@ -118,20 +117,20 @@ export function MenuPart(props: IMenuProps) {
           </Drawer>
         </>
       )}
-      {(landLapMedia || lapMedia) && (
+      {upMdMedia && (
         <Link to="/home" className={styles.homeLink}>
           <LogoWebsite />
         </Link>
       )}
-      {lapMedia && (
+      {upXlMedia && (
         <nav className={styles.nav}>
           {navLinkPath.map((item) => (
-            <NavLink key={item.id} to={item.path} className={styles.navItem}>
+            <NavLink key={item.id} to={item.path}>
               {item.name}
             </NavLink>
           ))}
         </nav>
       )}
-    </Stack>
+    </section>
   );
 }
