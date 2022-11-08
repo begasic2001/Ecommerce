@@ -2,7 +2,10 @@
 
 .booking {
   margin-top: 15rem;
-  max-width: 1400px;
+
+  &__container {
+    max-width: 1400px;
+  }
 
   &__row {
     @include utils.flexBox(space-between, flex-start, row);

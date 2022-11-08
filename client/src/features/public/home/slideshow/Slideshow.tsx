@@ -13,7 +13,7 @@ const styles: ISSlideshow = {
 
 function SlideshowFeature() {
   const theme = useTheme();
-  const downLandMedia = useMediaQuery<boolean>(theme.breakpoints.down('md'));
+  const downMdMedia = useMediaQuery<boolean>(theme.breakpoints.down('md'));
 
   return (
     <section className={styles.slideshow}>
@@ -24,7 +24,7 @@ function SlideshowFeature() {
           alt="slideshow image"
         />
       </section>
-      {!downLandMedia && (
+      {!downMdMedia && (
         <section className={styles.content}>
           <h2 className={styles.contentTitle}>
             Send <em>flowers</em> like you mean it.

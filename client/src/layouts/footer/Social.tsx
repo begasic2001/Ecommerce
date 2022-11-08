@@ -10,7 +10,7 @@ const styles: ISSocialPart = {
   socialTxt: s['social__txt'],
 };
 
-export function SocialPart() {
+export function SocialComponent() {
   return (
     <Stack className={styles.social}>
       <p>© 2018 Qode Interactive, All Rights Reserved</p>

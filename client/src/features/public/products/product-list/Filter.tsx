@@ -1,5 +1,14 @@
 import { FilterAlt as FilterAltIcon } from '@mui/icons-material';
-import { Checkbox, Divider, FormControlLabel, FormGroup, Slider, Stack } from '@mui/material';
+import {
+  Checkbox,
+  Divider,
+  FormControlLabel,
+  FormGroup,
+  Slider,
+  Stack,
+  useTheme,
+  useMediaQuery,
+} from '@mui/material';
 import s from './product-list.module.scss';
 import { IFilterPartProps, ISFilter } from './interface';
 import clsx from 'clsx';
@@ -104,13 +113,12 @@ export function FilterPartContent({ filterPartProps }: IFilterPartProps) {
   );
 }
 
-export function FilterPart({ filterPartProps }: IFilterPartProps) {
+export function FilterComponent({ filterPartProps }: IFilterPartProps) {
   if (!filterPartProps) return null;
-  const { media } = filterPartProps;
-  const { mobMedia, landTabMedia, mobLandMedia } = media;
 
-  if (landTabMedia || mobMedia || mobLandMedia) return null;
+  const theme = useTheme();
+  const downLgMedia = useMediaQuery<boolean>(theme.breakpoints.down('lg'));
+
+  if (downLgMedia) return null;
   return <FilterPartContent filterPartProps={filterPartProps} />;
 }
-
-export default FilterPart;

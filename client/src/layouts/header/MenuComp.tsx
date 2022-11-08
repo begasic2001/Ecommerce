@@ -15,19 +15,15 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  useMediaQuery,
+  useTheme,
 } from '@mui/material';
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { LogoWebsite } from '~/components/logo';
 import s from './header.module.scss';
-import {
-  IMenuLinkPath,
-  IMenuLinkPathDrawer,
-  IMenuLinkPathProps,
-  IMenuProps,
-  ISMenuHeader,
-} from './interface';
+import { IMenuLinkPath, IMenuLinkPathDrawer, IMenuLinkPathProps, ISMenuHeader } from './interface';
 
 const styles: ISMenuHeader = {
   column: s['header__column'],
@@ -56,13 +52,16 @@ const navLinkPath: IMenuLinkPath[] = [
   { id: uuidv4(), name: 'Blog', path: '/blog' },
 ];
 
-export function MenuPart(props: IMenuProps) {
-  if (!props) return null;
-  const { downMdMedia, upMdMedia, upXlMedia } = props.media;
+export function MenuComponent() {
+  const theme = useTheme();
+  const media = {
+    upXl: useMediaQuery<boolean>(theme.breakpoints.up('xl')),
+    downMd: useMediaQuery<boolean>(theme.breakpoints.down('md')),
+  };
 
-  const [openDrawer, setOpenDrawer] = useState<boolean>(false);
+  const [openDrawer, setOpenDrawer] = useState<boolean>(false); // toggle drawer when responsive
 
-  // Handle drawer on/off
+  // Handle on/off drawer
   const toggleDrawer = (toggle: boolean) => {
     setOpenDrawer(toggle);
   };
@@ -107,7 +106,7 @@ export function MenuPart(props: IMenuProps) {
 
   return (
     <section className={styles.column}>
-      {downMdMedia && (
+      {media.downMd && (
         <>
           <Button onClick={() => toggleDrawer(true)}>
             <MenuIcon sx={{ fill: '#000', width: '2.5rem', height: '2.5rem' }} />
@@ -117,12 +116,12 @@ export function MenuPart(props: IMenuProps) {
           </Drawer>
         </>
       )}
-      {upMdMedia && (
+      {!media.downMd && (
         <Link to="/home" className={styles.homeLink}>
           <LogoWebsite />
         </Link>
       )}
-      {upXlMedia && (
+      {media.upXl && (
         <nav className={styles.nav}>
           {navLinkPath.map((item) => (
             <NavLink key={item.id} to={item.path}>

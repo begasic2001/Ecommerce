@@ -1,4 +1,4 @@
-import { ImageList, ImageListItem, Stack } from '@mui/material';
+import { ImageList, ImageListItem, Stack, useTheme, useMediaQuery } from '@mui/material';
 import { ProductItem } from '~/components/product-item';
 import s from './hot-sale.module.scss';
 import { IOtherSaleProps, ISOtherSale } from './interface';
@@ -8,13 +8,16 @@ const styles: ISOtherSale = {
   other: s.other,
 };
 
-export function OtherSale({ media }: IOtherSaleProps) {
-  if (!media) return null;
-  const { mobTabMedia, mobMedia } = media;
+export function OtherSaleComponent() {
+  const theme = useTheme();
+  const media = {
+    betweenSmLg: useMediaQuery<boolean>(theme.breakpoints.between('sm', 'lg')),
+    downSm: useMediaQuery<boolean>(theme.breakpoints.down('sm')),
+  };
 
   return (
-    <Stack className={styles.other}>
-      <ImageList cols={mobTabMedia ? 3 : mobMedia ? 2 : 4} gap={20}>
+    <section className={styles.other}>
+      <ImageList cols={media.betweenSmLg ? 3 : media.downSm ? 2 : 4} gap={20}>
         {Array(8)
           .fill(0)
           .map(() => (
@@ -23,8 +26,6 @@ export function OtherSale({ media }: IOtherSaleProps) {
             </ImageListItem>
           ))}
       </ImageList>
-    </Stack>
+    </section>
   );
 }
-
-export default OtherSale;

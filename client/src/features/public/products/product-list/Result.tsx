@@ -1,5 +1,14 @@
 import { FilterAlt as FilterAltIcon } from '@mui/icons-material';
-import { Button, Drawer, ImageList, ImageListItem, Pagination, Stack } from '@mui/material';
+import {
+  Button,
+  Drawer,
+  ImageList,
+  ImageListItem,
+  Pagination,
+  Stack,
+  useTheme,
+  useMediaQuery,
+} from '@mui/material';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { ProductItem } from '~/components/product-item';
@@ -16,8 +25,14 @@ const styles: ISReuslt = {
 
 export function Result({ resultPartProps, filterPartProps }: IResultPartProps) {
   if (!resultPartProps) return null;
-  const { currentPage, handleChangeCurrentPage, media } = resultPartProps;
-  const { tabMedia, landTabMedia, mobMedia, mobLandMedia } = media;
+  const { currentPage, handleChangeCurrentPage } = resultPartProps;
+
+  const theme = useTheme();
+  const media = {
+    downLg: useMediaQuery<boolean>(theme.breakpoints.down('lg')),
+    upMd: useMediaQuery<boolean>(theme.breakpoints.up('md')),
+    downSm: useMediaQuery<boolean>(theme.breakpoints.down('sm')),
+  };
 
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
 
@@ -36,7 +51,7 @@ export function Result({ resultPartProps, filterPartProps }: IResultPartProps) {
     <section className={styles.result}>
       <Stack className={styles.resultTitle}>
         <h3>Kết quả tìm kiếm</h3>
-        {(landTabMedia || mobLandMedia || mobMedia) && (
+        {media.downLg && (
           <>
             <Button onClick={() => toggleDrawer(true)}>
               <FilterAltIcon sx={{ width: '2.5rem', height: '2.5rem', color: '#000' }} />
@@ -52,7 +67,7 @@ export function Result({ resultPartProps, filterPartProps }: IResultPartProps) {
           </>
         )}
       </Stack>
-      <ImageList cols={tabMedia || landTabMedia ? 4 : mobMedia ? 2 : 3} gap={20}>
+      <ImageList cols={media.upMd ? 4 : media.downSm ? 2 : 3} gap={20}>
         {Array(8)
           .fill(0)
           .map(() => (

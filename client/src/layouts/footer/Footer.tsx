@@ -1,7 +1,7 @@
 import { Container } from '@mui/material';
 import s from './footer.module.scss';
-import { LinkPart } from './Link';
-import { SocialPart } from './Social';
+import { LinkComponent } from './Link';
+import { SocialComponent } from './Social';
 import { ISFooter } from './interface';
 
 const styles: ISFooter = {
@@ -13,8 +13,8 @@ function FooterLayout() {
   return (
     <footer className={styles.footer}>
       <Container className={styles.footerContainer}>
-        <LinkPart />
-        <SocialPart />
+        <LinkComponent />
+        <SocialComponent />
       </Container>
     </footer>
   );

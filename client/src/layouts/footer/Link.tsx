@@ -20,7 +20,7 @@ const companyFooter = ['About Us', 'Blog', 'FAQ Page', 'Contact Us'];
 const socialMediaFooter = ['Twitter', 'Instagram', 'Tumblr', 'Pinterest'];
 const archiveFooter = ['Designer Shoes', 'Gallery', 'Pricing', 'Feature Index'];
 
-export function LinkPart() {
+export function LinkComponent() {
   const LinkItemFooter = ({ title, list }: ILinkItem) => (
     <Grid item className={s['link__item']}>
       <p className={s['link__title']}>{title}</p>

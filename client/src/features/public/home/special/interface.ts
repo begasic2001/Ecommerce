@@ -5,6 +5,5 @@ export interface ISSpecial {
   image: string;
   announce: string;
   announceTitle: string;
-  announceParagraph: string;
   announceList: string;
 }

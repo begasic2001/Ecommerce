@@ -9,6 +9,7 @@ export interface IOtherSaleProps {
 
 export interface ISHotSale {
   hot: string;
+  container: string;
   hotTitle: string;
   hotContent: string;
 }

@@ -16,19 +16,21 @@ const styles = {
 
 function NewProductsFeature() {
   const theme = useTheme();
-  const tabLapMedia = useMediaQuery<boolean>(theme.breakpoints.between('lg', 'xl'));
-  const mobTabMedia = useMediaQuery<boolean>(theme.breakpoints.between('sm', 'lg'));
-  const mobMedia = useMediaQuery<boolean>(theme.breakpoints.down('sm'));
+  const media = {
+    betweenLgXl: useMediaQuery<boolean>(theme.breakpoints.between('lg', 'xl')),
+    betweenSmLg: useMediaQuery<boolean>(theme.breakpoints.between('sm', 'lg')),
+    downSm: useMediaQuery<boolean>(theme.breakpoints.down('sm')),
+  };
 
   return (
     <section className={styles.new}>
       <Container className={styles.newContainer}>
-        <h3 className={styles.title}>Sản phẩm mới</h3>
+        <h3>Sản phẩm mới</h3>
         <section className={styles.slideshow}>
           <Swiper
             modules={[Navigation]}
             spaceBetween={20}
-            slidesPerView={tabLapMedia ? 4 : mobTabMedia ? 3 : mobMedia ? 2 : 5}
+            slidesPerView={media.betweenLgXl ? 4 : media.betweenSmLg ? 3 : media.downSm ? 2 : 5}
             navigation
           >
             {Array(10)

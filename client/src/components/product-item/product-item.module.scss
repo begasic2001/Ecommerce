@@ -16,14 +16,12 @@
     transform: scale(1.1);
   }
 
-  &-image {
-    img {
-      @include utils.boxSize(100%, 20rem);
-      display: block;
-      object-fit: cover;
-      object-position: center;
-      transition: utils.$transition-02-effect;
-    }
+  &__img {
+    @include utils.boxSize(100%, 20rem);
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    transition: utils.$transition-02-effect;
   }
 
   &__name {

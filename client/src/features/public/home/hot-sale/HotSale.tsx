@@ -1,34 +1,30 @@
-import { Container, Stack, useMediaQuery, useTheme } from '@mui/material';
-import { BigSale } from './BigSale';
+import { Container, useMediaQuery, useTheme } from '@mui/material';
+import { BigSaleComponent } from './BigSale';
 import s from './hot-sale.module.scss';
-import { OtherSale } from './OtherSale';
 import { ISHotSale } from './interface';
+import { OtherSaleComponent } from './OtherSale';
 
 const styles: ISHotSale = {
   hot: s.hot,
+  container: s['hot__container'],
   hotTitle: s['hot__title'],
   hotContent: s['hot__content'],
 };
 
 function HotSaleFeature() {
   const theme = useTheme();
-  const lapMedia = useMediaQuery<boolean>(theme.breakpoints.up('xl'));
-  const mobTabMedia = useMediaQuery<boolean>(theme.breakpoints.between('sm', 'lg'));
-  const mobMedia = useMediaQuery<boolean>(theme.breakpoints.down('sm'));
-
-  const media = {
-    mobTabMedia,
-    mobMedia,
-  };
+  const upXlMedia = useMediaQuery<boolean>(theme.breakpoints.up('xl'));
 
   return (
-    <Container className={styles.hot}>
-      <h3 className={styles.hotTitle}>Hot sale</h3>
-      <Stack className={styles.hotContent}>
-        {lapMedia && <BigSale />}
-        <OtherSale media={media} />
-      </Stack>
-    </Container>
+    <section className={styles.hot}>
+      <Container className={styles.container}>
+        <h3 className={styles.hotTitle}>Hot sale</h3>
+        <section className={styles.hotContent}>
+          {upXlMedia && <BigSaleComponent />}
+          <OtherSaleComponent />
+        </section>
+      </Container>
+    </section>
   );
 }
 

@@ -1,19 +1,14 @@
-import {
-  Add as AddIcon,
-  LocalShipping as TruckIcon,
-  Remove as MinusIcon,
-} from '@mui/icons-material';
-import { Container, Stack } from '@mui/material';
+import { Container } from '@mui/material';
 import { useState } from 'react';
 import 'swiper/css';
 import s from './booking.module.scss';
-import { IArrGalleryProps, IImgGallerySelect, ISBooking } from './interface';
 import { GalleryPart } from './Gallery';
+import { IArrGalleryProps, IImgGallerySelect, ISBooking } from './interface';
 import { Summary } from './Summary';
 
 const styles: ISBooking = {
-  booking: s.booking,
-  bookingRow: s['booking__row'],
+  container: s['booking__container'],
+  row: s['booking__row'],
 };
 
 function BookingFeature({ arrGallery }: IArrGalleryProps) {
@@ -54,21 +49,23 @@ function BookingFeature({ arrGallery }: IArrGalleryProps) {
   };
 
   return (
-    <Container className={styles.booking}>
-      <Stack className={styles.bookingRow}>
-        <GalleryPart
-          arrGallery={arrGallery}
-          imgGallerySelect={imgGallerySelect}
-          handleGallerySelect={handleGallerySelect}
-        />
-        <Summary
-          maxQuantity={maxQuantity}
-          quantity={quantity}
-          handleQuantityBtn={handleQuantityBtn}
-          handleQuantityCurrent={handleQuantityCurrent}
-        />
-      </Stack>
-    </Container>
+    <section className="booking">
+      <Container className={styles.container}>
+        <section className={styles.row}>
+          <GalleryPart
+            arrGallery={arrGallery}
+            imgGallerySelect={imgGallerySelect}
+            handleGallerySelect={handleGallerySelect}
+          />
+          <Summary
+            maxQuantity={maxQuantity}
+            quantity={quantity}
+            handleQuantityBtn={handleQuantityBtn}
+            handleQuantityCurrent={handleQuantityCurrent}
+          />
+        </section>
+      </Container>
+    </section>
   );
 }
 

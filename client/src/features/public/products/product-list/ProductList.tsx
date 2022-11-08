@@ -1,6 +1,6 @@
 import { Container, Stack, useTheme, useMediaQuery } from '@mui/material';
 import { useState } from 'react';
-import { FilterPart } from './Filter';
+import { FilterComponent } from './Filter';
 import { IFilterPart, IInitArrangePrice, IResultPart, ISProductList } from './interface';
 import s from './product-list.module.scss';
 import { Result } from './Result';
@@ -103,21 +103,19 @@ const ProductList = () => {
     handleChangePriceValue,
     arrangePrice,
     handlePriceValue,
-    media,
   };
 
   const resultPartProps: IResultPart = {
     currentPage,
     handleChangeCurrentPage,
-    media,
   };
 
   return (
     <Container className={styles.products}>
-      <Stack className={styles.productsRow}>
-        <FilterPart filterPartProps={filterPartProps} />
+      <section className={styles.productsRow}>
+        <FilterComponent filterPartProps={filterPartProps} />
         <Result resultPartProps={resultPartProps} filterPartProps={filterPartProps} />
-      </Stack>
+      </section>
     </Container>
   );
 };

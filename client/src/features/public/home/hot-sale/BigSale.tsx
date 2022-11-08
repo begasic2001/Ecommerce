@@ -13,7 +13,7 @@ const styles: ISBigSale = {
   bigRemainTime: s['big-remain__time'],
 };
 
-export function BigSale() {
+export function BigSaleComponent() {
   return (
     <Stack className={styles.big}>
       <section className={styles.bigImage}>
@@ -22,18 +22,17 @@ export function BigSale() {
           alt="big sale flower"
         />
       </section>
-      <Stack className={styles.bigInfo}>
+      <section className={styles.bigInfo}>
         <p className={styles.bigInfoName}>Hoa Tang</p>
         <p className={styles.bigInfoPrice}>
           <em>$300</em> $225
         </p>
-      </Stack>
-      <Stack className={styles.bigRemain}>
+      </section>
+      <section className={styles.bigRemain}>
         <p className={styles.bigRemainTxt}>Còn lại</p>
         <p className={styles.bigRemainTime}>43 : 22 : 17</p>
-      </Stack>
+      </section>
     </Stack>
   );
 }
 
-export default BigSale;

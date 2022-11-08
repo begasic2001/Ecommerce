@@ -12,6 +12,8 @@ import {
   Menu,
   MenuItem,
   TextField,
+  useTheme,
+  useMediaQuery,
 } from '@mui/material';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -26,10 +28,12 @@ const styles: ISFunction = {
   userLink: s['user__link'],
 };
 
-export const FunctionPart = (props: IFunctionProps) => {
+export const FunctionComponent = (props: IFunctionProps) => {
   if (!props) return null;
-  const { media, searchValue, handleSearchValue } = props;
-  const { upXlMedia } = media;
+  const { searchValue, handleSearchValue } = props;
+
+  const theme = useTheme();
+  const upXlMedia = useMediaQuery<boolean>(theme.breakpoints.up('xl'));
 
   const [showSearch, setShowSearch] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);

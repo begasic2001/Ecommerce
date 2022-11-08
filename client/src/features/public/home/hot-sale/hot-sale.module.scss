@@ -1,8 +1,11 @@
 @use '~/styles/utils' as utils;
 
 .hot {
-  max-width: 1400px;
   margin: 5rem auto 0;
+
+  &__container {
+    max-width: 1400px;
+  }
 
   &__title {
     padding-bottom: 1rem;
@@ -11,17 +14,16 @@
   }
 
   &__content {
-    justify-content: space-between;
-    flex-direction: row;
+    @include utils.flexBox(space-between, flex-start, row);
     margin-top: 3rem;
   }
 }
 
 .big {
   flex-basis: 30%;
+  width: 30%;
   padding: 2.5rem;
   border: 1px solid #eee;
-  width: 30%;
   min-height: 70rem;
   overflow: hidden;
 
@@ -57,7 +59,7 @@
       font-size: 3rem;
       font-weight: bold;
 
-      span {
+      em {
         margin-right: 1rem;
         color: #ccc;
         font-size: 2rem;
@@ -87,14 +89,16 @@
 }
 
 @include utils.breakpoint(xl) {
-  .hot {
+  .hot__container {
     max-width: 1200px;
   }
 }
 
 @include utils.breakpoint(lg) {
   .hot {
-    max-width: 992px;
+    &__container {
+      max-width: 992px;
+    }
 
     &__content {
       justify-content: flex-start;
@@ -108,19 +112,19 @@
 }
 
 @include utils.breakpoint(md) {
-  .hot {
+  .hot__container {
     max-width: 768px;
   }
 }
 
 @include utils.breakpoint(sm) {
-  .hot {
+  .hot__container {
     max-width: 576px;
   }
 }
 
 @include utils.breakpoint(xs) {
-  .hot {
+  .hot__container {
     max-width: 100%;
   }
 }

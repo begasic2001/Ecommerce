@@ -2,16 +2,6 @@ import { SvgIconTypeMap } from '@mui/material';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { ReactNode } from 'react';
 
-interface IMedia {
-  upMdMedia: boolean;
-  upXlMedia: boolean;
-  downMdMedia: boolean;
-}
-
-export interface IMenuProps {
-  media: IMedia;
-}
-
 export interface IMenuLinkPath {
   id: string;
   name: string;
@@ -27,15 +17,14 @@ export interface IMenuLinkPathProps {
 }
 
 export interface IFunctionProps {
-  media: IMedia;
   searchValue: string;
   handleSearchValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface IFunctionAccountItem {
+  title: string;
   path: string;
   icon: ReactNode;
-  title: string;
 }
 
 export interface ISHeader {

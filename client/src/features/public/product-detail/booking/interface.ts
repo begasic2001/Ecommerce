@@ -21,8 +21,8 @@ export interface ISummaryPartProps {
 }
 
 export interface ISBooking {
-  booking: string;
-  bookingRow: string;
+  container: string;
+  row: string;
 }
 
 export interface ISGallery {

@@ -1,11 +1,11 @@
-import { Container, Stack, useMediaQuery, useTheme } from '@mui/material';
+import { Container } from '@mui/material';
 import clsx from 'clsx';
 import React, { useEffect, useState } from 'react';
 import { useDebounce } from '~/hooks';
-import { FunctionPart } from './Function';
+import { FunctionComponent } from './Function';
 import s from './header.module.scss';
 import { ISHeader } from './interface';
-import { MenuPart } from './Menu';
+import { MenuComponent } from './MenuComp';
 
 const styles: ISHeader = {
   header: s.header,
@@ -15,16 +15,6 @@ const styles: ISHeader = {
 };
 
 function HeaderLayout() {
-  const theme = useTheme();
-  const media = {
-    upMdMedia: useMediaQuery<boolean>(theme.breakpoints.up('md')),
-    upXlMedia: useMediaQuery<boolean>(theme.breakpoints.up('xl')),
-    downMdMedia: useMediaQuery<boolean>(theme.breakpoints.down('md')),
-  };
-  const lapMedia = useMediaQuery<boolean>(theme.breakpoints.up('xl'));
-  const landLapMedia = useMediaQuery<boolean>(theme.breakpoints.between('md', 'xl'));
-  const downLandMedia = useMediaQuery<boolean>(theme.breakpoints.down('md'));
-
   const [scrollPage, setScrollPage] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>('');
 
@@ -36,7 +26,7 @@ function HeaderLayout() {
 
   useEffect(() => {
     const handleScrollPage = () => {
-      const getCoordinateY = window.scrollY;
+      const getCoordinateY: number = window.scrollY;
       if (getCoordinateY >= 100) {
         setScrollPage(true);
       } else {
@@ -52,12 +42,8 @@ function HeaderLayout() {
     <header className={clsx(styles.header, scrollPage && styles.headerScroll)}>
       <Container className={styles.container}>
         <section className={styles.row}>
-          <MenuPart media={media} />
-          <FunctionPart
-            media={media}
-            searchValue={searchValue}
-            handleSearchValue={handleSearchValue}
-          />
+          <MenuComponent />
+          <FunctionComponent searchValue={searchValue} handleSearchValue={handleSearchValue} />
         </section>
       </Container>
     </header>

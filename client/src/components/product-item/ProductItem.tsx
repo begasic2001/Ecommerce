@@ -3,7 +3,6 @@ import { ISProductItem } from './interface';
 
 const styles: ISProductItem = {
   item: s.item,
-  itemImage: s['item-image'],
   itemImg: s['item__img'],
   itemName: s['item__name'],
   itemPrice: s['item__price'],
@@ -12,7 +11,7 @@ const styles: ISProductItem = {
 const ProductItem = () => {
   return (
     <section className={styles.item}>
-      <div className={styles.itemImage}>
+      <div>
         <img
           src="https://cdn.pixabay.com/photo/2015/04/19/08/32/marguerite-729510__340.jpg"
           alt="other hot sale flower"
