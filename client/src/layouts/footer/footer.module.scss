@@ -1,5 +1,6 @@
 @use '~/styles/utils' as utils;
 
+// Footer component
 .footer {
   margin-top: 8rem;
   background-color: utils.$secondary-color;
@@ -10,9 +11,8 @@
   }
 }
 
+// Link component
 .link {
-  justify-content: space-between;
-  flex-wrap: wrap;
   padding: 5rem 0;
   border-bottom: solid 1px utils.$border-primary-color;
 
@@ -40,6 +40,7 @@
   }
 }
 
+// Social component
 .social {
   @include utils.flexBox(space-between, center, row);
   padding: 2rem 0;
@@ -56,7 +57,7 @@
       cursor: pointer;
       color: #888;
     }
-    
+
     &:not(:first-child) {
       margin-left: 1rem;
     }

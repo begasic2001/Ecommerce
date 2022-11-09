@@ -1,5 +1,6 @@
 @use '~/styles/utils' as utils;
 
+// Header component
 .header {
   position: fixed;
   top: 0;
@@ -8,7 +9,7 @@
   z-index: 10;
   background-color: #fff;
 
-  &--scroll {
+  &--scrolled {
     box-shadow: 0 0.2rem 0.2rem utils.$border-secondary-color;
   }
 
@@ -26,6 +27,7 @@
   }
 }
 
+// Menu component
 .drawer {
   padding: 1.5rem;
   min-width: 30rem;
@@ -63,7 +65,7 @@
 .nav {
   margin-left: 2rem;
 
-  a {
+  &__item {
     margin-left: 2rem;
     color: utils.$primary-text-color;
     font-size: 1.6rem;
@@ -76,6 +78,7 @@
   }
 }
 
+// Function component
 .search {
   @include utils.boxSize(25rem, 4rem);
 

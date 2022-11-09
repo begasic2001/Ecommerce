@@ -5,13 +5,13 @@ import 'swiper/css/navigation';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { v4 as uuidv4 } from 'uuid';
 import { ProductItem } from '~/components/product-item';
-import s from './new-products.module.scss';
+import styles from './new-products.module.scss';
 
-const styles = {
-  new: s.new,
-  newContainer: s['new__container'],
-  title: s.title,
-  slideshow: s.slideshow,
+const s = {
+  new: styles.new,
+  container: styles['new__container'],
+  title: styles.title,
+  slideshow: styles.slideshow,
 };
 
 function NewProductsFeature() {
@@ -23,14 +23,14 @@ function NewProductsFeature() {
   };
 
   return (
-    <section className={styles.new}>
-      <Container className={styles.newContainer}>
-        <h3>Sản phẩm mới</h3>
-        <section className={styles.slideshow}>
+    <section className={s.new}>
+      <Container className={s.container}>
+        <h3 className={s.title}>Sản phẩm mới</h3>
+        <section className={s.slideshow}>
           <Swiper
             modules={[Navigation]}
             spaceBetween={20}
-            slidesPerView={media.betweenLgXl ? 4 : media.betweenSmLg ? 3 : media.downSm ? 2 : 5}
+            slidesPerView={media.downSm ? 2 : media.betweenSmLg ? 3 : media.betweenLgXl ? 4 : 5}
             navigation
           >
             {Array(10)

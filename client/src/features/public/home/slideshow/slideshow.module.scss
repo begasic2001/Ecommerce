@@ -3,12 +3,12 @@
 .slideshow {
   position: relative;
   margin-top: 10rem;
+}
 
-  &__overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(0deg, rgba(#000, 0.5), transparent);
-  }
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(#000, 0.5), transparent);
 }
 
 .image {
@@ -37,7 +37,7 @@
     }
   }
 
-  &__paragraph {
+  &__txt {
     margin-top: 2rem;
     max-width: 50%;
     color: #555;
@@ -54,19 +54,11 @@
   .content {
     &__title {
       max-width: 60%;
-      font: 400 4.5rem 'Source Serif Pro', serif;
-
-      em {
-        color: utils.$emphasize-color;
-      }
+      font-size: 4.5rem;
     }
 
-    &__paragraph {
-      margin-top: 2rem;
+    &__txt {
       max-width: 60%;
-      color: #555;
-      font-size: 1.6rem;
-      line-height: 1.5;
     }
   }
 }

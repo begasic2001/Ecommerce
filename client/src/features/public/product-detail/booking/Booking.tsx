@@ -3,7 +3,7 @@ import { useState } from 'react';
 import 'swiper/css';
 import s from './booking.module.scss';
 import { GalleryComponent } from './GalleryComp';
-import { IArrGalleryProps, IImgGallerySelect, ISBooking } from './interface';
+import { IArrGalleryProps, ISBooking } from './interface';
 import { SummaryComponent } from './Summary';
 
 const styles: ISBooking = {

@@ -1,4 +1,3 @@
-import { useTheme, useMediaQuery } from '@mui/material';
 import clsx from 'clsx';
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -16,9 +15,6 @@ const styles: ISGallery = {
 export function GalleryComponent(props: IGalleryPartProps) {
   if (!props) return null;
   const { arrGallery, imgGallerySelect, handleGallerySelect } = props;
-
-  const theme = useTheme();
-  const betweenLgXlMedia = useMediaQuery<boolean>(theme.breakpoints.between('lg', 'xl'));
 
   return (
     <section className={styles.gallery}>

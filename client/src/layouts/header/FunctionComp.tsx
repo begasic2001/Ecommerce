@@ -12,8 +12,8 @@ import {
   Menu,
   MenuItem,
   TextField,
-  useTheme,
   useMediaQuery,
+  useTheme,
 } from '@mui/material';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -35,10 +35,10 @@ export const FunctionComponent = (props: IFunctionProps) => {
   const theme = useTheme();
   const upXlMedia = useMediaQuery<boolean>(theme.breakpoints.up('xl'));
 
-  const [showSearch, setShowSearch] = useState<boolean>(false);
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [showSearch, setShowSearch] = useState<boolean>(false); // Toggle search input
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null); // Identify account option menu modal
 
-  const open = Boolean(anchorEl);
+  const open = Boolean(anchorEl); // Toggle menu modal by anchorEl state
 
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(e.currentTarget);
@@ -63,27 +63,29 @@ export const FunctionComponent = (props: IFunctionProps) => {
 
   return (
     <section className={styles.column}>
-      {showSearch && (
-        <TextField
-          type="search"
-          value={searchValue}
-          onChange={handleSearchValue}
-          placeholder="Nhập hoa, chậu yêu thích..."
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start" onClick={toggleSearch}>
-                <SearchIcon sx={{ width: '2rem', height: '2rem' }} />
-              </InputAdornment>
-            ),
-          }}
-          className={styles.search}
-        />
-      )}
-      {!showSearch && (
-        <IconButton onClick={toggleSearch}>
-          <SearchIcon sx={{ width: '2.5rem', height: '2.5rem' }} />
-        </IconButton>
-      )}
+      <>
+        {!showSearch && (
+          <IconButton onClick={toggleSearch}>
+            <SearchIcon sx={{ width: '2.5rem', height: '2.5rem' }} />
+          </IconButton>
+        )}
+        {showSearch && (
+          <TextField
+            type="search"
+            value={searchValue}
+            onChange={handleSearchValue}
+            placeholder="Nhập hoa, chậu yêu thích..."
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start" onClick={toggleSearch}>
+                  <SearchIcon sx={{ width: '2rem', height: '2rem' }} />
+                </InputAdornment>
+              ),
+            }}
+            className={styles.search}
+          />
+        )}
+      </>
       {upXlMedia && (
         <>
           <IconButton onClick={handleClick} className={styles.user}>

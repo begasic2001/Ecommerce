@@ -2,20 +2,23 @@ import { SvgIconTypeMap } from '@mui/material';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { ReactNode } from 'react';
 
-export interface IMenuLinkPath {
+// Menu component
+export interface IMenuLink {
   id: string;
   name: string;
   path: string;
 }
 
-export interface IMenuLinkPathDrawer extends IMenuLinkPath {
+export interface IMenuLinkDrawer extends IMenuLink {
   icon: OverridableComponent<SvgIconTypeMap<{}, 'svg'>> & { muiName: string };
 }
 
-export interface IMenuLinkPathProps {
-  item: IMenuLinkPathDrawer;
+export interface IMenuLinkProps {
+  item: IMenuLinkDrawer;
 }
 
+// ---------------------------------------------------------
+// Function component
 export interface IFunctionProps {
   searchValue: string;
   handleSearchValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -27,9 +30,11 @@ export interface IFunctionAccountItem {
   icon: ReactNode;
 }
 
+// ---------------------------------------------------------
+// Styles CSS
 export interface ISHeader {
   header: string;
-  headerScroll: string;
+  headerScrolled: string;
   container: string;
   row: string;
 }

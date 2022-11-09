@@ -1,26 +1,26 @@
 import { Stack } from '@mui/material';
 import PaypalIcon from '~/assets/logo/paypal.png';
 import VisaIcon from '~/assets/logo/visa.png';
-import s from './footer.module.scss';
-import { ISSocialPart } from './interface';
+import styles from './footer.module.scss';
+import { ISSocial } from './interface';
 
-const styles: ISSocialPart = {
-  social: s.social,
-  socialPaypal: s['social__paypal'],
-  socialTxt: s['social__txt'],
+const s: ISSocial = {
+  social: styles.social,
+  socialPaypal: styles['social__paypal'],
+  socialTxt: styles['social__txt'],
 };
 
 export function SocialComponent() {
   return (
-    <Stack className={styles.social}>
+    <Stack className={s.social}>
       <p>© 2018 Qode Interactive, All Rights Reserved</p>
       <section>
         <img src={VisaIcon} alt="visa image" />
-        <img src={PaypalIcon} alt="paypal image" className={styles.socialPaypal} />
+        <img src={PaypalIcon} alt="paypal image" className={s.socialPaypal} />
       </section>
       <section>
-        <span className={styles.socialTxt}>Instagram</span>
-        <span className={styles.socialTxt}>Facebook</span>
+        <span className={s.socialTxt}>Instagram</span>
+        <span className={s.socialTxt}>Facebook</span>
       </section>
     </Stack>
   );

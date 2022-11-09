@@ -1,12 +1,11 @@
 @use '~/styles/utils' as utils;
 
 .item {
-  display: flex;
-  flex-direction: column;
+  @include utils.flexBox(flex-start, center, column);
   padding: 1rem;
   min-height: 35rem;
-  overflow: hidden;
   border: 1px solid #eee;
+  overflow: hidden;
 
   &:hover {
     cursor: pointer;

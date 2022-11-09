@@ -1,6 +1,6 @@
 export interface ISNewProduct {
   new: string;
-  newContainer: string;
+  container: string;
   title: string;
   slideshow: string;
 }

@@ -1,0 +1,108 @@
+@use '~/styles/utils' as utils;
+
+.information {
+  margin-top: 5rem;
+
+  &__container {
+    max-width: 1400px;
+  }
+}
+
+.tab {
+  border-bottom: solid 2px #000;
+
+  &__item {
+    display: inline-block;
+    padding: 1.5rem 2.5rem;
+    width: 100%;
+    font-size: 1.6rem;
+    text-align: center;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:not(:last-child) {
+      border-right: none;
+    }
+
+    &--selected {
+      background-color: #ccc;
+      font-weight: 600;
+    }
+  }
+}
+
+.content {
+  margin-top: 2.5rem;
+  padding: 1rem;
+
+  &__title {
+    margin-bottom: 2rem;
+    padding: 1.5rem 2rem;
+    background-color: #fafafa;
+    font-size: 2rem;
+  }
+
+  &__sub-title {
+    margin: 1.5rem 0 1rem;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+  }
+
+  &__txt {
+    text-align: justify;
+    line-height: 1.6;
+  }
+
+  &-list {
+    margin-top: 2rem;
+    margin-left: 1.5rem;
+
+    li {
+      &:not(:first-child) {
+        margin-top: 1rem;
+      }
+    }
+  }
+}
+
+.table {
+  width: 100%;
+  text-align: left;
+
+  th {
+    padding: 1.5rem 0;
+    width: 15%;
+  }
+}
+
+@include utils.breakpoint(xl) {
+  .information__container {
+    max-width: 1200px;
+  }
+}
+
+@include utils.breakpoint(lg) {
+  .information__container {
+    max-width: 992px;
+  }
+}
+
+@include utils.breakpoint(md) {
+  .information__container {
+    max-width: 768px;
+  }
+}
+
+@include utils.breakpoint(sm) {
+  .information__container {
+    max-width: 576px;
+  }
+}
+
+@include utils.breakpoint(xs) {
+  .information__container {
+    max-width: 100%;
+  }
+}

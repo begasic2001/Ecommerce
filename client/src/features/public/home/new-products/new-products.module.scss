@@ -6,14 +6,13 @@
   &__container {
     max-width: 1400px;
   }
-
-  h3 {
-    padding-bottom: 1rem;
-    border-bottom: solid 1px #eee;
-    font: 400 3.5rem 'Source Serif Pro', serif;
-  }
 }
 
+.title {
+  padding-bottom: 1rem;
+  border-bottom: solid 1px #eee;
+  font: 400 3.5rem 'Source Serif Pro', serif;
+} 
 
 .slideshow {
   margin-top: 3rem;

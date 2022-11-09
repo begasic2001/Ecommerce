@@ -7,22 +7,24 @@ export interface IOtherSaleProps {
   media: IOtherSale;
 }
 
+
+// Styles CSS
 export interface ISHotSale {
   hot: string;
   container: string;
-  hotTitle: string;
-  hotContent: string;
+  title: string;
+  content: string;
 }
 
 export interface ISBigSale {
   big: string;
   bigImage: string;
-  bigInfo: string;
-  bigInfoName: string;
-  bigInfoPrice: string;
-  bigRemain: string;
-  bigRemainTxt: string;
-  bigRemainTime: string;
+  info: string;
+  infoName: string;
+  infoPrice: string;
+  remain: string;
+  remainTxt: string;
+  remainTime: string;
 }
 
 export interface ISOtherSale {

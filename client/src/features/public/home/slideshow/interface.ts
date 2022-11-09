@@ -1,8 +1,8 @@
 export interface ISSlideshow {
   slideshow: string;
-  slideshowOverlay: string;
+  overlay: string;
   image: string;
   content: string;
   contentTitle: string;
-  contentParagraph: string;
+  contentTxt: string;
 }

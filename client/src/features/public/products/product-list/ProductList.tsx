@@ -2,13 +2,13 @@ import { Container } from '@mui/material';
 import { useState } from 'react';
 import { FilterComponent } from './FilterComp';
 import { IFilterPart, IInitArrangePrice, IResultPart, ISProductList } from './interface';
-import s from './product-list.module.scss';
+import styles from './product-list.module.scss';
 import { ResultComponent } from './ResultComp';
 
-const styles: ISProductList = {
-  products: s.products,
-  container: s['products__container'],
-  row: s['products__row'],
+const s: ISProductList = {
+  products: styles.products,
+  container: styles['products__container'],
+  row: styles['products__row'],
 };
 
 const minPriceDistance = 10;
@@ -16,13 +16,14 @@ const initMinPrice = 0;
 const initMaxPrice = 100;
 
 const ProductList = () => {
-  const [sliderPriceValue, setSliderPriceValue] = useState<number[]>([initMinPrice, initMaxPrice]);
+  const [sliderPriceValue, setSliderPriceValue] = useState<number[]>([initMinPrice, initMaxPrice]); // State storing slider line (demonstrate for input price)
   const [arrangePrice, setArrangePrice] = useState<IInitArrangePrice>({
     min: initMinPrice * 10000,
     max: initMaxPrice * 10000,
-  });
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  }); // State storing input price
+  const [currentPage, setCurrentPage] = useState<number>(1); // State manage product list page
 
+  // Manage change when slide slider input
   const handleChangePriceValue = (e: Event, newValue: number | number[], activeThumb: number) => {
     if (!Array.isArray(newValue)) return;
     if (activeThumb === 0) {
@@ -46,10 +47,7 @@ const ProductList = () => {
     }
   };
 
-  const handleChangeCurrentPage = (e: React.ChangeEvent<unknown>, value: number) => {
-    setCurrentPage(value);
-  };
-
+  // Manage change when type value input price
   const handlePriceValue = (e: React.ChangeEvent<HTMLInputElement>, num: number) => {
     const min: number = arrangePrice.min;
     const max: number = arrangePrice.max;
@@ -86,6 +84,10 @@ const ProductList = () => {
     }
   };
 
+  const handleChangeCurrentPage = (e: React.ChangeEvent<unknown>, value: number) => {
+    setCurrentPage(value);
+  };
+
   const filterPartProps: IFilterPart = {
     sliderPriceValue,
     handleChangePriceValue,
@@ -99,9 +101,9 @@ const ProductList = () => {
   };
 
   return (
-    <section className={styles.products}>
-      <Container className={styles.container}>
-        <section className={styles.row}>
+    <section className={s.products}>
+      <Container className={s.container}>
+        <section className={s.row}>
           <FilterComponent filterPartProps={filterPartProps} />
           <ResultComponent resultPartProps={resultPartProps} filterPartProps={filterPartProps} />
         </section>

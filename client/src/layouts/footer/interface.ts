@@ -1,21 +1,24 @@
+// Link component
 export interface ILinkItem {
   title: string;
   list: string[];
 }
 
+// ---------------------------------------
+// Styles CSS
 export interface ISFooter {
   footer: string;
-  footerContainer: string;
+  container: string;
 }
 
-export interface ISLinkPart {
+export interface ISLink {
   link: string;
   linkItem: string;
   linkTitle: string;
   linkList: string;
 }
 
-export interface ISSocialPart {
+export interface ISSocial {
   social: string;
   socialPaypal: string;
   socialTxt: string;

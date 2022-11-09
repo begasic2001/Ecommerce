@@ -17,7 +17,7 @@ export function OtherSaleComponent() {
 
   return (
     <section className={styles.other}>
-      <ImageList cols={media.betweenSmLg ? 3 : media.downSm ? 2 : 4} gap={20}>
+      <ImageList cols={media.downSm ? 2 : media.betweenSmLg ? 3 : 4} gap={20}>
         {Array(8)
           .fill(0)
           .map(() => (
