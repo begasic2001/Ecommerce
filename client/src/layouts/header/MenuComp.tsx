@@ -56,6 +56,7 @@ export function MenuComponent() {
   const theme = useTheme();
   const media = {
     upXl: useMediaQuery<boolean>(theme.breakpoints.up('xl')),
+    downXl: useMediaQuery<boolean>(theme.breakpoints.down('xl')),
     downMd: useMediaQuery<boolean>(theme.breakpoints.down('md')),
   };
 
@@ -106,7 +107,7 @@ export function MenuComponent() {
 
   return (
     <section className={styles.column}>
-      {media.downMd && (
+      {media.downXl && (
         <>
           <Button onClick={() => toggleDrawer(true)}>
             <MenuIcon sx={{ fill: '#000', width: '2.5rem', height: '2.5rem' }} />

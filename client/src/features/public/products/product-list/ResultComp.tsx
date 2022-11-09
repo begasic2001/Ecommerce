@@ -5,14 +5,13 @@ import {
   ImageList,
   ImageListItem,
   Pagination,
-  Stack,
-  useTheme,
   useMediaQuery,
+  useTheme,
 } from '@mui/material';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { ProductItem } from '~/components/product-item';
-import { FilterPartContent } from './Filter';
+import { FilterContent } from './FilterComp';
 import { IResultPartProps, ISReuslt } from './interface';
 import s from './product-list.module.scss';
 
@@ -23,7 +22,7 @@ const styles: ISReuslt = {
   filterDrawer: s['filter__drawer'],
 };
 
-export function Result({ resultPartProps, filterPartProps }: IResultPartProps) {
+export function ResultComponent({ resultPartProps, filterPartProps }: IResultPartProps) {
   if (!resultPartProps) return null;
   const { currentPage, handleChangeCurrentPage } = resultPartProps;
 
@@ -49,7 +48,7 @@ export function Result({ resultPartProps, filterPartProps }: IResultPartProps) {
 
   return (
     <section className={styles.result}>
-      <Stack className={styles.resultTitle}>
+      <section className={styles.resultTitle}>
         <h3>Kết quả tìm kiếm</h3>
         {media.downLg && (
           <>
@@ -62,11 +61,11 @@ export function Result({ resultPartProps, filterPartProps }: IResultPartProps) {
               onClose={() => toggleDrawer(false)}
               className={styles.filterDrawer}
             >
-              <FilterPartContent filterPartProps={filterPartContentProps} />
+              <FilterContent filterPartProps={filterPartContentProps} />
             </Drawer>
           </>
         )}
-      </Stack>
+      </section>
       <ImageList cols={media.upMd ? 4 : media.downSm ? 2 : 3} gap={20}>
         {Array(8)
           .fill(0)

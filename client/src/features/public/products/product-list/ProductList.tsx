@@ -1,13 +1,14 @@
-import { Container, Stack, useTheme, useMediaQuery } from '@mui/material';
+import { Container } from '@mui/material';
 import { useState } from 'react';
-import { FilterComponent } from './Filter';
+import { FilterComponent } from './FilterComp';
 import { IFilterPart, IInitArrangePrice, IResultPart, ISProductList } from './interface';
 import s from './product-list.module.scss';
-import { Result } from './Result';
+import { ResultComponent } from './ResultComp';
 
 const styles: ISProductList = {
   products: s.products,
-  productsRow: s['products__row'],
+  container: s['products__container'],
+  row: s['products__row'],
 };
 
 const minPriceDistance = 10;
@@ -15,12 +16,6 @@ const initMinPrice = 0;
 const initMaxPrice = 100;
 
 const ProductList = () => {
-  const theme = useTheme();
-  const tabMedia = useMediaQuery<boolean>(theme.breakpoints.up('lg'));
-  const landTabMedia = useMediaQuery<boolean>(theme.breakpoints.between('md', 'lg'));
-  const mobLandMedia = useMediaQuery<boolean>(theme.breakpoints.between('sm', 'md'));
-  const mobMedia = useMediaQuery<boolean>(theme.breakpoints.down('sm'));
-
   const [sliderPriceValue, setSliderPriceValue] = useState<number[]>([initMinPrice, initMaxPrice]);
   const [arrangePrice, setArrangePrice] = useState<IInitArrangePrice>({
     min: initMinPrice * 10000,
@@ -56,9 +51,9 @@ const ProductList = () => {
   };
 
   const handlePriceValue = (e: React.ChangeEvent<HTMLInputElement>, num: number) => {
-    const min = arrangePrice.min;
-    const max = arrangePrice.max;
-    const inputValue = Number(e.target.value);
+    const min: number = arrangePrice.min;
+    const max: number = arrangePrice.max;
+    const inputValue: number = Number(e.target.value);
 
     if (num === 0) {
       if (min > max || min < 0) {
@@ -91,13 +86,6 @@ const ProductList = () => {
     }
   };
 
-  const media = {
-    tabMedia,
-    landTabMedia,
-    mobLandMedia,
-    mobMedia,
-  };
-
   const filterPartProps: IFilterPart = {
     sliderPriceValue,
     handleChangePriceValue,
@@ -111,12 +99,14 @@ const ProductList = () => {
   };
 
   return (
-    <Container className={styles.products}>
-      <section className={styles.productsRow}>
-        <FilterComponent filterPartProps={filterPartProps} />
-        <Result resultPartProps={resultPartProps} filterPartProps={filterPartProps} />
-      </section>
-    </Container>
+    <section className={styles.products}>
+      <Container className={styles.container}>
+        <section className={styles.row}>
+          <FilterComponent filterPartProps={filterPartProps} />
+          <ResultComponent resultPartProps={resultPartProps} filterPartProps={filterPartProps} />
+        </section>
+      </Container>
+    </section>
   );
 };
 

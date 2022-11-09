@@ -26,7 +26,7 @@ const styles: ISFilter = {
   filterPricDivider: s['filter-price__div'],
 };
 
-export function FilterPartContent({ filterPartProps }: IFilterPartProps) {
+export function FilterContent({ filterPartProps }: IFilterPartProps) {
   const { arrangePrice, handleChangePriceValue, handlePriceValue, sliderPriceValue } =
     filterPartProps;
 
@@ -87,7 +87,7 @@ export function FilterPartContent({ filterPartProps }: IFilterPartProps) {
           disableSwap
           className={styles.filterBoxSlider}
         />
-        <Stack className={styles.filterPrice}>
+        <section className={styles.filterPrice}>
           <input
             type="number"
             value={arrangePrice.min}
@@ -107,7 +107,7 @@ export function FilterPartContent({ filterPartProps }: IFilterPartProps) {
             onChange={(e) => handlePriceValue(e, 1)}
             className={styles.filterPriceInput}
           />
-        </Stack>
+        </section>
       </section>
     </section>
   );
@@ -120,5 +120,5 @@ export function FilterComponent({ filterPartProps }: IFilterPartProps) {
   const downLgMedia = useMediaQuery<boolean>(theme.breakpoints.down('lg'));
 
   if (downLgMedia) return null;
-  return <FilterPartContent filterPartProps={filterPartProps} />;
+  return <FilterContent filterPartProps={filterPartProps} />;
 }

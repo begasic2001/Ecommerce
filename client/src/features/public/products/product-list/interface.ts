@@ -26,7 +26,8 @@ export interface IResultPartProps {
 
 export interface ISProductList {
   products: string;
-  productsRow: string;
+  container: string;
+  row: string;
 }
 
 export interface ISFilter {
