@@ -4,34 +4,17 @@ import {
   Drawer,
   ImageList,
   ImageListItem,
-  Pagination,
-  useMediaQuery,
-  useTheme,
+  Pagination
 } from '@mui/material';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { ProductItem } from '~/components/product-item';
 import { FilterContent } from './FilterComp';
-import { IResultPartProps, ISReuslt } from './interface';
+import { IResultPartProps } from './interface';
 import s from './product-list.module.scss';
 
-const styles: ISReuslt = {
-  result: s.result,
-  resultTitle: s['result-title'],
-  resultPagination: s['result-pagination'],
-  filterDrawer: s['filter__drawer'],
-};
-
 export function ResultComponent({ resultPartProps, filterPartProps }: IResultPartProps) {
-  if (!resultPartProps) return null;
-  const { currentPage, handleChangeCurrentPage } = resultPartProps;
-
-  const theme = useTheme();
-  const media = {
-    downLg: useMediaQuery<boolean>(theme.breakpoints.down('lg')),
-    upMd: useMediaQuery<boolean>(theme.breakpoints.up('md')),
-    downSm: useMediaQuery<boolean>(theme.breakpoints.down('sm')),
-  };
+  const { currentPage, handleChangeCurrentPage, media } = resultPartProps;
 
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
 
@@ -47,8 +30,8 @@ export function ResultComponent({ resultPartProps, filterPartProps }: IResultPar
   };
 
   return (
-    <section className={styles.result}>
-      <section className={styles.resultTitle}>
+    <section className={s.result}>
+      <section className={s['result-title']}>
         <h3>Kết quả tìm kiếm</h3>
         {media.downLg && (
           <>
@@ -59,7 +42,7 @@ export function ResultComponent({ resultPartProps, filterPartProps }: IResultPar
               anchor="right"
               open={openDrawer}
               onClose={() => toggleDrawer(false)}
-              className={styles.filterDrawer}
+              className={s['filter__drawer']}
             >
               <FilterContent filterPartProps={filterPartContentProps} />
             </Drawer>
@@ -79,7 +62,7 @@ export function ResultComponent({ resultPartProps, filterPartProps }: IResultPar
         count={5}
         page={currentPage}
         onChange={handleChangeCurrentPage}
-        className={styles.resultPagination}
+        className={s['result-pagination']}
       />
     </section>
   );

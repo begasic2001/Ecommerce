@@ -1,14 +1,7 @@
 import { Grid } from '@mui/material';
 import { v4 as uuidv4 } from 'uuid';
-import styles from './footer.module.scss';
-import { ILinkItem, ISLink } from './interface';
-
-const s: ISLink = {
-  link: styles.link,
-  linkItem: styles['link__item'],
-  linkTitle: styles['link__title'],
-  linkList: styles['link-list'],
-};
+import s from './footer.module.scss';
+import { ILinkItem } from './interface';
 
 const customerServiceLink = [
   'Help & Contact Us',
@@ -22,9 +15,9 @@ const archiveFooter = ['Designer Shoes', 'Gallery', 'Pricing', 'Feature Index'];
 
 export function LinkComponent() {
   const LinkItemFooter = ({ title, list }: ILinkItem) => (
-    <Grid item className={s.linkItem}>
-      <p className={s.linkTitle}>{title}</p>
-      <ul className={s.linkList}>
+    <Grid item className={s['link__item']}>
+      <p className={s['link__title']}>{title}</p>
+      <ul className={s['link-list']}>
         {list.map((item) => (
           <li key={uuidv4()}>{item}</li>
         ))}

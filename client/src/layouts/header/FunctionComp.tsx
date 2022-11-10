@@ -12,33 +12,17 @@ import {
   Menu,
   MenuItem,
   TextField,
-  useMediaQuery,
-  useTheme,
 } from '@mui/material';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import s from './header.module.scss';
-import { IFunctionAccountItem, IFunctionProps, ISFunction } from './interface';
+import { IFunctionAccountItem, IFunctionProps } from './interface';
 
-const styles: ISFunction = {
-  column: s['header__column'],
-  search: s.search,
-  user: s.user,
-  userMenu: s['user-menu'],
-  userLink: s['user__link'],
-};
+export function FunctionComponent({ searchValue, handleSearchValue, media }: IFunctionProps) {
+  const [showSearch, setShowSearch] = useState<boolean>(false);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
-export const FunctionComponent = (props: IFunctionProps) => {
-  if (!props) return null;
-  const { searchValue, handleSearchValue } = props;
-
-  const theme = useTheme();
-  const upXlMedia = useMediaQuery<boolean>(theme.breakpoints.up('xl'));
-
-  const [showSearch, setShowSearch] = useState<boolean>(false); // Toggle search input
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null); // Identify account option menu modal
-
-  const open = Boolean(anchorEl); // Toggle menu modal by anchorEl state
+  const open: boolean = Boolean(anchorEl);
 
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(e.currentTarget);
@@ -54,7 +38,7 @@ export const FunctionComponent = (props: IFunctionProps) => {
 
   const AccountMenuItem = ({ path, icon, title }: IFunctionAccountItem) => (
     <MenuItem>
-      <Link to={path} className={styles.userLink}>
+      <Link to={path} className={s['user__link']}>
         <ListItemIcon>{icon}</ListItemIcon>
         {title}
       </Link>
@@ -62,7 +46,7 @@ export const FunctionComponent = (props: IFunctionProps) => {
   );
 
   return (
-    <section className={styles.column}>
+    <section className={s['header__column']}>
       <>
         {!showSearch && (
           <IconButton onClick={toggleSearch}>
@@ -82,13 +66,13 @@ export const FunctionComponent = (props: IFunctionProps) => {
                 </InputAdornment>
               ),
             }}
-            className={styles.search}
+            className={s.search}
           />
         )}
       </>
-      {upXlMedia && (
+      {media.upXl && (
         <>
-          <IconButton onClick={handleClick} className={styles.user}>
+          <IconButton onClick={handleClick} className={s.user}>
             <AccountCircleIcon sx={{ width: '3rem', height: '3rem' }} />
           </IconButton>
           <Menu
@@ -101,7 +85,7 @@ export const FunctionComponent = (props: IFunctionProps) => {
             }}
             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-            className={styles.userMenu}
+            className={s['user-menu']}
           >
             <AccountMenuItem path="/account/login" icon={<LoginIcon />} title="Login" />
             <Divider />
@@ -111,4 +95,4 @@ export const FunctionComponent = (props: IFunctionProps) => {
       )}
     </section>
   );
-};
+}

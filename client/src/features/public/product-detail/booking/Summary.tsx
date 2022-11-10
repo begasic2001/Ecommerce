@@ -5,33 +5,25 @@ import {
 } from '@mui/icons-material';
 import 'swiper/css';
 import s from './booking.module.scss';
-import { ISSummary, ISummaryPartProps } from './interface';
+import { ISummaryPartProps } from './interface';
 
-const styles: ISSummary = {
-  summary: s.summary,
-  table: s.table,
-  tableCode: s['table__code'],
-  tablePrice: s['table-price'],
-  tableQuantity: s['table-quantity'],
-  tableQuantityBox: s['table-quantity__box'],
-  tableQuantityBtn: s['table-quantity__btn'],
-};
-
-export function SummaryComponent(props: ISummaryPartProps) {
-  if (!props) return null;
-  const { maxQuantity, quantity, handleQuantityBtn, handleQuantityCurrent } = props;
-
+export function SummaryComponent({
+  maxQuantity,
+  quantity,
+  handleQuantityBtn,
+  handleQuantityCurrent,
+}: ISummaryPartProps) {
   return (
-    <section className={styles.summary}>
+    <section className={s.summary}>
       <h3>Hoa hướng dương</h3>
-      <table className={styles.table}>
+      <table className={s.table}>
         <tbody>
           <tr>
             <th>Mã sản phẩm</th>
-            <td className={styles.tableCode}>HHD001</td>
+            <td className={s['table__code']}>HHD001</td>
           </tr>
           <tr>
-            <td colSpan={2} className={styles.tablePrice}>
+            <td colSpan={2} className={s['table-price']}>
               <del>1.450.000đ</del> 1.235.000đ
             </td>
           </tr>
@@ -43,13 +35,16 @@ export function SummaryComponent(props: ISummaryPartProps) {
           </tr>
           <tr>
             <th>Số lượng</th>
-            <td className={styles.tableQuantity}>
-              <div className={styles.tableQuantityBox}>
-                <div onClick={() => handleQuantityBtn('minus')} className={styles.tableQuantityBtn}>
+            <td className={s['table-quantity']}>
+              <div className={s['table-quantity__box']}>
+                <div
+                  onClick={() => handleQuantityBtn('minus')}
+                  className={s['table-quantity__btn']}
+                >
                   <MinusIcon />
                 </div>
                 <input type="number" value={quantity} onChange={handleQuantityCurrent} />
-                <div onClick={() => handleQuantityBtn('add')} className={styles.tableQuantityBtn}>
+                <div onClick={() => handleQuantityBtn('add')} className={s['table-quantity__btn']}>
                   <AddIcon />
                 </div>
               </div>

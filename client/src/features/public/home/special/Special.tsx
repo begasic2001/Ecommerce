@@ -1,23 +1,11 @@
 import { Container } from '@mui/material';
-import { ISSpecial } from './interface';
-import styles from './special.module.scss';
-
-const s: ISSpecial = {
-  special: styles.special,
-  container: styles['special__container'],
-  row: styles['special__row'],
-  image: styles.image,
-  announce: styles.announce,
-  announceTitle: styles['announce__title'],
-  announceTxt: styles['announce__txt'],
-  announceList: styles['announce-list'],
-};
+import s from './special.module.scss';
 
 function SpecialFeature() {
   return (
     <section className={s.special}>
-      <Container className={s.container}>
-        <section className={s.row}>
+      <Container className={s['special__container']}>
+        <section className={s['special__row']}>
           <div className={s.image}>
             <img
               src="https://cdn.pixabay.com/photo/2015/04/19/08/32/marguerite-729510__340.jpg"
@@ -25,13 +13,13 @@ function SpecialFeature() {
             />
           </div>
           <section className={s.announce}>
-            <h3 className={s.announceTitle}>
+            <h3 className={s['announce__title']}>
               Suprise Your <em>Special Day</em>! Let us arrange a smile.
             </h3>
-            <p className={s.announceTxt}>
+            <p className={s['announce__txt']}>
               Where flowers are our inspiration to create lasting memories. Whatever the occasion...
             </p>
-            <ul className={s.announceList}>
+            <ul className={s['announce-list']}>
               <li>Hand picked just for you.</li>
               <li>Unique flower arrangements</li>
               <li>Best way to say you care.</li>

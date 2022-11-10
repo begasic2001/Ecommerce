@@ -2,6 +2,17 @@ import { SvgIconTypeMap } from '@mui/material';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { ReactNode } from 'react';
 
+// Header component
+interface IMedia {
+  upXl: boolean;
+  upMd: boolean;
+}
+
+export interface IMediaProps {
+  media: IMedia;
+}
+
+// ---------------------------------------------------------
 // Menu component
 export interface IMenuLink {
   id: string;
@@ -22,37 +33,11 @@ export interface IMenuLinkProps {
 export interface IFunctionProps {
   searchValue: string;
   handleSearchValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  media: IMedia;
 }
 
 export interface IFunctionAccountItem {
   title: string;
   path: string;
   icon: ReactNode;
-}
-
-// ---------------------------------------------------------
-// Styles CSS
-export interface ISHeader {
-  header: string;
-  headerScrolled: string;
-  container: string;
-  row: string;
-}
-
-export interface ISMenuHeader {
-  column: string;
-  homeLink: string;
-  nav: string;
-  navItem: string;
-  drawer: string;
-  drawerLogo: string;
-  drawerItem: string;
-}
-
-export interface ISFunction {
-  column: string;
-  search: string;
-  user: string;
-  userMenu: string;
-  userLink: string;
 }

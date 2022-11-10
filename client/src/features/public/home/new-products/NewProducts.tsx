@@ -5,14 +5,7 @@ import 'swiper/css/navigation';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { v4 as uuidv4 } from 'uuid';
 import { ProductItem } from '~/components/product-item';
-import styles from './new-products.module.scss';
-
-const s = {
-  new: styles.new,
-  container: styles['new__container'],
-  title: styles.title,
-  slideshow: styles.slideshow,
-};
+import s from './new-products.module.scss';
 
 function NewProductsFeature() {
   const theme = useTheme();
@@ -24,7 +17,7 @@ function NewProductsFeature() {
 
   return (
     <section className={s.new}>
-      <Container className={s.container}>
+      <Container className={s['new__container']}>
         <h3 className={s.title}>Sản phẩm mới</h3>
         <section className={s.slideshow}>
           <Swiper

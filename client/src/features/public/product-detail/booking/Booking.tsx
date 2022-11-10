@@ -3,14 +3,8 @@ import { useState } from 'react';
 import 'swiper/css';
 import s from './booking.module.scss';
 import { GalleryComponent } from './GalleryComp';
-import { IArrGalleryProps, ISBooking } from './interface';
+import { IArrGalleryProps } from './interface';
 import { SummaryComponent } from './Summary';
-
-const styles: ISBooking = {
-  booking: s.booking,
-  container: s['booking__container'],
-  row: s['booking__row'],
-};
 
 function BookingFeature({ arrGallery }: IArrGalleryProps) {
   const [imgGallerySelect, setImgGallerySelect] = useState<number>(0);
@@ -43,9 +37,9 @@ function BookingFeature({ arrGallery }: IArrGalleryProps) {
   };
 
   return (
-    <section className={styles.booking}>
-      <Container className={styles.container}>
-        <section className={styles.row}>
+    <section className={s.booking}>
+      <Container className={s['booking__container']}>
+        <section className={s['booking__row']}>
           <GalleryComponent
             arrGallery={arrGallery}
             imgGallerySelect={imgGallerySelect}

@@ -1,22 +1,12 @@
-import { ImageList, ImageListItem, Stack, useTheme, useMediaQuery } from '@mui/material';
+import { ImageList, ImageListItem } from '@mui/material';
+import { v4 as uuidv4 } from 'uuid';
 import { ProductItem } from '~/components/product-item';
 import s from './hot-sale.module.scss';
-import { IOtherSaleProps, ISOtherSale } from './interface';
-import { v4 as uuidv4 } from 'uuid';
+import { IMediaProps } from './interface';
 
-const styles: ISOtherSale = {
-  other: s.other,
-};
-
-export function OtherSaleComponent() {
-  const theme = useTheme();
-  const media = {
-    betweenSmLg: useMediaQuery<boolean>(theme.breakpoints.between('sm', 'lg')),
-    downSm: useMediaQuery<boolean>(theme.breakpoints.down('sm')),
-  };
-
+export function OtherSaleComponent({ media }: IMediaProps) {
   return (
-    <section className={styles.other}>
+    <section className={s.other}>
       <ImageList cols={media.downSm ? 2 : media.betweenSmLg ? 3 : 4} gap={20}>
         {Array(8)
           .fill(0)

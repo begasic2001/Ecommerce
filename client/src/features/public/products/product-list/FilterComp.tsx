@@ -4,108 +4,92 @@ import {
   Divider,
   FormControlLabel,
   FormGroup,
-  Slider,
-  Stack,
-  useTheme,
-  useMediaQuery,
+  Slider
 } from '@mui/material';
-import s from './product-list.module.scss';
-import { IFilterPartProps, ISFilter } from './interface';
 import clsx from 'clsx';
-
-const styles: ISFilter = {
-  filter: s.filter,
-  filterIsDrawer: s['filter--isDrawer'],
-  filterTitle: s['filter_title'],
-  filterBox: s['filter-box'],
-  filterBoxTitle: s['filter-box__title'],
-  filterBoxItem: s['filter-box__item'],
-  filterBoxSlider: s['filter-box__slider'],
-  filterPrice: s['filter-price'],
-  filterPriceInput: s['filter-price__input'],
-  filterPricDivider: s['filter-price__div'],
-};
+import { IFilterPartProps } from './interface';
+import s from './product-list.module.scss';
 
 export function FilterContent({ filterPartProps }: IFilterPartProps) {
-  const { arrangePrice, handleChangePriceValue, handlePriceValue, sliderPriceValue } =
+  const { arrangePrice, handleChangeSliderPrice, handleChangeInputPrice, sliderPriceValue } =
     filterPartProps;
 
   return (
-    <section className={clsx(styles.filter, filterPartProps?.isDrawer && styles.filterIsDrawer)}>
-      <h3 className={styles.filterTitle}>
+    <section className={clsx(s.filter, filterPartProps?.isDrawer && s['filter--isDrawer'])}>
+      <h3 className={s['filter__title']}>
         <FilterAltIcon sx={{ width: '2rem', height: '2rem', mr: '1rem' }} />
         Bộ lọc
       </h3>
-      <section className={styles.filterBox}>
-        <p className={styles.filterBoxTitle}>Các ngày lễ</p>
+      <section className={s['filter-box']}>
+        <p className={s['filter-box__title']}>Các ngày lễ</p>
         <FormGroup>
           <FormControlLabel
             control={<Checkbox />}
             labelPlacement="start"
             label="Nhà giáo Việt Nam"
-            className={styles.filterBoxItem}
+            className={s['filter-box__item']}
           />
           <FormControlLabel
             control={<Checkbox />}
             labelPlacement="start"
             label="Phụ nữ Việt Nam"
-            className={styles.filterBoxItem}
+            className={s['filter-box__item']}
           />
           <FormControlLabel
             control={<Checkbox />}
             labelPlacement="start"
             label="Sinh nhật"
-            className={styles.filterBoxItem}
+            className={s['filter-box__item']}
           />
         </FormGroup>
       </section>
       <Divider />
-      <section className={styles.filterBox}>
-        <p className={styles.filterBoxTitle}>Các kệ hoa</p>
+      <section className={s['filter-box']}>
+        <p className={s['filter-box__title']}>Các kệ hoa</p>
         <FormGroup>
           <FormControlLabel
             control={<Checkbox />}
             labelPlacement="start"
             label="Kệ sinh nhật"
-            className={styles.filterBoxItem}
+            className={s['filter-box__item']}
           />
           <FormControlLabel
             control={<Checkbox />}
             labelPlacement="start"
             label="Kệ khai trương"
-            className={styles.filterBoxItem}
+            className={s['filter-box__item']}
           />
         </FormGroup>
       </section>
       <Divider />
-      <section className={styles.filterBox}>
-        <p className={styles.filterBoxTitle}>Chọn mức giá</p>
+      <section className={s['filter-box']}>
+        <p className={s['filter-box__title']}>Chọn mức giá</p>
         <Slider
           value={sliderPriceValue}
-          onChange={handleChangePriceValue}
+          onChange={handleChangeSliderPrice}
           step={10}
           disableSwap
-          className={styles.filterBoxSlider}
+          className={s['filter-box__slider']}
         />
-        <section className={styles.filterPrice}>
+        <section className={s['filter-price']}>
           <input
             type="number"
             value={arrangePrice.min}
             placeholder="Từ 1.000đ"
             min={0}
             step={1000}
-            onChange={(e) => handlePriceValue(e, 0)}
-            className={styles.filterPriceInput}
+            onChange={(e) => handleChangeInputPrice(e, 0)}
+            className={s['filter-price__input']}
           />
-          <Divider className={styles.filterPricDivider} />
+          <Divider className={s['filter-price__div']} />
           <input
             type="number"
             value={arrangePrice.max}
             max={1000000}
             step={1000}
             placeholder="Đến 999.999đ"
-            onChange={(e) => handlePriceValue(e, 1)}
-            className={styles.filterPriceInput}
+            onChange={(e) => handleChangeInputPrice(e, 1)}
+            className={s['filter-price__input']}
           />
         </section>
       </section>
@@ -114,11 +98,8 @@ export function FilterContent({ filterPartProps }: IFilterPartProps) {
 }
 
 export function FilterComponent({ filterPartProps }: IFilterPartProps) {
-  if (!filterPartProps) return null;
+  const { media } = filterPartProps;
 
-  const theme = useTheme();
-  const downLgMedia = useMediaQuery<boolean>(theme.breakpoints.down('lg'));
-
-  if (downLgMedia) return null;
+  if (media.downLg) return null;
   return <FilterContent filterPartProps={filterPartProps} />;
 }

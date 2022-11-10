@@ -1,30 +1,30 @@
-import { Container } from '@mui/material';
+import { Container, useMediaQuery, useTheme } from '@mui/material';
 import { useState } from 'react';
 import { FilterComponent } from './FilterComp';
-import { IFilterPart, IInitArrangePrice, IResultPart, ISProductList } from './interface';
-import styles from './product-list.module.scss';
+import { IInitArrangePrice } from './interface';
+import s from './product-list.module.scss';
 import { ResultComponent } from './ResultComp';
-
-const s: ISProductList = {
-  products: styles.products,
-  container: styles['products__container'],
-  row: styles['products__row'],
-};
 
 const minPriceDistance = 10;
 const initMinPrice = 0;
 const initMaxPrice = 100;
 
 const ProductList = () => {
-  const [sliderPriceValue, setSliderPriceValue] = useState<number[]>([initMinPrice, initMaxPrice]); // State storing slider line (demonstrate for input price)
+  const theme = useTheme();
+  const media = {
+    downLg: useMediaQuery<boolean>(theme.breakpoints.down('lg')),
+    upMd: useMediaQuery<boolean>(theme.breakpoints.up('md')),
+    downSm: useMediaQuery<boolean>(theme.breakpoints.down('sm')),
+  };
+
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [sliderPriceValue, setSliderPriceValue] = useState<number[]>([initMinPrice, initMaxPrice]);
   const [arrangePrice, setArrangePrice] = useState<IInitArrangePrice>({
     min: initMinPrice * 10000,
     max: initMaxPrice * 10000,
-  }); // State storing input price
-  const [currentPage, setCurrentPage] = useState<number>(1); // State manage product list page
+  });
 
-  // Manage change when slide slider input
-  const handleChangePriceValue = (e: Event, newValue: number | number[], activeThumb: number) => {
+  const handleChangeSliderPrice = (e: Event, newValue: number | number[], activeThumb: number) => {
     if (!Array.isArray(newValue)) return;
     if (activeThumb === 0) {
       setSliderPriceValue([
@@ -40,6 +40,7 @@ const ProductList = () => {
         sliderPriceValue[0],
         Math.max(newValue[1], sliderPriceValue[0] + minPriceDistance),
       ]);
+      handleChangeInputPrice;
       setArrangePrice({
         ...arrangePrice,
         max: newValue[1] * 10000,
@@ -47,8 +48,7 @@ const ProductList = () => {
     }
   };
 
-  // Manage change when type value input price
-  const handlePriceValue = (e: React.ChangeEvent<HTMLInputElement>, num: number) => {
+  const handleChangeInputPrice = (e: React.ChangeEvent<HTMLInputElement>, num: number) => {
     const min: number = arrangePrice.min;
     const max: number = arrangePrice.max;
     const inputValue: number = Number(e.target.value);
@@ -88,22 +88,24 @@ const ProductList = () => {
     setCurrentPage(value);
   };
 
-  const filterPartProps: IFilterPart = {
+  const filterPartProps = {
     sliderPriceValue,
-    handleChangePriceValue,
+    handleChangeSliderPrice,
     arrangePrice,
-    handlePriceValue,
+    handleChangeInputPrice,
+    media,
   };
 
-  const resultPartProps: IResultPart = {
+  const resultPartProps = {
     currentPage,
     handleChangeCurrentPage,
+    media,
   };
 
   return (
     <section className={s.products}>
-      <Container className={s.container}>
-        <section className={s.row}>
+      <Container className={s['products__container']}>
+        <section className={s['products__row']}>
           <FilterComponent filterPartProps={filterPartProps} />
           <ResultComponent resultPartProps={resultPartProps} filterPartProps={filterPartProps} />
         </section>

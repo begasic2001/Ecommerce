@@ -1,15 +1,5 @@
 import { useMediaQuery, useTheme } from '@mui/material';
-import styles from './slideshow.module.scss';
-import { ISSlideshow } from './interface';
-
-const s: ISSlideshow = {
-  slideshow: styles.slideshow,
-  overlay: styles.overlay,
-  image: styles.image,
-  content: styles.content,
-  contentTitle: styles['content__title'],
-  contentTxt: styles['content__txt'],
-};
+import s from './slideshow.module.scss';
 
 function SlideshowFeature() {
   const theme = useTheme();
@@ -26,10 +16,10 @@ function SlideshowFeature() {
       </section>
       {upMdMedia && (
         <section className={s.content}>
-          <h2 className={s.contentTitle}>
+          <h2 className={s['content__title']}>
             Send <em>flowers</em> like you mean it.
           </h2>
-          <p className={s.contentTxt}>
+          <p className={s['content__txt']}>
             Where flowers are our inspiration to create lasting memories. Whatever the occasion, our
             flowers will make it special cursus a sit amet mauris.
           </p>
