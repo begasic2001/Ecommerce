@@ -1,0 +1,93 @@
+@use '~/styles/utils' as utils;
+
+.info {
+  margin-top: 15rem;
+}
+
+.box {
+  margin: 0 auto;
+  padding: 4rem;
+  border: solid 1px #eee;
+  border-radius: utils.$border-radius-02-model;
+  width: 50rem;
+
+  &__title {
+    font-size: 2.5rem;
+  }
+}
+
+.form {
+  margin-top: 3rem;
+
+  &__submit {
+    @include utils.boxSize(100%, 5rem);
+
+    margin-top: 3rem;
+    border: none;
+    background-color: #000;
+    color: #fff;
+    font-size: 1.6rem;
+    transition: utils.$transition-02-effect;
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+  }
+
+  &-item {
+    position: relative;
+
+    & + & {
+      margin-top: 2.5rem;
+    }
+
+    &__input {
+      @include utils.boxSize(100%, 5rem);
+      padding: 0 2rem;
+      border: solid 1px utils.$border-primary-color;
+      border-radius: utils.$border-radius-02-model;
+      transition: utils.$transition-02-effect;
+
+      &:focus {
+        border: solid 2px #d29eff;
+      }
+
+      &:not(:placeholder-shown) ~ label,
+      &:focus ~ label {
+        top: 0;
+        left: 1rem;
+        padding: 0 1rem;
+        background-color: #fff;
+        color: #d29eff;
+        font-size: 1.2rem;
+      }
+    }
+
+    &__label {
+      top: 50%;
+      position: absolute;
+      left: 2rem;
+      color: #ccc;
+      pointer-events: none;
+      transform: translateY(-50%);
+      transition: utils.$transition-02-effect;
+    }
+
+    &__toggle {
+      @include utils.flexCenter();
+      @include utils.boxSize(3rem);
+
+      position: absolute;
+      top: 50%;
+      right: 2rem;
+      z-index: 3;
+      background-color: #fff;
+      transform: translateY(-50%);
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
