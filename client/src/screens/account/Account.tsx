@@ -6,11 +6,13 @@ import { LoginPage } from '~/pages/account/login';
 import { ILogRoutes } from './interface';
 import { RegisterPage } from '~/pages/account/register';
 import { NewInfoPage } from '~/pages/account/info';
+import { ResetPage } from '~/pages/account/reset';
 
 const logRoutes: ILogRoutes[] = [
   { id: uuidv4(), path: 'login', component: LoginPage },
   { id: uuidv4(), path: 'register', component: RegisterPage },
   { id: uuidv4(), path: 'new-info', component: NewInfoPage },
+  { id: uuidv4(), path: 'reset', component: ResetPage },
 ];
 
 function Account() {

@@ -1,0 +1,74 @@
+@use '~/styles/utils' as utils;
+
+.info {
+  margin-top: 15rem;
+
+  &__container {
+    max-width: 1400px;
+  }
+
+  &__row {
+    @include utils.flexBox(space-between, flex-start);
+  }
+}
+
+.nav {
+  @include utils.flexBox(flex-start, flex-start, column);
+  flex-basis: 20%;
+  width: 20%;
+  border: 1px solid utils.$border-primary-color;
+  border-radius: 0.5rem;
+
+  &__item {
+    padding: 2rem 1rem;
+    width: 100%;
+    color: #000;
+    font-size: 1.6rem;
+    text-decoration: none;
+    text-align: center;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid utils.$border-primary-color;
+    }
+
+    &:global(.active) {
+      background-color: utils.$border-primary-color;
+      font-weight: bold;
+    }
+  }
+}
+
+.content {
+  flex-basis: 75%;
+  width: 75%;
+}
+
+@include utils.breakpoint(xl) {
+  .info__container {
+    max-width: 1200px;
+  }
+}
+
+@include utils.breakpoint(lg) {
+  .info__container {
+    max-width: 992px;
+  }
+}
+
+@include utils.breakpoint(md) {
+  .info__container {
+    max-width: 768px;
+  }
+}
+
+@include utils.breakpoint(sm) {
+  .info__container {
+    max-width: 576px;
+  }
+}
+
+@include utils.breakpoint(xs) {
+  .info__container {
+    max-width: 100%;
+  }
+}

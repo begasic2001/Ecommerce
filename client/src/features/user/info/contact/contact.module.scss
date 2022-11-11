@@ -1,0 +1,36 @@
+@use '~/styles/utils' as utils;
+
+.ava {
+  @include utils.boxSize(10rem);
+  margin: 0 auto;
+  background-color: #000;
+  border-radius: 50%;
+}
+
+.content {
+  margin-top: 5rem;
+}
+
+.form {
+  &__box {
+    & + & {
+      margin-top: 2.5rem;
+    }
+  }
+
+  &__title {
+    font-size: 3rem;
+  }
+
+  &-item {
+    margin-top: 2.5rem;
+
+    &__label {
+      font-size: 1.4rem;
+    }
+
+    &__input {
+      font-size: 1.4rem;
+    }
+  }
+}
