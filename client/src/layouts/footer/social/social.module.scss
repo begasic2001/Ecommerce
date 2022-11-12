@@ -1,0 +1,31 @@
+@use '~/styles/utils' as utils;
+
+.social {
+  @include utils.flexBox(space-between, center, row);
+  padding: 2rem 0;
+  font-size: 1.2rem;
+
+  &__paypal {
+    margin-left: 1rem;
+  }
+
+  &__txt {
+    text-transform: uppercase;
+
+    &:hover {
+      cursor: pointer;
+      color: #888;
+    }
+
+    &:not(:first-child) {
+      margin-left: 1rem;
+    }
+  }
+}
+
+@include utils.breakpoint(sm) {
+  .social {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

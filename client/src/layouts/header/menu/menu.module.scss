@@ -1,0 +1,100 @@
+@use '~/styles/utils' as utils;
+
+.column {
+  align-items: center;
+}
+
+// Menu component
+.drawer {
+  padding: 1.5rem;
+  min-width: 30rem;
+  font-size: 1.6rem;
+
+  &__item {
+    display: block;
+    color: utils.$primary-text-color;
+    font-size: 1.6rem;
+    text-decoration: none;
+
+    &:global(.active) {
+      color: utils.$secondary-text-color;
+      font-weight: bold;
+    }
+  }
+}
+
+.icon {
+  &__menu {
+    @include utils.boxSize(2.5rem);
+    fill: #000;
+  }
+}
+
+.home {
+  display: inline-block;
+  color: utils.$primary-text-color;
+  font-size: 3rem;
+  text-decoration: none;
+}
+
+.nav {
+  margin-left: 2rem;
+
+  &__item {
+    margin-left: 2rem;
+    color: utils.$primary-text-color;
+    font-size: 1.6rem;
+    text-decoration: none;
+
+    &:global(.active) {
+      color: utils.$secondary-text-color;
+      font-weight: bold;
+    }
+  }
+}
+
+@include utils.breakpoint(xl) {
+  .header__container {
+    max-width: 1200px;
+  }
+}
+
+@include utils.breakpoint(lg) {
+  .header__container {
+    max-width: 992px;
+  }
+
+  .home-link {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+  }
+
+  .nav {
+    margin-left: 1rem;
+
+    &__item {
+      margin-left: 1rem;
+    }
+  }
+}
+
+@include utils.breakpoint(md) {
+  .header__container {
+    max-width: 768px;
+  }
+}
+
+@include utils.breakpoint(sm) {
+  .header__container {
+    max-width: 576px;
+  }
+}
+
+@include utils.breakpoint(xs) {
+  .header__container {
+    max-width: 100%;
+  }
+}

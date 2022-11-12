@@ -3,16 +3,18 @@
 .special {
   margin-top: 8rem;
   background-color: utils.$third-color;
-
-  &__container {
-    max-width: 1400px;
-  }
-
-  &__row {
-    @include utils.flexBox(space-between, center, row);
-    padding: 8rem 0;
-  }
 }
+
+.container {
+  max-width: 1400px;
+}
+
+.row {
+  justify-content: space-between;
+  align-items: center;
+  padding: 8rem 0;
+}
+
 
 .image {
   flex-basis: 45%;
@@ -59,38 +61,30 @@
 }
 
 @include utils.breakpoint(xl) {
-  .special__container {
+  .container {
     max-width: 1200px;
   }
 }
 
 @include utils.breakpoint(lg) {
-  .special__container {
+  .container {
     max-width: 992px;
   }
 
-  .announce {
-    h3 {
-      font-size: 3rem;
-    }
+  .announce__title {
+    font-size: 3rem;
   }
 }
 
 @include utils.breakpoint(md) {
-  .special__container {
+  .container {
     max-width: 768px;
   }
 }
 
 @include utils.breakpoint(sm) {
-  .special {
-    &__container {
-      max-width: 576px;
-    }
-
-    &__row {
-      flex-direction: column;
-    }
+  .container {
+    max-width: 576px;
   }
 
   .image {
@@ -108,7 +102,7 @@
     flex-basis: 100%;
     width: 100%;
 
-    h3 {
+    &__title {
       font-size: 2.5rem;
     }
 
@@ -119,7 +113,7 @@
 }
 
 @include utils.breakpoint(xs) {
-  .special__container {
+  .container {
     max-width: 100%;
   }
 }

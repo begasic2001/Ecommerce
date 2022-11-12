@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material';
 import { v4 as uuidv4 } from 'uuid';
-import s from './footer.module.scss';
+import s from './link.module.scss';
 import { ILinkItem } from './interface';
 
 const customerServiceLink = [
@@ -14,17 +14,6 @@ const socialMediaFooter = ['Twitter', 'Instagram', 'Tumblr', 'Pinterest'];
 const archiveFooter = ['Designer Shoes', 'Gallery', 'Pricing', 'Feature Index'];
 
 export function LinkComponent() {
-  const LinkItemFooter = ({ title, list }: ILinkItem) => (
-    <Grid item className={s['link__item']}>
-      <p className={s['link__title']}>{title}</p>
-      <ul className={s['link-list']}>
-        {list.map((item) => (
-          <li key={uuidv4()}>{item}</li>
-        ))}
-      </ul>
-    </Grid>
-  );
-
   return (
     <Grid container rowSpacing="3rem" className={s.link}>
       <LinkItemFooter title="Customer Service" list={customerServiceLink} />
@@ -34,3 +23,14 @@ export function LinkComponent() {
     </Grid>
   );
 }
+
+const LinkItemFooter = ({ title, list }: ILinkItem) => (
+  <Grid item className={s['link__item']}>
+    <p className={s['link__title']}>{title}</p>
+    <ul className={s['link-list']}>
+      {list.map((item) => (
+        <li key={uuidv4()}>{item}</li>
+      ))}
+    </ul>
+  </Grid>
+);

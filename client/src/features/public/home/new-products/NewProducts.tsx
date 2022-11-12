@@ -17,7 +17,7 @@ function NewProductsFeature() {
 
   return (
     <section className={s.new}>
-      <Container className={s['new__container']}>
+      <Container className={s.container}>
         <h3 className={s.title}>Sản phẩm mới</h3>
         <section className={s.slideshow}>
           <Swiper

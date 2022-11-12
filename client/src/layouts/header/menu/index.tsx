@@ -14,14 +14,15 @@ import {
   ListItem,
   ListItemButton,
   ListItemIcon,
-  ListItemText
+  ListItemText,
+  Stack, useMediaQuery, useTheme
 } from '@mui/material';
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { LogoWebsite } from '~/components/logo';
-import s from './header.module.scss';
-import { IMediaProps, IMenuLink, IMenuLinkDrawer, IMenuLinkProps } from './interface';
+import { IDrawerProps, IMenuLink, IMenuLinkDrawer, IMenuLinkProps } from './interface';
+import s from './menu.module.scss';
 
 const navLinkDrawer: IMenuLinkDrawer[] = [
   { id: uuidv4(), name: 'Trang chủ', path: '/home', icon: HomeIcon },
@@ -40,13 +41,45 @@ const navLink: IMenuLink[] = [
   { id: uuidv4(), name: 'Blog', path: '/blog' },
 ];
 
-export function MenuComponent({ media }: IMediaProps) {
+export function MenuComponent() {
+  const theme = useTheme();
+  const media = {
+    upXl: useMediaQuery<boolean>(theme.breakpoints.up('xl')),
+    upMd: useMediaQuery<boolean>(theme.breakpoints.up('md')),
+  };
+
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
 
   const toggleDrawer = (toggle: boolean) => {
     setOpenDrawer(toggle);
   };
 
+  return (
+    <Stack direction="row" className={s.column}>
+      {!media.upXl && <DrawerBtn openDrawer={openDrawer} toggleDrawer={toggleDrawer} />}
+      {media.upMd && <HomeLink />}
+      {media.upXl && <NavPart />}
+    </Stack>
+  );
+}
+
+const NavPart = () => (
+  <nav className={s.nav}>
+    {navLink.map((item) => (
+      <NavLink key={item.id} to={item.path} className={s['nav__item']}>
+        {item.name}
+      </NavLink>
+    ))}
+  </nav>
+);
+
+const HomeLink = () => (
+  <Link to="/home" className={s.home}>
+    <LogoWebsite />
+  </Link>
+);
+
+const DrawerBtn = ({ openDrawer, toggleDrawer }: IDrawerProps) => {
   const ListItemDrawer = ({ item }: IMenuLinkProps) => {
     const Icon = item.icon;
     return (
@@ -65,12 +98,10 @@ export function MenuComponent({ media }: IMediaProps) {
     );
   };
 
-  const list = () => (
+  const DrawerList = () => (
     <section onClick={() => toggleDrawer(false)} className={s.drawer}>
-      <Link to="/home" className={s['drawer__logo']}>
-        <LogoWebsite />
-      </Link>
-      <List>
+      <HomeLink />
+      <List sx={{ mt: '3rem' }}>
         {navLinkDrawer.map((item) => (
           <ListItemDrawer key={item.id} item={item} />
         ))}
@@ -85,31 +116,13 @@ export function MenuComponent({ media }: IMediaProps) {
   );
 
   return (
-    <section className={s['header__column']}>
-      {!media.upXl && (
-        <>
-          <Button onClick={() => toggleDrawer(true)}>
-            <MenuIcon sx={{ fill: '#000', width: '2.5rem', height: '2.5rem' }} />
-          </Button>
-          <Drawer anchor="left" open={openDrawer} onClose={() => toggleDrawer(false)}>
-            {list()}
-          </Drawer>
-        </>
-      )}
-      {media.upMd && (
-        <Link to="/home" className={s['home-link']}>
-          <LogoWebsite />
-        </Link>
-      )}
-      {media.upXl && (
-        <nav className={s.nav}>
-          {navLink.map((item) => (
-            <NavLink key={item.id} to={item.path} className={s['nav__item']}>
-              {item.name}
-            </NavLink>
-          ))}
-        </nav>
-      )}
-    </section>
+    <>
+      <Button onClick={() => toggleDrawer(true)}>
+        <MenuIcon className={s['icon__menu']} />
+      </Button>
+      <Drawer anchor="left" open={openDrawer} onClose={() => toggleDrawer(false)}>
+        <DrawerList />
+      </Drawer>
+    </>
   );
-}
+};

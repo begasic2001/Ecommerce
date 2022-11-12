@@ -1,6 +1,6 @@
 import PaypalIcon from '~/assets/logo/paypal.png';
 import VisaIcon from '~/assets/logo/visa.png';
-import s from './footer.module.scss';
+import s from './social.module.scss';
 
 export function SocialComponent() {
   return (

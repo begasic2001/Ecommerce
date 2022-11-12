@@ -1,23 +1,19 @@
 import { Container, useMediaQuery, useTheme } from '@mui/material';
-import { BigSaleComponent } from './BigSaleComp';
+import { BigSaleComponent } from './big';
 import s from './hot-sale.module.scss';
-import { OtherSaleComponent } from './OtherSale';
+import { OtherSaleComponent } from './other/OtherSale';
 
 function HotSaleFeature() {
   const theme = useTheme();
-  const media = {
-    upXlMedia: useMediaQuery<boolean>(theme.breakpoints.up('xl')),
-    betweenSmLg: useMediaQuery<boolean>(theme.breakpoints.between('sm', 'lg')),
-    downSm: useMediaQuery<boolean>(theme.breakpoints.down('sm')),
-  };
+  const upXlMedia = useMediaQuery<boolean>(theme.breakpoints.up('xl'));
 
   return (
     <section className={s.hot}>
-      <Container className={s['hot__container']}>
+      <Container className={s.container}>
         <h3 className={s.title}>Hot sale</h3>
         <section className={s.content}>
-          {media.upXlMedia && <BigSaleComponent />}
-          <OtherSaleComponent media={media} />
+          {upXlMedia && <BigSaleComponent />}
+          <OtherSaleComponent />
         </section>
       </Container>
     </section>

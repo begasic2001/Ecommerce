@@ -1,11 +1,15 @@
-import { Container } from '@mui/material';
+import { Container, Stack, useTheme, useMediaQuery } from '@mui/material';
 import s from './special.module.scss';
 
 function SpecialFeature() {
+  const theme = useTheme();
+  const downSmMedia = useMediaQuery<boolean>(theme.breakpoints.down('sm'));
+  console.log('downSmMedia', downSmMedia);
+
   return (
     <section className={s.special}>
-      <Container className={s['special__container']}>
-        <section className={s['special__row']}>
+      <Container className={s.container}>
+        <Stack direction={downSmMedia ? 'column' : 'row'} className={s.row}>
           <div className={s.image}>
             <img
               src="https://cdn.pixabay.com/photo/2015/04/19/08/32/marguerite-729510__340.jpg"
@@ -25,7 +29,7 @@ function SpecialFeature() {
               <li>Best way to say you care.</li>
             </ul>
           </section>
-        </section>
+        </Stack>
       </Container>
     </section>
   );

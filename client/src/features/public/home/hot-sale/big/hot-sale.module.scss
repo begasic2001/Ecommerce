@@ -1,0 +1,67 @@
+@use '~/styles/utils' as utils;
+
+.big {
+  flex-basis: 30%;
+  width: 30%;
+  padding: 2.5rem;
+  border: 1px solid #eee;
+  min-height: 70rem;
+  overflow: hidden;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:hover .image {
+    transform: scale(1.1);
+  }
+}
+
+.image {
+  transition: utils.$transition-02-effect;
+
+  img {
+    @include utils.boxSize(100%, 50rem);
+    display: block;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.info {
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: auto;
+
+  &__name {
+    font-size: 2.5rem;
+  }
+
+  &__price {
+    color: #f00;
+    font-size: 3rem;
+    font-weight: bold;
+
+    em {
+      margin-right: 1rem;
+      color: #ccc;
+      font-size: 2rem;
+      font-weight: 400;
+      text-decoration: line-through 1px #ccc;
+    }
+  }
+}
+
+.remain {
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 3rem;
+
+  &__txt {
+    font-size: 2rem;
+  }
+
+  &__time {
+    font-size: 3.5rem;
+  }
+}

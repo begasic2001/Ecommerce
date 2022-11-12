@@ -1,6 +1,5 @@
 @use '~/styles/utils' as utils;
 
-// Header component
 .header {
   position: fixed;
   top: 0;
@@ -9,172 +8,47 @@
   z-index: 10;
   background-color: #fff;
 
-  &--scrolled {
-    box-shadow: 0 0.2rem 0.2rem utils.$border-secondary-color;
-  }
-
-  &__container {
-    max-width: 1400px;
-  }
-
-  &__row {
-    @include utils.flexBox(space-between, center, row);
-    height: 10rem;
-  }
-
-  &__column {
-    @include utils.flexBox(flex-start, center, row);
+  &--isScrolled {
+    box-shadow: 0 0.2rem 0 utils.$border-secondary-color;
   }
 }
 
-// Menu component
-.drawer {
-  padding: 1.5rem;
-  min-width: 30rem;
-  font-size: 1.6rem;
-
-  &__logo {
-    display: block;
-    margin-bottom: 3rem;
-    color: utils.$primary-text-color;
-    font-size: 2.5rem;
-    text-decoration: none;
-    text-align: center;
-  }
-
-  &__item {
-    display: block;
-    color: utils.$primary-text-color;
-    font-size: 1.6rem;
-    text-decoration: none;
-
-    &:global(.active) {
-      color: utils.$secondary-text-color;
-      font-weight: bold;
-    }
-  }
+.container {
+  max-width: 1400px;
 }
 
-.home-link {
-  display: inline-block;
-  color: utils.$primary-text-color;
-  font-size: 3rem;
-  text-decoration: none;
-}
-
-.nav {
-  margin-left: 2rem;
-
-  &__item {
-    margin-left: 2rem;
-    color: utils.$primary-text-color;
-    font-size: 1.6rem;
-    text-decoration: none;
-
-    &:global(.active) {
-      color: utils.$secondary-text-color;
-      font-weight: bold;
-    }
-  }
-}
-
-// Function component
-.search {
-  @include utils.boxSize(25rem, 4rem);
-
-  & :global(.MuiOutlinedInput-input) {
-    padding: 1rem 0.5rem;
-    font-size: 1.4rem;
-
-    &::placeholder {
-      font-size: 1.2rem;
-    }
-  }
-}
-
-.user {
-  margin-left: 2rem;
-
-  &-menu {
-    & :global(.MuiPaper-root) {
-      margin-top: 1.2rem;
-      overflow: visible;
-      filter: drop-shadow(0px 0.2rem 0.8rem rgba(0, 0, 0, 0.32));
-
-      &::before {
-        @include utils.boxSize(1rem);
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 1.4rem;
-        display: block;
-        background-color: utils.$primary-color;
-        transform: translateY(-50%) rotate(45deg);
-        z-index: 0;
-      }
-    }
-
-    & :global(.MuiMenuItem-root) {
-      font-size: 1.4rem;
-    }
-  }
-
-  &__link {
-    color: utils.$primary-text-color;
-    text-decoration: none;
-  }
+.row {
+  justify-content: space-between;
+  align-items: center;
+  height: 10rem;
 }
 
 @include utils.breakpoint(xl) {
-  .header__container {
+  .container {
     max-width: 1200px;
   }
 }
 
 @include utils.breakpoint(lg) {
-  .header__container {
+  .container {
     max-width: 992px;
-  }
-
-  .home-link {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 2.5rem;
-  }
-
-  .nav {
-    margin-left: 1rem;
-
-    &__item {
-      margin-left: 1rem;
-    }
   }
 }
 
 @include utils.breakpoint(md) {
-  .header__container {
+  .container {
     max-width: 768px;
-  }
-
-  .search {
-    @include utils.boxSize(15rem, 4rem);
   }
 }
 
 @include utils.breakpoint(sm) {
-  .header__container {
+  .container {
     max-width: 576px;
-  }
-
-  .search {
-    @include utils.boxSize(25rem, 4rem);
   }
 }
 
 @include utils.breakpoint(xs) {
-  .header__container {
+  .container {
     max-width: 100%;
   }
 }

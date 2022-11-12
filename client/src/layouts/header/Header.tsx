@@ -1,18 +1,12 @@
-import { Container, useMediaQuery, useTheme } from '@mui/material';
+import { Container, Stack } from '@mui/material';
 import clsx from 'clsx';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDebounce } from '~/hooks';
-import { FunctionComponent } from './FunctionComp';
+import { FunctionComponent } from './function';
 import s from './header.module.scss';
-import { MenuComponent } from './MenuComp';
+import { MenuComponent } from './menu';
 
 function HeaderLayout() {
-  const theme = useTheme();
-  const media = {
-    upXl: useMediaQuery<boolean>(theme.breakpoints.up('xl')),
-    upMd: useMediaQuery<boolean>(theme.breakpoints.up('md')),
-  };
-
   const [scrollPage, setScrollPage] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>('');
   const debounceSearchValue = useDebounce<string>(searchValue, 300);
@@ -23,9 +17,12 @@ function HeaderLayout() {
 
   useEffect(() => {
     const handleScrollPage = () => {
-      const getCoordinateY: number = window.scrollY;
-      if (getCoordinateY >= 100) setScrollPage(true);
-      else setScrollPage(false);
+      const getCoordinateY = window.scrollY;
+      if (getCoordinateY >= 100) {
+        setScrollPage(true);
+      } else {
+        setScrollPage(false);
+      }
     };
 
     window.addEventListener('scroll', handleScrollPage);
@@ -33,16 +30,12 @@ function HeaderLayout() {
   }, [scrollPage, setScrollPage]);
 
   return (
-    <header className={clsx(s.header, scrollPage && s['header--scrolled'])}>
-      <Container className={s['header__container']}>
-        <section className={s['header__row']}>
-          <MenuComponent media={media} />
-          <FunctionComponent
-            searchValue={searchValue}
-            handleSearchValue={handleSearchValue}
-            media={media}
-          />
-        </section>
+    <header className={clsx(s.header, scrollPage && s['header--isScrolled'])}>
+      <Container className={s.container}>
+        <Stack direction="row" className={s.row}>
+          <MenuComponent />
+          <FunctionComponent searchValue={searchValue} handleSearchValue={handleSearchValue} />
+        </Stack>
       </Container>
     </header>
   );

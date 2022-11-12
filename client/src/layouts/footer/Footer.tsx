@@ -1,12 +1,12 @@
 import { Container } from '@mui/material';
 import s from './footer.module.scss';
-import { LinkComponent } from './Link';
-import { SocialComponent } from './Social';
+import { LinkComponent } from './link';
+import { SocialComponent } from './social';
 
 function FooterLayout() {
   return (
     <footer className={s.footer}>
-      <Container className={s['footer__container']}>
+      <Container className={s.container}>
         <LinkComponent />
         <SocialComponent />
       </Container>
