@@ -11,41 +11,36 @@ import {
   ListItemIcon,
   Menu,
   MenuItem,
-  TextField,
   Stack,
-  useTheme,
+  TextField,
   useMediaQuery,
+  useTheme,
 } from '@mui/material';
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import s from './function.module.scss';
-import {
-  IFunctionAccountItem,
-  IFunctionProps,
-  ISearchInputProps,
-  IUserFunctionProps,
-} from './interface';
+import { IFunctionAccountItem, IFunctionProps } from './interface';
 
 export function FunctionComponent({ searchValue, handleSearchValue }: IFunctionProps) {
   const theme = useTheme();
   const upXlMedia = useMediaQuery<boolean>(theme.breakpoints.up('xl'));
+
+  return (
+    <Stack direction="row">
+      <SearchInput searchValue={searchValue} handleSearchValue={handleSearchValue} />
+      {upXlMedia && <UserFunction />}
+    </Stack>
+  );
+}
+
+const SearchInput = (props: IFunctionProps) => {
+  const { searchValue, handleSearchValue } = props;
 
   const searchBtnRef: React.MutableRefObject<null | HTMLButtonElement> = useRef(null);
   const searchInputRef: React.MutableRefObject<null | HTMLDivElement> = useRef(null);
   const searchInputBtnRef: React.MutableRefObject<null | HTMLDivElement> = useRef(null);
 
   const [showSearch, setShowSearch] = useState<boolean>(false);
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-
-  const open: boolean = Boolean(anchorEl);
-
-  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(e.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
   useEffect(() => {
     const toggleSearch = (e: any) => {
@@ -67,40 +62,6 @@ export function FunctionComponent({ searchValue, handleSearchValue }: IFunctionP
     return () => document.removeEventListener('click', toggleSearch);
   }, [showSearch, setShowSearch]);
 
-  const searchInputProps = {
-    showSearch,
-    searchValue,
-    handleSearchValue,
-    searchBtnRef,
-    searchInputBtnRef,
-    searchInputRef,
-  };
-
-  const userFunctionProps = {
-    anchorEl,
-    open,
-    handleClick,
-    handleClose,
-  };
-
-  return (
-    <Stack direction="row">
-      <SearchInput searchInputProps={searchInputProps} />
-      {upXlMedia && <UserFunction userFunctionProps={userFunctionProps} />}
-    </Stack>
-  );
-}
-
-const SearchInput = ({ searchInputProps }: ISearchInputProps) => {
-  const {
-    showSearch,
-    searchValue,
-    handleSearchValue,
-    searchBtnRef,
-    searchInputRef,
-    searchInputBtnRef,
-  } = searchInputProps;
-
   return (
     <>
       {!showSearch && (
@@ -110,7 +71,6 @@ const SearchInput = ({ searchInputProps }: ISearchInputProps) => {
       )}
       {showSearch && (
         <TextField
-          type="search"
           value={searchValue}
           onChange={handleSearchValue}
           placeholder="Nhập hoa, chậu yêu thích..."
@@ -129,8 +89,18 @@ const SearchInput = ({ searchInputProps }: ISearchInputProps) => {
   );
 };
 
-const UserFunction = ({ userFunctionProps }: IUserFunctionProps) => {
-  const { anchorEl, open, handleClick, handleClose } = userFunctionProps;
+const UserFunction = () => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+  const open: boolean = Boolean(anchorEl);
+
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(e.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const AccountMenuItem = ({ path, icon, title }: IFunctionAccountItem) => (
     <MenuItem>

@@ -18,8 +18,7 @@
 }
 
 .row {
-  justify-content: space-between;
-  align-items: center;
+  @include utils.flexBox(space-between, center, row);
   height: 10rem;
 }
 

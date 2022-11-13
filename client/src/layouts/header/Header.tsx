@@ -1,4 +1,4 @@
-import { Container, Stack } from '@mui/material';
+import { Container } from '@mui/material';
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import { useDebounce } from '~/hooks';
@@ -32,10 +32,10 @@ function HeaderLayout() {
   return (
     <header className={clsx(s.header, scrollPage && s['header--isScrolled'])}>
       <Container className={s.container}>
-        <Stack direction="row" className={s.row}>
+        <section className={s.row}>
           <MenuComponent />
           <FunctionComponent searchValue={searchValue} handleSearchValue={handleSearchValue} />
-        </Stack>
+        </section>
       </Container>
     </header>
   );
