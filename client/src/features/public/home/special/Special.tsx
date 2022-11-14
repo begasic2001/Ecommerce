@@ -4,7 +4,6 @@ import s from './special.module.scss';
 function SpecialFeature() {
   const theme = useTheme();
   const downSmMedia = useMediaQuery<boolean>(theme.breakpoints.down('sm'));
-  console.log('downSmMedia', downSmMedia);
 
   return (
     <section className={s.special}>

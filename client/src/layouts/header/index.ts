@@ -1,1 +1,1 @@
-export { default as HeaderLayout } from './Header';
+export { default as HeaderLayout } from './HeaderLayout';
