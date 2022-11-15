@@ -15,7 +15,6 @@ const getAny = ({ page, limit, order, name, available, price, ...query }) =>
       if (name) query.pro_name = { [Op.substring]: name };
       if (available) query.pro_quantity = { [Op.between]: available };
       if (price) {
-        console.log(price);
         if (price[0] == "0" && price[1] == "1000000") {
           query.selling_price = { [Op.gt]: price };
         } else {
@@ -40,14 +39,27 @@ const getAny = ({ page, limit, order, name, available, price, ...query }) =>
           },
           {
             model: db.Brand,
-            attributes: { exclude: ["createdAt", "updatedAt"] },
+            attributes: { exclude: ["createdAt", "updatedAt","filename"] },
           },
         ],
+        attributes: {
+          exclude: [
+            "createdAt",
+            "updatedAt",
+            "categories_id",
+            "subcat_id",
+            "brand_id",
+            "filename_one",
+            "filename_two",
+            "filename_three",
+            "pro_code"
+          ],
+        },
       });
       resolve({
         err: response ? 0 : 1,
         mes: response ? "Got" : "Cannot found product",
-        productData: response,
+        result: response,
       });
     } catch (error) {
       reject(error);

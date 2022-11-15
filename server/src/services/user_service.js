@@ -65,9 +65,14 @@ const deleteUser = (uid) => {
   });
 };
 
+const sendMailVerify = ()=>{
+
+}
+
 module.exports = {
   user,
   userById,
   updateUser,
   deleteUser,
+  sendMailVerify,
 };

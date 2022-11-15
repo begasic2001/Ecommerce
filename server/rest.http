@@ -1,4 +1,4 @@
-@host = http://localhost:9001/api
+@host = http://localhost:9000/api
 
 
 POST {{host}}/auth/register HTTP/1.1
