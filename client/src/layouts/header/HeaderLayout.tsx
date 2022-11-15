@@ -1,24 +1,12 @@
 import { Container } from '@mui/material';
-import { useSelector, useDispatch } from 'react-redux';
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
-import { useDebounce } from '~/hooks';
 import { FunctionComponent } from './function';
 import s from './header.module.scss';
-import { RootState } from '~/app/store';
 import { MenuComponent } from './menu';
 
 function HeaderLayout() {
-  const searchState = useSelector((state: RootState) => state.search);
-  console.log('search', searchState);
-
   const [scrollPage, setScrollPage] = useState<boolean>(false);
-  const [searchValue, setSearchValue] = useState<string>('');
-  const debounceSearchValue = useDebounce<string>(searchValue, 300);
-
-  const handleSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value);
-  };
 
   useEffect(() => {
     const handleScrollPage = () => {
@@ -39,7 +27,7 @@ function HeaderLayout() {
       <Container className={s.container}>
         <section className={s.row}>
           <MenuComponent />
-          <FunctionComponent searchValue={searchValue} handleSearchValue={handleSearchValue} />
+          <FunctionComponent />
         </section>
       </Container>
     </header>
