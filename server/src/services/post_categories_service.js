@@ -73,9 +73,14 @@ const updatePostCategory = ({ pcid, ...data }) => {
   });
 };
 
-const updateListPostCategory = ({ lpid, ...data }) => {
+const updateListPostCategory = ({ lpid, ...data }, fileData) => {
   return new Promise(async (resolve, reject) => {
     try {
+      if (fileData) {
+        cloudinary.uploader.destroy(data.filename);
+        data.post_image = fileData?.path;
+        data.filename = fileData?.filename;
+      }
       const response = await db.Post.update(data, {
         where: { id: lpid },
       });
@@ -86,8 +91,11 @@ const updateListPostCategory = ({ lpid, ...data }) => {
             ? `${response[0]} Post updated`
             : "Cannot update new Post/ Post ID not found",
       });
+      if (fileData && response[0] === 0)
+        cloudinary.uploader.destroy(fileData.filename);
     } catch (error) {
       reject(error);
+      if (fileData) cloudinary.uploader.destroy(fileData.filename);
     }
   });
 };

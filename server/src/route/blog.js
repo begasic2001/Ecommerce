@@ -5,7 +5,7 @@ const route = express.Router();
 route.get("/category", PostCategoryController.postCategoryView);
 route.get(
   "/getPostCategoryEdit/:id",
-  PostCategoryController.getPostCategoryEdit,
+  PostCategoryController.getPostCategoryEdit
 );
 route.post("/storeBlogCategory", PostCategoryController.storeBlogCategory);
 route.delete("/deleteBlogCategory", PostCategoryController.deleteBlogCategory);
@@ -15,11 +15,15 @@ route.get("/blogPost", PostCategoryController.blogPost);
 route.post(
   "/storeBlogPost",
   uploadCloud.single("image"),
-  PostCategoryController.storeBlogPost,
+  PostCategoryController.storeBlogPost
 );
 //listBlog
 route.get("/listBlog", PostCategoryController.listBlog);
 route.get("/getListPostEdit/:id", PostCategoryController.getListPostEdit);
-route.put("/updateListBlogCategory", PostCategoryController.updateListBlogCategory);
+route.put(
+  "/updateListBlogCategory",
+  uploadCloud.single("image"),
+  PostCategoryController.updateListBlogCategory
+);
 route.delete("/deleteListBlog", PostCategoryController.deleteListBlog);
 module.exports = route;

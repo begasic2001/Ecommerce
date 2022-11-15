@@ -6,13 +6,12 @@ const cloudinary = require("cloudinary").v2;
 
 const addToCart = async (req, res, next) => {
   try {
-   
+    
   } catch (error) {
     next(error);
   }
 };
 
 module.exports = {
-    addToCart
-}
-
+  addToCart,
+};
