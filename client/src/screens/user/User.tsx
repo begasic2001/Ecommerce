@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { FooterLayout } from '~/layouts/footer';
-import { HeaderLayout } from '~/layouts/header';
+import  HeaderLayout  from '~/layouts/header';
 import { UserInfoPage } from '~/pages/user/info';
 import { CartPage } from '~/pages/user/cart';
 import { IUserRoutes } from './interface';

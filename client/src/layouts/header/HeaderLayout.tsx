@@ -1,21 +1,19 @@
-import { Container } from '@mui/material';
+import Container from '@mui/material/Container';
+import Stack from '@mui/material/Stack';
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
-import { FunctionComponent } from './function';
+import FunctionComp from './function';
 import s from './header.module.scss';
-import { MenuComponent } from './menu';
+import MenuComp from './menu';
 
 function HeaderLayout() {
   const [scrollPage, setScrollPage] = useState<boolean>(false);
 
   useEffect(() => {
     const handleScrollPage = () => {
-      const getCoordinateY = window.scrollY;
-      if (getCoordinateY >= 100) {
-        setScrollPage(true);
-      } else {
-        setScrollPage(false);
-      }
+      const getCoordinateY: number = window.scrollY;
+      if (getCoordinateY >= 100) setScrollPage(true);
+      else setScrollPage(false);
     };
 
     window.addEventListener('scroll', handleScrollPage);
@@ -25,10 +23,10 @@ function HeaderLayout() {
   return (
     <header className={clsx(s.header, scrollPage && s['header--isScrolled'])}>
       <Container className={s.container}>
-        <section className={s.row}>
-          <MenuComponent />
-          <FunctionComponent />
-        </section>
+        <Stack direction="row" className={s.row}>
+          <MenuComp />
+          <FunctionComp />
+        </Stack>
       </Container>
     </header>
   );

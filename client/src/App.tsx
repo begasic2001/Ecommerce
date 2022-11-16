@@ -1,5 +1,4 @@
-import { AllMainRoutes } from '~/routes';
-
+import AllMainRoutes from '~/routes';
 
 function App() {
   return (

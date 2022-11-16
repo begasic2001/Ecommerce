@@ -4,7 +4,6 @@
   @include utils.flexBox(flex-start, center, row);
 }
 
-// Menu component
 .drawer {
   padding: 1.5rem;
   min-width: 30rem;
@@ -22,13 +21,6 @@
       color: utils.$secondary-text-color;
       font-weight: bold;
     }
-  }
-}
-
-.icon {
-  &__menu {
-    @include utils.boxSize(2.5rem);
-    fill: #000;
   }
 }
 

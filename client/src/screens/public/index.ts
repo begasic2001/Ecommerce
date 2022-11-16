@@ -1,1 +1,1 @@
-export { default as PublicScreens } from './Public';
+export { default } from './Public';

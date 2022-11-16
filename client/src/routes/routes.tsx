@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { PublicScreens } from '~/screens/public';
+import PublicScreens from '~/screens/public';
 import { AccountScreens } from '~/screens/account';
 import { UserScreens } from '~/screens/user';
 

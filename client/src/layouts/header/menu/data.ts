@@ -1,10 +1,8 @@
-import {
-  Article as ArticleIcon,
-  Category as CategoryIcon,
-  Home as HomeIcon,
-  Login as LoginIcon,
-  Logout as LogoutIcon,
-} from '@mui/icons-material';
+import ArticleIcon from '@mui/icons-material/Article';
+import CategoryIcon from '@mui/icons-material/Category';
+import HomeIcon from '@mui/icons-material/Home';
+import LoginIcon from '@mui/icons-material/Login';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { v4 as uuidv4 } from 'uuid';
 import { IMenuLink, IMenuLinkDrawer } from './interface';
 

@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { FooterLayout } from '~/layouts/footer';
-import { HeaderLayout } from '~/layouts/header';
+import  HeaderLayout  from '~/layouts/header';
 import { LoginPage } from '~/pages/account/login';
 import { ILogRoutes } from './interface';
 import { RegisterPage } from '~/pages/account/register';

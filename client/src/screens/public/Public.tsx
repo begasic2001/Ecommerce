@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { FooterLayout } from '~/layouts/footer';
-import { HeaderLayout } from '~/layouts/header';
+import HeaderLayout from '~/layouts/header';
 import { publicRoutes } from './data';
 
 function PublicScreens() {
