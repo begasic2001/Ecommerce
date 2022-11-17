@@ -1,15 +1,17 @@
-import { useController } from 'react-hook-form';
+import { forwardRef } from 'react';
+import { useController, Controller } from 'react-hook-form';
 import { IInputText } from './interface';
 import TextField from '@mui/material/TextField';
 
-export function CustomTextField(props: IInputText) {
+export const CustomTextField = forwardRef((props: IInputText, ref: any) => {
   const { control, name, defaultValue } = props;
 
-  const { field } = useController({
-    name,
-    control,
-    defaultValue: defaultValue || '',
-  });
-
-  return <TextField {...props} {...field} />;
-}
+  return (
+    <Controller
+      control={control}
+      name={name}
+      defaultValue={defaultValue || ''}
+      render={({ field: { onChange } }) => <TextField {...props} onChange={onChange} ref={ref} />}
+    />
+  );
+});

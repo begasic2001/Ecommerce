@@ -28,27 +28,25 @@
   }
 }
 
-.info {
-  justify-content: space-between;
-  align-items: baseline;
+.name {
   margin-top: auto;
+  font-size: 2.8rem;
+  text-align: center;
+}
 
-  &__name {
-    font-size: 2.5rem;
-  }
-
-  &__price {
-    color: #f00;
-    font-size: 3rem;
-    font-weight: bold;
-
-    em {
-      margin-right: 1rem;
-      color: #ccc;
-      font-size: 2rem;
-      font-weight: 400;
-      text-decoration: line-through 1px #ccc;
-    }
+.price {
+  margin-top: 5rem;
+  color: #f00;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  
+  em {
+    margin-right: 1rem;
+    color: #ccc;
+    font-size: 2rem;
+    font-weight: 400;
+    text-decoration: line-through 1px #ccc;
   }
 }
 
@@ -57,11 +55,11 @@
   align-items: baseline;
   margin-top: 3rem;
 
-  &__txt {
+  &Txt {
     font-size: 2rem;
   }
 
-  &__time {
+  &Time {
     font-size: 3.5rem;
   }
 }

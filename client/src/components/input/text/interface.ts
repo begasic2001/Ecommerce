@@ -3,8 +3,7 @@ import { Control, FieldValues } from 'react-hook-form';
 export interface IInputText {
   control: Control<FieldValues, any>;
   name: string;
-  defaultValue: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  defaultValue?: string;
   placeholder?: string;
   InputProps?: {
     startAdornment?: JSX.Element;

@@ -1,11 +1,10 @@
 import { useMediaQuery, useTheme } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import { useEffect, useRef, useState } from 'react';
-import { useDebounce } from '~/hooks';
 import { Search, UserMenu } from './components';
-import { ISearchRef } from './interface';
+import { IFunctionProps, ISearchRef } from './interface';
 
-function Function() {
+function Function({ handleSearch }: IFunctionProps) {
   const theme = useTheme();
   const upXlMedia = useMediaQuery<boolean>(theme.breakpoints.up('xl'));
 
@@ -15,16 +14,10 @@ function Function() {
     inputBtn: useRef(null),
   };
 
-  const [searchValue, setSearchValue] = useState<string>('');
   const [showSearch, setShowSearch] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const debounceSearchValue = useDebounce<string>(searchValue, 300);
 
   const openMenu: boolean = Boolean(anchorEl);
-
-  const handleSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value);
-  };
 
   const handleMenuClick = (e: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(e.currentTarget);
@@ -51,10 +44,9 @@ function Function() {
   }, [showSearch, setShowSearch]);
 
   const searchProps = {
-    searchValue,
-    handleSearchValue,
     showSearch,
     searchRef,
+    handleSearch,
   };
 
   const userProps = {

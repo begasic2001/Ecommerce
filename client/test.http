@@ -1,7 +1,0 @@
-//----------
-// Products
-//----------
-
-// Get all products
-GET http://localhost:9000/products
-###

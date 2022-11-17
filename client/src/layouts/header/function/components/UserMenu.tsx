@@ -16,7 +16,7 @@ export function UserMenu({ userProps }: IUserProps) {
   return (
     <>
       <IconButton onClick={handleMenuClick} className={s.user}>
-        <AccountCircleIcon className={s['icon__account']} />
+        <AccountCircleIcon sx={{ width: '3rem', height: '3rem' }} />
       </IconButton>
       <Menu
         anchorEl={anchorEl}
@@ -28,7 +28,7 @@ export function UserMenu({ userProps }: IUserProps) {
         }}
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-        className={s['user-menu']}
+        className={s.userMenu}
       >
         <AccountMenuItem path="/account/login" icon={<LoginIcon />} title="Login" />
         <Divider />
@@ -40,7 +40,7 @@ export function UserMenu({ userProps }: IUserProps) {
 
 const AccountMenuItem = ({ path, icon, title }: IUserAccountItem) => (
   <MenuItem>
-    <Link to={path} className={s['user__link']}>
+    <Link to={path} className={s.userLink}>
       <ListItemIcon>{icon}</ListItemIcon>
       {title}
     </Link>

@@ -1,14 +1,14 @@
-import { Container } from '@mui/material';
+import Container from '@mui/material/Container';
 import s from './footer.module.scss';
-import { LinkComponent } from './link';
-import { SocialComponent } from './social';
+import LinkComp from './link';
+import SocialComp from './social';
 
 function FooterLayout() {
   return (
     <footer className={s.footer}>
       <Container className={s.container}>
-        <LinkComponent />
-        <SocialComponent />
+        <LinkComp />
+        <SocialComp />
       </Container>
     </footer>
   );

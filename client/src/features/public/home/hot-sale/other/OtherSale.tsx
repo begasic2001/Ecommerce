@@ -3,7 +3,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { ProductItem } from '~/components/product-item';
 import s from './hot-sale.module.scss';
 
-export function OtherSaleComponent() {
+function OtherSale({ otherSale }: any) {
+  console.log('otherSale', otherSale.length);
   const theme = useTheme();
   const media = {
     upXlMedia: useMediaQuery<boolean>(theme.breakpoints.up('xl')),
@@ -14,14 +15,14 @@ export function OtherSaleComponent() {
   return (
     <section className={s.other}>
       <ImageList cols={media.downSm ? 2 : media.betweenSmLg ? 3 : 4} gap={20}>
-        {Array(8)
-          .fill(0)
-          .map(() => (
-            <ImageListItem key={uuidv4()}>
-              <ProductItem />
-            </ImageListItem>
-          ))}
+        {otherSale.map((item: any) => (
+          <ImageListItem key={item.id}>
+            <ProductItem item={item} />
+          </ImageListItem>
+        ))}
       </ImageList>
     </section>
   );
 }
+
+export default OtherSale;

@@ -1,7 +1,7 @@
 @use '~/styles/utils' as utils;
 
 .column {
-  @include utils.flexBox(flex-start, center, row);
+  align-items: center;
 }
 
 .drawer {
@@ -9,7 +9,7 @@
   min-width: 30rem;
   font-size: 1.6rem;
 
-  &__item {
+  &Item {
     display: block;
 
     color: utils.$primary-text-color;
@@ -36,7 +36,7 @@
 .nav {
   margin-left: 2rem;
 
-  &__item {
+  &Item {
     margin-left: 2rem;
 
     color: utils.$primary-text-color;
@@ -51,18 +51,8 @@
   }
 }
 
-@include utils.breakpoint(xl) {
-  .header__container {
-    max-width: 1200px;
-  }
-}
-
 @include utils.breakpoint(lg) {
-  .header__container {
-    max-width: 992px;
-  }
-
-  .home-link {
+  .home {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -75,26 +65,8 @@
   .nav {
     margin-left: 1rem;
 
-    &__item {
+    &Item {
       margin-left: 1rem;
     }
-  }
-}
-
-@include utils.breakpoint(md) {
-  .header__container {
-    max-width: 768px;
-  }
-}
-
-@include utils.breakpoint(sm) {
-  .header__container {
-    max-width: 576px;
-  }
-}
-
-@include utils.breakpoint(xs) {
-  .header__container {
-    max-width: 100%;
   }
 }

@@ -1,7 +1,7 @@
 @use '~/styles/utils' as utils;
 
 .item {
-  @include utils.flexBox(flex-start, center, column);
+  align-items: center;
   padding: 1rem;
   min-height: 35rem;
   border: 1px solid #eee;
@@ -11,11 +11,11 @@
     cursor: pointer;
   }
 
-  &:hover &__img {
+  &:hover &Img {
     transform: scale(1.1);
   }
 
-  &__img {
+  &Img {
     @include utils.boxSize(100%, 20rem);
     display: block;
     object-fit: cover;
@@ -23,14 +23,14 @@
     transition: utils.$transition-02-effect;
   }
 
-  &__name {
+  &Name {
     margin-top: auto;
     font-weight: bold;
     font-size: 1.6rem;
     text-align: center;
   }
 
-  &__price {
+  &Price {
     margin-top: 3rem;
     text-align: center;
   }

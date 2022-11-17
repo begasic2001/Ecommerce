@@ -1,4 +1,5 @@
 import { useMediaQuery, useTheme } from '@mui/material';
+import Stack from '@mui/material/Stack';
 import { useState } from 'react';
 import { DrawerResponsive, HomeLink, Nav } from './components';
 import s from './menu.module.scss';
@@ -22,11 +23,11 @@ function Menu() {
   };
 
   return (
-    <section className={s.column}>
+    <Stack direction="row" className={s.column}>
       {!media.upXl && <DrawerResponsive drawerProps={drawerProps} />}
       {media.upMd && <HomeLink />}
       {media.upXl && <Nav />}
-    </section>
+    </Stack>
   );
 }
 

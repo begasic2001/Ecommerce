@@ -4,6 +4,7 @@ import { FilterComponent } from './FilterComp';
 import { IInitArrangePrice } from './interface';
 import s from './product-list.module.scss';
 import { ResultComponent } from './ResultComp';
+import { useSelector } from 'react-redux';
 
 const minPriceDistance = 10;
 const initMinPrice = 0;

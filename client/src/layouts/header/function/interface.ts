@@ -1,17 +1,25 @@
-import React from 'react';
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 
 interface ISearch {
-  searchValue: string;
-  handleSearchValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
   showSearch: boolean;
   searchRef: ISearchRef;
+  handleSearch: (params: ISearchParams) => void;
 }
 interface IUser {
   anchorEl: HTMLElement | null;
   handleMenuClick: (e: React.MouseEvent<HTMLElement>) => void;
   handleMenuClose: () => void;
   openMenu: boolean;
+}
+
+interface ISearchParams {
+  name_like: string;
+  _page: number;
+  _limit: number;
+}
+
+export interface IFunctionProps {
+  handleSearch: (params: ISearchParams) => void;
 }
 
 export interface ISearchRef {

@@ -1,18 +1,31 @@
+import Stack from '@mui/material/Stack';
+import { useNavigate } from 'react-router-dom';
 import s from './product-item.module.scss';
 
-const ProductItem = () => {
+const ProductItem = ({ item }: any) => {
+  if (typeof item === undefined) return null;
+
+  const navigate = useNavigate();
+
+  const formatCurrency = new Intl.NumberFormat('vi-VN', {
+    style: 'currency',
+    currency: 'VND',
+  });
+
+  const price = formatCurrency.format(item?.price);
+
+  const navigateToSpecificProduct = (id: string) => {
+    navigate(`/products/${id}`);
+  };
+
   return (
-    <section className={s.item}>
+    <Stack onClick={() => navigateToSpecificProduct(item.id)} className={s.item}>
       <div>
-        <img
-          src="https://cdn.pixabay.com/photo/2015/04/19/08/32/marguerite-729510__340.jpg"
-          alt="other hot sale flower"
-          className={s['item__img']}
-        />
+        <img src={item?.images[0]} alt="other hot sale flower" className={s.itemImg} />
       </div>
-      <p className={s['item__name']}>Hoa xxx</p>
-      <p className={s['item__price']}>$200</p>
-    </section>
+      <p className={s.itemName}>{item?.name}</p>
+      <p className={s.itemPrice}>{price}</p>
+    </Stack>
   );
 };
 

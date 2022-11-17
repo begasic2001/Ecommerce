@@ -16,10 +16,10 @@ function SlideshowFeature() {
       </section>
       {upMdMedia && (
         <section className={s.content}>
-          <h2 className={s['content__title']}>
+          <h2 className={s.contentTitle}>
             Send <em>flowers</em> like you mean it.
           </h2>
-          <p className={s['content__txt']}>
+          <p className={s.contentTxt}>
             Where flowers are our inspiration to create lasting memories. Whatever the occasion, our
             flowers will make it special cursus a sit amet mauris.
           </p>

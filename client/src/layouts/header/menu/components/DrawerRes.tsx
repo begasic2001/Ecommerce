@@ -50,7 +50,7 @@ const ListItemDrawer = ({ item }: IMenuLinkProps) => {
           <Icon />
         </ListItemIcon>
         <ListItemText>
-          <NavLink to={`${item.path}`} className={s['drawer__item']}>
+          <NavLink to={`${item.path}`} className={s.drawerItem}>
             {item.name}
           </NavLink>
         </ListItemText>

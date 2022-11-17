@@ -28,7 +28,7 @@
   left: 10%;
   transform: translateY(-40%);
 
-  &__title {
+  &Title {
     max-width: 50%;
     font: 400 6rem 'Source Serif Pro', serif;
 
@@ -37,7 +37,7 @@
     }
   }
 
-  &__txt {
+  &Txt {
     margin-top: 2rem;
     max-width: 50%;
     color: #555;
@@ -52,12 +52,12 @@
   }
 
   .content {
-    &__title {
+    &Title {
       max-width: 60%;
       font-size: 4.5rem;
     }
 
-    &__txt {
+    &Txt {
       max-width: 60%;
     }
   }

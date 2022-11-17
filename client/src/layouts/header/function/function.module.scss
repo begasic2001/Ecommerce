@@ -11,7 +11,7 @@
 .user {
   margin-left: 2rem;
 
-  &-menu {
+  &Menu {
     & :global(.MuiPaper-root) {
       margin-top: 1.2rem;
       overflow: visible;
@@ -35,52 +35,8 @@
     }
   }
 
-  &__link {
+  &Link {
     color: utils.$primary-text-color;
     text-decoration: none;
-  }
-}
-
-.icon {
-  &__search {
-    @include utils.boxSize(2.5rem);
-
-    &-input {
-      @include utils.boxSize(2rem);
-    }
-  }
-
-  &__account {
-    @include utils.boxSize(3rem);
-  }
-}
-
-@include utils.breakpoint(xl) {
-  .container {
-    max-width: 1200px;
-  }
-}
-
-@include utils.breakpoint(lg) {
-  .container {
-    max-width: 992px;
-  }
-}
-
-@include utils.breakpoint(md) {
-  .container {
-    max-width: 768px;
-  }
-}
-
-@include utils.breakpoint(sm) {
-  .container {
-    max-width: 576px;
-  }
-}
-
-@include utils.breakpoint(xs) {
-  .container {
-    max-width: 100%;
   }
 }

@@ -1,1 +1,1 @@
-export { default as producApi } from './producApi';
+export { default as productApi } from './producApi';

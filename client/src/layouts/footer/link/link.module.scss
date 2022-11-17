@@ -4,18 +4,18 @@
   padding: 5rem 0;
   border-bottom: solid 1px utils.$border-primary-color;
 
-  &__item {
+  &Item {
     flex-basis: calc(100% / 4);
   }
 
-  &__title {
+  &Title {
     color: utils.$primary-text-color;
     font-size: 1.5rem;
     font-weight: bold;
     text-transform: uppercase;
   }
 
-  &-list {
+  &List {
     li {
       list-style-type: none;
       padding-top: 1.5rem;
@@ -29,7 +29,7 @@
 }
 
 @include utils.breakpoint(sm) {
-  .link__item {
+  .linkItem {
     flex-basis: calc(100% / 2);
   }
 }

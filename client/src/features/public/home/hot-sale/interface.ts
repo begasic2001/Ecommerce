@@ -7,3 +7,7 @@ interface IMedia {
 export interface IMediaProps {
   media: IMedia;
 }
+
+export interface IHotSaleProps {
+  hotSaleList: any[];
+}

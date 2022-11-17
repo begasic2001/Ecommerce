@@ -7,33 +7,37 @@ import s from '../function.module.scss';
 import { ISearchProps } from '../interface';
 
 export function Search({ searchProps }: ISearchProps) {
-  const { searchValue, handleSearchValue, showSearch, searchRef } = searchProps;
+  const { showSearch, searchRef, handleSearch } = searchProps;
 
   const { control, handleSubmit } = useForm();
 
-  const submitSearch = (e: any) => {
-    console.log(e);
-  }
+  const submitSearch = (value: any) => {
+    const params = {
+      name_like: value['search'],
+      _page: 1,
+      _limit: 9,
+    };
+
+    handleSearch(params);
+  };
 
   return (
     <>
       {!showSearch && (
         <IconButton ref={searchRef.btn}>
-          <SearchIcon className={s['icon__search']} />
+          <SearchIcon sx={{ width: '2.5rem', height: '2.5rem' }} />
         </IconButton>
       )}
       {showSearch && (
         <form onSubmit={handleSubmit(submitSearch)}>
           <CustomTextField
-            control={control}
             name="search"
-            defaultValue={searchValue}
-            onChange={handleSearchValue}
+            control={control}
             placeholder="Nhập hoa, chậu yêu thích..."
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start" ref={searchRef.inputBtn}>
-                  <SearchIcon className={s['icon__search-input']} />
+                  <SearchIcon sx={{ width: '2rem', height: '2rem' }} />
                 </InputAdornment>
               ),
             }}

@@ -6,7 +6,7 @@ export function Nav() {
   return (
     <nav className={s.nav}>
       {navLink.map((item) => (
-        <NavLink key={item.id} to={item.path} className={s['nav__item']}>
+        <NavLink key={item.id} to={item.path} className={s.navItem}>
           {item.name}
         </NavLink>
       ))}
