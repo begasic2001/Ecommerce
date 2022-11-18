@@ -1,10 +1,19 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { productApi } from '~/api';
 
-export const getProductListBySearch = createAsyncThunk('product/search', async (params: any) => {
-  const response = await productApi.getSearch(params);
-  return response;
-});
+interface ISearchParams {
+  name_like: string;
+  _page: 1;
+  _limit: 12;
+}
+
+export const getProductListBySearch = createAsyncThunk(
+  'product/search',
+  async (params: ISearchParams) => {
+    const response: any = await productApi.getSearch(params);
+    return response;
+  }
+);
 
 interface IInitialState {
   data: any[];

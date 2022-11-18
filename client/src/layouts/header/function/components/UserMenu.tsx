@@ -7,7 +7,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
-import { IUserAccountItem, IUserProps } from '../interface';
+import { IUserAccountItem, IUserProps } from '../interface.type';
 import s from '../function.module.scss';
 
 export function UserMenu({ userProps }: IUserProps) {

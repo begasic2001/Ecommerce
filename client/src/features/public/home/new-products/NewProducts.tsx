@@ -3,11 +3,11 @@ import { Navigation } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { v4 as uuidv4 } from 'uuid';
 import { ProductItem } from '~/components/product-item';
+import { INewItem, INewItemProps } from './interface.type';
 import s from './new-products.module.scss';
 
-function NewProductsFeature() {
+function NewProductsFeature({ newList }: INewItemProps) {
   const theme = useTheme();
   const media = {
     betweenLgXl: useMediaQuery<boolean>(theme.breakpoints.between('lg', 'xl')),
@@ -26,13 +26,11 @@ function NewProductsFeature() {
             slidesPerView={media.downSm ? 2 : media.betweenSmLg ? 3 : media.betweenLgXl ? 4 : 5}
             navigation
           >
-            {Array(10)
-              .fill(0)
-              .map(() => (
-                <SwiperSlide key={uuidv4()}>
-                  <ProductItem />
-                </SwiperSlide>
-              ))}
+            {newList.map((item: INewItem) => (
+              <SwiperSlide key={item.id}>
+                <ProductItem item={item} />
+              </SwiperSlide>
+            ))}
           </Swiper>
         </section>
       </Container>

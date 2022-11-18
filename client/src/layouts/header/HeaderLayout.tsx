@@ -3,12 +3,11 @@ import Stack from '@mui/material/Stack';
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { getProductListBySearch } from '~/app/productSlice';
 import FunctionComp from './function';
 import s from './header.module.scss';
-import { ISearchParams } from './interface';
 import MenuComp from './menu';
-import { useNavigate } from 'react-router-dom';
 
 function HeaderLayout() {
   const navigate = useNavigate();
@@ -26,11 +25,11 @@ function HeaderLayout() {
     return () => window.removeEventListener('scroll', handleScrollPage);
   }, [scrollPage, setScrollPage]);
 
-  const handleSearch = async (params: ISearchParams) => {
+  const handleSearch = async (params: any) => {
     try {
       const action: any = getProductListBySearch(params);
-      await dispatch(action);
-      await navigate('/products');
+      dispatch(action);
+      navigate('/products');
     } catch (err: any) {
       console.log('ERROR!!!', err.message);
     }

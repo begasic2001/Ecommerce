@@ -4,7 +4,6 @@ import { FilterComponent } from './FilterComp';
 import { IInitArrangePrice } from './interface';
 import s from './product-list.module.scss';
 import { ResultComponent } from './ResultComp';
-import { useSelector } from 'react-redux';
 
 const minPriceDistance = 10;
 const initMinPrice = 0;
@@ -107,7 +106,7 @@ const ProductList = () => {
     <section className={s.products}>
       <Container className={s['products__container']}>
         <section className={s['products__row']}>
-          <FilterComponent filterPartProps={filterPartProps} />
+          {media.downLg && <FilterComponent filterPartProps={filterPartProps} />}
           <ResultComponent resultPartProps={resultPartProps} filterPartProps={filterPartProps} />
         </section>
       </Container>

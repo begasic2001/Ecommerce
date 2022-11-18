@@ -1,8 +1,9 @@
 import Stack from '@mui/material/Stack';
 import { useNavigate } from 'react-router-dom';
 import s from './product-item.module.scss';
+import { IProductItemProps } from './interface.type';
 
-const ProductItem = ({ item }: any) => {
+const ProductItem = ({ item }: IProductItemProps) => {
   if (typeof item === undefined) return null;
 
   const navigate = useNavigate();

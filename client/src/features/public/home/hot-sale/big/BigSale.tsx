@@ -1,8 +1,9 @@
-import { Stack } from '@mui/material';
+import Stack from '@mui/material/Stack';
 import { useNavigate } from 'react-router-dom';
 import s from './big-sale.module.scss';
+import { IBigSaleItemProps } from './interface.type';
 
-function BigSale({ bigSale }: any) {
+function BigSale({ bigSale }: IBigSaleItemProps) {
   const formatCurrency = new Intl.NumberFormat('vi-VN', {
     style: 'currency',
     currency: 'VND',

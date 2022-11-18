@@ -1,10 +1,4 @@
-interface IMedia {
-  upXlMedia: boolean;
-  betweenSmLg: boolean;
-  downSm: boolean;
-}
-
-interface IHotSaleItem {
+interface IProductItem {
   id: string;
   brandId: string;
   categoryId: string;
@@ -24,10 +18,6 @@ interface IHotSaleItem {
   updatedAt: number;
 }
 
-export interface IMediaProps {
-  media: IMedia;
-}
-
-export interface IHotSaleProps {
-  hotSaleList: IHotSaleItem[];
+export interface IProductItemProps {
+  item: IProductItem;
 }

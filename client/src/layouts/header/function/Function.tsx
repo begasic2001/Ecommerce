@@ -2,7 +2,7 @@ import { useMediaQuery, useTheme } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import { useEffect, useRef, useState } from 'react';
 import { Search, UserMenu } from './components';
-import { IFunctionProps, ISearchRef } from './interface';
+import { IFunctionProps, ISearchRef } from './interface.type';
 
 function Function({ handleSearch }: IFunctionProps) {
   const theme = useTheme();
@@ -28,7 +28,7 @@ function Function({ handleSearch }: IFunctionProps) {
   };
 
   useEffect(() => {
-    const toggleSearch = (e: any) => {
+    const toggleSearch = (e: { target: any; }) => {
       const nodeSearch = searchRef.btn.current;
       const nodeInput = searchRef.input.current;
       const nodeInputBtn = searchRef.inputBtn.current;

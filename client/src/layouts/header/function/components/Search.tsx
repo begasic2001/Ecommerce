@@ -4,18 +4,18 @@ import InputAdornment from '@mui/material/InputAdornment';
 import { useForm } from 'react-hook-form';
 import { CustomTextField } from '~/components/input';
 import s from '../function.module.scss';
-import { ISearchProps } from '../interface';
+import { ISearchProps } from '../interface.type';
 
 export function Search({ searchProps }: ISearchProps) {
   const { showSearch, searchRef, handleSearch } = searchProps;
 
   const { control, handleSubmit } = useForm();
 
-  const submitSearch = (value: any) => {
+  const submitSearch = (value: { [x: string]: string }) => {
     const params = {
       name_like: value['search'],
       _page: 1,
-      _limit: 9,
+      _limit: 12,
     };
 
     handleSearch(params);

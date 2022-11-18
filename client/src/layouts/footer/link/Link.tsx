@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material';
 import { v4 as uuidv4 } from 'uuid';
 import s from './link.module.scss';
-import { ILinkItem } from './interface';
+import { ILinkItem } from './interface.type';
 
 const customerServiceLink = [
   'Help & Contact Us',
