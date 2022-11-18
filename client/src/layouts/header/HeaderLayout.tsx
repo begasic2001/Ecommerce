@@ -25,7 +25,7 @@ function HeaderLayout() {
     return () => window.removeEventListener('scroll', handleScrollPage);
   }, [scrollPage, setScrollPage]);
 
-  const handleSearch = async (params: any) => {
+  const handleSearch = (params: any) => {
     try {
       const action: any = getProductListBySearch(params);
       dispatch(action);

@@ -1,16 +1,19 @@
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
-import Checkbox from '@mui/material/Checkbox';
 import Divider from '@mui/material/Divider';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import Slider from '@mui/material/Slider';
 import clsx from 'clsx';
-import { IFilterPartProps } from '../interface';
+import { useState } from 'react';
+import { CheckboxFilter } from './CheckboxFilter';
 import s from './filter.module.scss';
+import { InputNumberFilter } from './InputNumberFilter';
+import { IFilterPartProps } from './interface.type';
 
 function Filter({ filterPartProps }: IFilterPartProps) {
   const { arrangePrice, handleChangeSliderPrice, handleChangeInputPrice, sliderPriceValue } =
     filterPartProps;
+
+  const [categoryCheckbox, setCategoryCheckbox] = useState<string[]>([]);
 
   return (
     <section className={clsx(s.filter, filterPartProps?.isDrawer && s.filterIsDrawer)}>
@@ -21,42 +24,17 @@ function Filter({ filterPartProps }: IFilterPartProps) {
       <section className={s.filterBox}>
         <p className={s.filterBoxTitle}>Các ngày lễ</p>
         <FormGroup>
-          <FormControlLabel
-            control={<Checkbox />}
-            labelPlacement="start"
-            label="Nhà giáo Việt Nam"
-            className={s.filterBoxItem}
-          />
-          <FormControlLabel
-            control={<Checkbox />}
-            labelPlacement="start"
-            label="Phụ nữ Việt Nam"
-            className={s.filterBoxItem}
-          />
-          <FormControlLabel
-            control={<Checkbox />}
-            labelPlacement="start"
-            label="Sinh nhật"
-            className={s.filterBoxItem}
-          />
+          <CheckboxFilter name="category" value="a" label="Nhà giáo Việt Nam" checked={true} />
+          <CheckboxFilter name="category" value="b" label="Phụ nữ Việt Nam" />
+          <CheckboxFilter name="category" value="c" label="Sinh nhật" />
         </FormGroup>
       </section>
       <Divider />
       <section className={s.filterBox}>
         <p className={s.filterBoxTitle}>Các kệ hoa</p>
         <FormGroup>
-          <FormControlLabel
-            control={<Checkbox />}
-            labelPlacement="start"
-            label="Kệ sinh nhật"
-            className={s.filterBoxItem}
-          />
-          <FormControlLabel
-            control={<Checkbox />}
-            labelPlacement="start"
-            label="Kệ khai trương"
-            className={s.filterBoxItem}
-          />
+          <CheckboxFilter name="subCategory" value="d" label="Kệ sinh nhật" />
+          <CheckboxFilter name="subCategory" value="e" label="Kệ khai trương" />
         </FormGroup>
       </section>
       <Divider />
@@ -70,24 +48,14 @@ function Filter({ filterPartProps }: IFilterPartProps) {
           className={s.filterBoxSlider}
         />
         <section className={s.filterPrice}>
-          <input
-            type="number"
+          <InputNumberFilter
             value={arrangePrice.min}
-            placeholder="Từ 1.000đ"
-            min={0}
-            step={1000}
-            onChange={(e) => handleChangeInputPrice(e, 0)}
-            className={s.filterPriceInput}
+            onChange={(e: any) => handleChangeInputPrice(e, 0)}
           />
           <Divider className={s.filterPriceDivider} />
-          <input
-            type="number"
+          <InputNumberFilter
             value={arrangePrice.max}
-            max={1000000}
-            step={1000}
-            placeholder="Đến 999.999đ"
-            onChange={(e) => handleChangeInputPrice(e, 1)}
-            className={s.filterPriceInput}
+            onChange={(e: any) => handleChangeInputPrice(e, 1)}
           />
         </section>
       </section>

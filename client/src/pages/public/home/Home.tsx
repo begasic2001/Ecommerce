@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { productApi } from '~/api';
-import { HotSaleFeature } from '~/features/public/home/hot-sale';
+import HotSaleFeature from '~/features/public/home/hot-sale';
 import { NewProductsFeature } from '~/features/public/home/new-products';
-import { SlideshowFeature } from '~/features/public/home/slideshow';
+import SlideshowFeature from '~/features/public/home/slideshow';
 import { SpecialFeature } from '~/features/public/home/special';
 import { IInitialList } from './interface.type';
 

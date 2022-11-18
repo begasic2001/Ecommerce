@@ -1,4 +1,6 @@
-import { Container, Stack, useTheme, useMediaQuery } from '@mui/material';
+import { useTheme, useMediaQuery } from '@mui/material';
+import Container from '@mui/material/Container';
+import Stack from '@mui/material/Stack';
 import s from './special.module.scss';
 
 function SpecialFeature() {
@@ -16,13 +18,13 @@ function SpecialFeature() {
             />
           </div>
           <section className={s.announce}>
-            <h3 className={s['announce__title']}>
+            <h3 className={s.announceTitle}>
               Suprise Your <em>Special Day</em>! Let us arrange a smile.
             </h3>
-            <p className={s['announce__txt']}>
+            <p className={s.announceTxt}>
               Where flowers are our inspiration to create lasting memories. Whatever the occasion...
             </p>
-            <ul className={s['announce-list']}>
+            <ul className={s.announceList}>
               <li>Hand picked just for you.</li>
               <li>Unique flower arrangements</li>
               <li>Best way to say you care.</li>

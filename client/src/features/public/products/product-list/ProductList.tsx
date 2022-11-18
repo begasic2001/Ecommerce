@@ -1,7 +1,9 @@
-import { Container, useMediaQuery, useTheme } from '@mui/material';
+import { useMediaQuery, useTheme } from '@mui/material';
+import Container from '@mui/material/Container';
+import Stack from '@mui/material/Stack';
 import { useState } from 'react';
-import { FilterComponent } from './FilterComp';
-import { IInitArrangePrice } from './interface';
+import FilterComp from './filter';
+import { IInitArrangePrice } from './interface.type';
 import s from './product-list.module.scss';
 import { ResultComponent } from './ResultComp';
 
@@ -11,11 +13,7 @@ const initMaxPrice = 100;
 
 const ProductList = () => {
   const theme = useTheme();
-  const media = {
-    downLg: useMediaQuery<boolean>(theme.breakpoints.down('lg')),
-    upMd: useMediaQuery<boolean>(theme.breakpoints.up('md')),
-    downSm: useMediaQuery<boolean>(theme.breakpoints.down('sm')),
-  };
+  const upLgMedia = useMediaQuery<boolean>(theme.breakpoints.up('lg'));
 
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [sliderPriceValue, setSliderPriceValue] = useState<number[]>([initMinPrice, initMaxPrice]);
@@ -93,22 +91,20 @@ const ProductList = () => {
     handleChangeSliderPrice,
     arrangePrice,
     handleChangeInputPrice,
-    media,
   };
 
   const resultPartProps = {
     currentPage,
     handleChangeCurrentPage,
-    media,
   };
 
   return (
     <section className={s.products}>
-      <Container className={s['products__container']}>
-        <section className={s['products__row']}>
-          {media.downLg && <FilterComponent filterPartProps={filterPartProps} />}
+      <Container className={s.container}>
+        <Stack direction="row" className={s.row}>
+          {upLgMedia && <FilterComp filterPartProps={filterPartProps} />}
           <ResultComponent resultPartProps={resultPartProps} filterPartProps={filterPartProps} />
-        </section>
+        </Stack>
       </Container>
     </section>
   );

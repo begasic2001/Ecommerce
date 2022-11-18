@@ -1,4 +1,5 @@
-import { Container, useMediaQuery, useTheme } from '@mui/material';
+import { useMediaQuery, useTheme } from '@mui/material';
+import Container from '@mui/material/Container';
 import { Navigation } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';

@@ -2,101 +2,14 @@
 
 .products {
   margin-top: 15rem;
-
-  &__container {
-    max-width: 1400px;
-  }
-
-  &__row {
-    @include utils.flexBox(space-between, flex-start, row);
-  }
 }
 
-.filter {
-  flex-basis: 20%;
-  width: 20%;
+.container {
+  max-width: 1400px;
+}
 
-  &--isDrawer {
-    margin: 3rem auto;
-    flex-basis: 100%;
-    width: 85%;
-    overflow: hidden;
-  }
-
-  &__title {
-    text-align: center;
-    font-size: 2.2rem;
-  }
-
-  &__drawer {
-    & :global(.MuiPaper-root) {
-      width: 30rem;
-    }
-  }
-
-  &-box {
-    margin: 2.5rem 0;
-
-    &__title {
-      margin-top: 2rem;
-      font-size: 1.8rem;
-      font-weight: 600;
-      text-align: center;
-    }
-
-    &__item {
-      justify-content: space-between;
-      margin-top: 1rem;
-
-      & :global(.MuiTypography-root) {
-        font-size: 1.6rem;
-      }
-
-      & :global(.MuiSvgIcon-root) {
-        @include utils.boxSize(2rem);
-        color: #aaa;
-      }
-    }
-
-    &__slider {
-      margin-top: 1.5rem;
-
-      & :global(.MuiSlider-rail) {
-        background-color: #aaa;
-      }
-
-      & :global(.MuiSlider-track) {
-        height: 20%;
-        background: #a224d4;
-      }
-    }
-  }
-
-  &-price {
-    @include utils.flexBox(space-between, center, row);
-
-    &__div {
-      @include utils.boxSize(5%, 1px);
-      background-color: utils.$border-primary-color;
-    }
-
-    &__input {
-      @include utils.boxSize(45%, 3rem);
-      padding: 0.5rem;
-      border: 1px solid utils.$border-primary-color;
-      &:focus {
-        border-color: #000;
-      }
-      &::-webkit-outer-spin-button,
-      &::-webkit-inner-spin-button {
-        --webkit-appearance: none;
-        margin: 0;
-      }
-      &::placeholder {
-        font-size: 1.2rem;
-      }
-    }
-  }
+.row {
+  justify-content: space-between;
 }
 
 .result {
@@ -131,19 +44,19 @@
 }
 
 @include utils.breakpoint(xl) {
-  .products__container {
+  .container {
     max-width: 1200px;
   }
 }
 
 @include utils.breakpoint(lg) {
-  .products__container {
+  .container {
     max-width: 992px;
   }
 }
 
 @include utils.breakpoint(md) {
-  .products__container {
+  .container {
     max-width: 768px;
   }
 
@@ -154,7 +67,7 @@
 }
 
 @include utils.breakpoint(sm) {
-  .products__container {
+  .container {
     max-width: 576px;
   }
 
@@ -165,7 +78,7 @@
 }
 
 @include utils.breakpoint(xs) {
-  .products__container {
+  .container {
     max-width: 100%;
   }
 }

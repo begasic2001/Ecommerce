@@ -1,20 +1,21 @@
 import { FilterAlt as FilterAltIcon } from '@mui/icons-material';
-import {
-  Button,
-  Drawer,
-  ImageList,
-  ImageListItem,
-  Pagination
-} from '@mui/material';
+import { Button, Drawer, ImageList, ImageListItem, Pagination, useMediaQuery, useTheme } from '@mui/material';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { ProductItem } from '~/components/product-item';
-import { FilterContent } from './FilterComp';
-import { IResultPartProps } from './interface';
+import FilterContent from './filter';
+import { IResultPartProps } from './interface.type';
 import s from './product-list.module.scss';
 
 export function ResultComponent({ resultPartProps, filterPartProps }: IResultPartProps) {
-  const { currentPage, handleChangeCurrentPage, media } = resultPartProps;
+  const { currentPage, handleChangeCurrentPage } = resultPartProps;
+
+  const theme = useTheme();
+  const media = {
+    downLg: useMediaQuery<boolean>(theme.breakpoints.down('lg')),
+    upMd: useMediaQuery<boolean>(theme.breakpoints.up('md')),
+    downSm: useMediaQuery<boolean>(theme.breakpoints.down('sm')),
+  };
 
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
 

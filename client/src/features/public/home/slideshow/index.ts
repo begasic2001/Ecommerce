@@ -1,1 +1,1 @@
-export {default as SlideshowFeature} from './Slideshow'
+export { default } from './Slideshow';

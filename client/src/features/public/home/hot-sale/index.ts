@@ -1,1 +1,1 @@
-export { default as HotSaleFeature } from './HotSale';
+export { default } from './HotSale';
