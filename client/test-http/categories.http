@@ -1,0 +1,6 @@
+@baseUrl = http://localhost:9000/api
+
+
+# @name getAllCategories
+
+GET {{baseUrl}}/categories?name[]=Keyboard&name[]=Bacon

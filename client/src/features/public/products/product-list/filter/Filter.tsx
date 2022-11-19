@@ -3,17 +3,21 @@ import Divider from '@mui/material/Divider';
 import FormGroup from '@mui/material/FormGroup';
 import Slider from '@mui/material/Slider';
 import clsx from 'clsx';
-import { useState } from 'react';
 import { CheckboxFilter } from './CheckboxFilter';
 import s from './filter.module.scss';
 import { InputNumberFilter } from './InputNumberFilter';
 import { IFilterPartProps } from './interface.type';
 
 function Filter({ filterPartProps }: IFilterPartProps) {
-  const { arrangePrice, handleChangeSliderPrice, handleChangeInputPrice, sliderPriceValue } =
-    filterPartProps;
-
-  const [categoryCheckbox, setCategoryCheckbox] = useState<string[]>([]);
+  const {
+    categoryData,
+    arrangePrice,
+    handleChangeSliderPrice,
+    handleChangeInputPrice,
+    sliderPriceValue,
+    handleCategoryChecked,
+    handleSubCategoryChecked,
+  } = filterPartProps;
 
   return (
     <section className={clsx(s.filter, filterPartProps?.isDrawer && s.filterIsDrawer)}>
@@ -24,17 +28,22 @@ function Filter({ filterPartProps }: IFilterPartProps) {
       <section className={s.filterBox}>
         <p className={s.filterBoxTitle}>Các ngày lễ</p>
         <FormGroup>
-          <CheckboxFilter name="category" value="a" label="Nhà giáo Việt Nam" checked={true} />
-          <CheckboxFilter name="category" value="b" label="Phụ nữ Việt Nam" />
-          <CheckboxFilter name="category" value="c" label="Sinh nhật" />
+          {categoryData.map((item) => (
+            <CheckboxFilter
+              key={item.id}
+              value={item.id}
+              label={item.name}
+              onChange={handleCategoryChecked}
+            />
+          ))}
         </FormGroup>
       </section>
       <Divider />
       <section className={s.filterBox}>
         <p className={s.filterBoxTitle}>Các kệ hoa</p>
         <FormGroup>
-          <CheckboxFilter name="subCategory" value="d" label="Kệ sinh nhật" />
-          <CheckboxFilter name="subCategory" value="e" label="Kệ khai trương" />
+          <CheckboxFilter value="d" label="Kệ sinh nhật" onChange={handleSubCategoryChecked} />
+          <CheckboxFilter value="e" label="Kệ khai trương" onChange={handleSubCategoryChecked} />
         </FormGroup>
       </section>
       <Divider />

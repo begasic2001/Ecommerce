@@ -1,13 +1,18 @@
 import { FilterAlt as FilterAltIcon } from '@mui/icons-material';
-import { Button, Drawer, ImageList, ImageListItem, Pagination, useMediaQuery, useTheme } from '@mui/material';
+import { useMediaQuery, useTheme } from '@mui/material';
+import Button from '@mui/material/Button';
+import Drawer from '@mui/material/Drawer';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+import Pagination from '@mui/material/Pagination';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { ProductItem } from '~/components/product-item';
-import FilterContent from './filter';
+import FilterContent from '../filter';
 import { IResultPartProps } from './interface.type';
-import s from './product-list.module.scss';
+import s from './result.module.scss';
 
-export function ResultComponent({ resultPartProps, filterPartProps }: IResultPartProps) {
+function Result({ resultPartProps, filterPartProps, productList }: IResultPartProps) {
   const { currentPage, handleChangeCurrentPage } = resultPartProps;
 
   const theme = useTheme();
@@ -32,7 +37,7 @@ export function ResultComponent({ resultPartProps, filterPartProps }: IResultPar
 
   return (
     <section className={s.result}>
-      <section className={s['result-title']}>
+      <section className={s.resultTitle}>
         <h3>Kết quả tìm kiếm</h3>
         {media.downLg && (
           <>
@@ -51,20 +56,20 @@ export function ResultComponent({ resultPartProps, filterPartProps }: IResultPar
         )}
       </section>
       <ImageList cols={media.upMd ? 4 : media.downSm ? 2 : 3} gap={20}>
-        {Array(8)
-          .fill(0)
-          .map(() => (
-            <ImageListItem key={uuidv4()}>
-              <ProductItem />
-            </ImageListItem>
-          ))}
+        {productList.map((item) => (
+          <ImageListItem key={item.id}>
+            <ProductItem item={item} />
+          </ImageListItem>
+        ))}
       </ImageList>
       <Pagination
         count={5}
         page={currentPage}
         onChange={handleChangeCurrentPage}
-        className={s['result-pagination']}
+        className={s.resultPagination}
       />
     </section>
   );
 }
+
+export default Result;

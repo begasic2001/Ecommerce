@@ -3,15 +3,17 @@ import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import { useState } from 'react';
 import FilterComp from './filter';
-import { IInitArrangePrice } from './interface.type';
+import { IInitArrangePrice, IProductListProps } from './interface.type';
 import s from './product-list.module.scss';
-import { ResultComponent } from './ResultComp';
+import ResultComp from './result';
 
 const minPriceDistance = 10;
 const initMinPrice = 0;
 const initMaxPrice = 100;
 
-const ProductList = () => {
+const ProductList = ({ productListProps }: IProductListProps) => {
+  const { handleCategoryChecked, handleSubCategoryChecked, productData, categoryData } = productListProps;
+
   const theme = useTheme();
   const upLgMedia = useMediaQuery<boolean>(theme.breakpoints.up('lg'));
 
@@ -87,10 +89,13 @@ const ProductList = () => {
   };
 
   const filterPartProps = {
+    categoryData,
     sliderPriceValue,
     handleChangeSliderPrice,
     arrangePrice,
     handleChangeInputPrice,
+    handleCategoryChecked,
+    handleSubCategoryChecked,
   };
 
   const resultPartProps = {
@@ -103,7 +108,11 @@ const ProductList = () => {
       <Container className={s.container}>
         <Stack direction="row" className={s.row}>
           {upLgMedia && <FilterComp filterPartProps={filterPartProps} />}
-          <ResultComponent resultPartProps={resultPartProps} filterPartProps={filterPartProps} />
+          <ResultComp
+            resultPartProps={resultPartProps}
+            filterPartProps={filterPartProps}
+            productList={productData}
+          />
         </Stack>
       </Container>
     </section>

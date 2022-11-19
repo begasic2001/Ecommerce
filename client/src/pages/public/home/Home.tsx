@@ -10,24 +10,32 @@ function Homepage() {
   const [hotSaleList, setHotSaleList] = useState<IInitialList>({
     loading: true,
     data: [],
+    err: null,
   });
   const [newList, setNewList] = useState<IInitialList>({
     loading: true,
     data: [],
+    err: null,
   });
 
   useEffect(() => {
     const getHotList = async () => {
       try {
         const response = await productApi.getHotList();
-        const data = response.data.data;
+        const { data, statusText } = response;
+        const dataRes = data.data;
         setHotSaleList({
           ...hotSaleList,
           loading: false,
-          data,
+          data: dataRes,
         });
       } catch (err: any) {
         console.log('ERROR!!! ', err.message);
+        setHotSaleList({
+          ...hotSaleList,
+          loading: false,
+          err: err.message,
+        });
       }
     };
 
@@ -38,21 +46,28 @@ function Homepage() {
     const getNewList = async () => {
       try {
         const response = await productApi.getNewList();
-        const data = response.data.data;
+        const { data, statusText } = response;
+        const dataRes = data.data;
         setNewList({
           ...newList,
           loading: false,
-          data,
+          data: dataRes,
         });
       } catch (err: any) {
         console.log('ERROR!!! ', err.message);
+        setNewList({
+          ...newList,
+          loading: false,
+          err: err.message,
+        });
       }
     };
 
     getNewList();
   }, []);
 
-  if (hotSaleList.loading || newList.loading) return <h2>Loading...</h2>;
+  if (hotSaleList.loading || newList.loading)
+    return <h2 style={{ marginTop: '15rem' }}>Loading...</h2>;
   return (
     <>
       <SlideshowFeature />

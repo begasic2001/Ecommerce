@@ -2,17 +2,22 @@ import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { getProductListBySearch } from '~/app/productSlice';
 import FunctionComp from './function';
 import s from './header.module.scss';
 import MenuComp from './menu';
 
 function HeaderLayout() {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [scrollPage, setScrollPage] = useState<boolean>(false);
+
+  const handleSearch = (params: any) => {
+    try {
+      const stringifyParams = JSON.stringify(params);
+      sessionStorage.setItem('queryParams', stringifyParams);
+      window.location.replace('/products');
+    } catch (err: any) {
+      console.log('ERROR!!!', err.message);
+    }
+  };
 
   useEffect(() => {
     const handleScrollPage = () => {
@@ -24,16 +29,6 @@ function HeaderLayout() {
     window.addEventListener('scroll', handleScrollPage);
     return () => window.removeEventListener('scroll', handleScrollPage);
   }, [scrollPage, setScrollPage]);
-
-  const handleSearch = (params: any) => {
-    try {
-      const action: any = getProductListBySearch(params);
-      dispatch(action);
-      navigate('/products');
-    } catch (err: any) {
-      console.log('ERROR!!!', err.message);
-    }
-  };
 
   return (
     <header className={clsx(s.header, scrollPage && s.headerScrolled)}>

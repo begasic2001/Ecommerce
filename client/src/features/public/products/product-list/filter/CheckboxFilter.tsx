@@ -4,19 +4,19 @@ import s from './filter.module.scss';
 
 interface ICheckbox {
   label: string;
-  name: string;
   checked?: boolean;
   value: string;
+  onChange?: (e: React.SyntheticEvent<Element, Event>, checked: boolean) => void;
 }
 
-export function CheckboxFilter({ label, name, value }: ICheckbox) {
+export function CheckboxFilter({ label, value, onChange }: ICheckbox) {
   return (
     <FormControlLabel
-      name={name}
       control={<Checkbox />}
       labelPlacement="start"
       label={label}
       value={value}
+      onChange={onChange}
       className={s.filterBoxItem}
     />
   );

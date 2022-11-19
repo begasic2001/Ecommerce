@@ -20,7 +20,7 @@ interface IHotSaleItem {
   price: number;
   new: boolean;
   hotTrend: boolean;
-  createAt: number;
+  createdAt: number;
   updatedAt: number;
 }
 

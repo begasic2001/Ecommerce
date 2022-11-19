@@ -11,7 +11,7 @@ GET {{baseUrl}}/products?_page=3&_limit=8
 ###
 
 # @name getProductsBySearch
-GET {{baseUrl}}/products?name_like=Steel&_page=1&_limit=12
+GET {{baseUrl}}/products?name_like=Awesome&_page=1&_limit=12
 
 ###
 
@@ -24,3 +24,10 @@ GET {{baseUrl}}/products?hotTrend=true&_page=1&_limit=9
 # @name getNewProducts
 
 GET {{baseUrl}}/products?new=true&_page=1&_limit=9
+
+###
+
+# @name filterProducts
+
+
+GET {{baseUrl}}/products?category[]&_page=1&_limit=12

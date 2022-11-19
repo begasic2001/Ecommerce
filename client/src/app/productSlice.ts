@@ -10,12 +10,13 @@ interface ISearchParams {
 export const getProductListBySearch = createAsyncThunk(
   'product/search',
   async (params: ISearchParams) => {
-    const response: any = await productApi.getSearch(params);
+    const response: any = await productApi.getByQueryParams(params);
     return response;
   }
 );
 
 interface IInitialState {
+  queryParams: any;
   data: any[];
   pagination: {
     _page: number;
@@ -27,6 +28,7 @@ interface IInitialState {
 }
 
 const initialState: IInitialState = {
+  queryParams: null,
   data: [],
   pagination: {
     _page: 0,
@@ -40,7 +42,11 @@ const initialState: IInitialState = {
 const productSlice = createSlice({
   name: 'product',
   initialState,
-  reducers: {},
+  reducers: {
+    addSearchParams(state, action) {
+      state.queryParams = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getProductListBySearch.fulfilled, (state, action) => {
       const responseData = action.payload.data;
@@ -60,4 +66,5 @@ const productSlice = createSlice({
   },
 });
 
+export const { addSearchParams } = productSlice.actions;
 export default productSlice.reducer;

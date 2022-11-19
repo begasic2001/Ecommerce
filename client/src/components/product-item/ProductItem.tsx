@@ -4,8 +4,6 @@ import s from './product-item.module.scss';
 import { IProductItemProps } from './interface.type';
 
 const ProductItem = ({ item }: IProductItemProps) => {
-  if (typeof item === undefined) return null;
-
   const navigate = useNavigate();
 
   const formatCurrency = new Intl.NumberFormat('vi-VN', {
