@@ -1,7 +1,7 @@
 import Stack from '@mui/material/Stack';
 import { useNavigate } from 'react-router-dom';
 import s from './product-item.module.scss';
-import { IProductItemProps } from './interface.type';
+import { IProductItemProps } from '~/interface/props.type';
 
 const ProductItem = ({ item }: IProductItemProps) => {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ const ProductItem = ({ item }: IProductItemProps) => {
   return (
     <Stack onClick={() => navigateToSpecificProduct(item.id)} className={s.item}>
       <div>
-        <img src={item?.images[0]} alt="other hot sale flower" className={s.itemImg} />
+        <img src={item?.images[0].image} alt="other hot sale flower" className={s.itemImg} />
       </div>
       <p className={s.itemName}>{item?.name}</p>
       <p className={s.itemPrice}>{price}</p>

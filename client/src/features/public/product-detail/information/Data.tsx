@@ -1,4 +1,5 @@
 import styles from './information.module.scss';
+import { useProductDetailContext } from '~/store/product-detail.store';
 
 const s = {
   content: styles.content,
@@ -9,58 +10,44 @@ const s = {
   list: styles['content-list'],
 };
 
-export const DataInfo = () => (
-  <>
-    <section className={s.content}>
-      <h3 className={s.title}>Thông tin chi tiết sản phẩm</h3>
-      <table className={s.table}>
-        <tbody>
-          <tr>
-            <th>Danh mục</th>
-            <td>Hoa</td>
-          </tr>
-          <tr>
-            <th>Kiểu đóng gói</th>
-            <td>Đơn giản</td>
-          </tr>
-          <tr>
-            <th>Xuất xứ</th>
-            <td>Việt Nam</td>
-          </tr>
-          <tr>
-            <th>Kho hàng</th>
-            <td>300</td>
-          </tr>
-          <tr>
-            <th>Gửi từ</th>
-            <td>Hồ Chí Minh</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-    <section className={s.content}>
-      <h3 className={s.title}>Mô tả sản phẩm</h3>
-      <p className={s.txt}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat earum fugit sit maiores
-        pariatur. Quibusdam odio mollitia blanditiis corporis? Id unde hic ipsam excepturi veritatis
-        quas quo repudiandae nam explicabo. Animi atque nobis accusantium dignissimos vel sit,
-        reiciendis dolorem consequuntur nisi ut nulla ex voluptatibus exercitationem quasi ducimus
-        corporis labore dolore quibusdam ratione delectus ab perspiciatis. Repudiandae sed est
-        repellat.
-      </p>
-      <p className={s.txt}>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab facilis suscipit ipsa non nulla
-        rerum labore consequuntur sequi in corrupti eius, quaerat quae sunt maiores soluta eaque
-        cumque laudantium excepturi? Corrupti esse excepturi, quae est facilis iure modi similique
-        accusantium. Debitis perspiciatis ratione laborum porro eius eos magni unde adipisci nemo!
-        Assumenda incidunt labore sed ab consectetur hic debitis officia? Quisquam dolores quam hic
-        nihil delectus veritatis, in dolorum debitis id obcaecati sint praesentium tempore unde
-        dicta! Reprehenderit quisquam, ab, eveniet ad, sit quibusdam sapiente consequatur placeat
-        molestias sunt enim?
-      </p>
-    </section>
-  </>
-);
+export const DataInfo = () => {
+  const theme = useProductDetailContext();
+  return (
+    <>
+      <section className={s.content}>
+        <h3 className={s.title}>Thông tin chi tiết sản phẩm</h3>
+        <table className={s.table}>
+          <tbody>
+            <tr>
+              <th>Danh mục</th>
+              <td>{theme?.productDetail?.category.name}</td>
+            </tr>
+            <tr>
+              <th>Kiểu đóng gói</th>
+              <td>Đơn giản</td>
+            </tr>
+            <tr>
+              <th>Xuất xứ</th>
+              <td>Việt Nam</td>
+            </tr>
+            <tr>
+              <th>Kho hàng</th>
+              <td>{theme?.productDetail?.product.amount}</td>
+            </tr>
+            <tr>
+              <th>Gửi từ</th>
+              <td>{theme?.productDetail?.brand.name}</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section className={s.content}>
+        <h3 className={s.title}>Mô tả sản phẩm</h3>
+        <p className={s.txt}>{theme?.productDetail?.product.detail}</p>
+      </section>
+    </>
+  );
+};
 
 export const DataGuide = () => (
   <section className={s.content}>

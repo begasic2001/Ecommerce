@@ -1,4 +1,4 @@
-interface IData {
+export interface IData {
   id: string;
   brandId: string;
   categoryId: string;
@@ -9,7 +9,10 @@ interface IData {
   color: string[];
   size: number;
   detail: string;
-  images: string[];
+  images: {
+    id: string;
+    image: string;
+  }[];
   price: number;
   newPrice: number;
   new: boolean;
@@ -18,25 +21,18 @@ interface IData {
   updatedAt: string;
 }
 
-interface ICategory {
+export interface ICategory {
   id: string;
   name: string;
   createdAt: number;
   updatedAt: number;
 }
 
-interface IProductList {
-  handleCategoryChecked: (e: React.SyntheticEvent<Element, Event>, checked: boolean) => void;
-  handleSubCategoryChecked: (e: React.SyntheticEvent<Element, Event>, checked: boolean) => void;
-  productData: IData[];
-  categoryData: ICategory[];
+export interface ISubCategory extends ICategory {
+  categoryId: string;
 }
 
 export interface IInitArrangePrice {
   min: number;
   max: number;
-}
-
-export interface IProductListProps {
-  productListProps: IProductList;
 }

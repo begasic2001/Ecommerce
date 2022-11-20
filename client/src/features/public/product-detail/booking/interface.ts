@@ -1,14 +1,4 @@
-export interface IImgGallerySelect {
-  id: string;
-  url: string;
-}
-
-export interface IArrGalleryProps {
-  arrGallery: IImgGallerySelect[];
-}
-
 export interface IGalleryPartProps {
-  arrGallery: IImgGallerySelect[];
   imgGallerySelect: number;
   handleGallerySelect: (num: number) => void;
 }

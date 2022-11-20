@@ -5,11 +5,13 @@ import { useForm } from 'react-hook-form';
 import { CustomTextField } from '~/components/input';
 import s from '../function.module.scss';
 import { ISearchProps } from '../interface.type';
+import { useHeaderContext } from '~/store/header.store';
 
 export function Search({ searchProps }: ISearchProps) {
-  const { showSearch, searchRef, handleSearch } = searchProps;
+  const { showSearch, searchRef } = searchProps;
 
   const { control, handleSubmit } = useForm();
+  const theme = useHeaderContext();
 
   const submitSearch = (value: { [x: string]: string }) => {
     const params = {
@@ -18,7 +20,7 @@ export function Search({ searchProps }: ISearchProps) {
       _limit: 12,
     };
 
-    handleSearch(params);
+    theme?.handleSearch(params);
   };
 
   return (

@@ -1,9 +1,9 @@
 import { ImageList, ImageListItem, useMediaQuery, useTheme } from '@mui/material';
 import { ProductItem } from '~/components/product-item';
-import { IOtherSaleItem, IOtherSaleItemProps } from './interface.type';
+import { IOtherSaleArrayItemProps } from '~/interface/props.type';
 import s from './hot-sale.module.scss';
 
-function OtherSale({ otherSale }: IOtherSaleItemProps) {
+function OtherSale({ otherSale }: IOtherSaleArrayItemProps) {
   const theme = useTheme();
   const media = {
     upXlMedia: useMediaQuery<boolean>(theme.breakpoints.up('xl')),
@@ -14,7 +14,7 @@ function OtherSale({ otherSale }: IOtherSaleItemProps) {
   return (
     <section className={s.other}>
       <ImageList cols={media.downSm ? 2 : media.betweenSmLg ? 3 : 4} gap={20}>
-        {otherSale.map((item: IOtherSaleItem) => (
+        {otherSale.map((item) => (
           <ImageListItem key={item.id}>
             <ProductItem item={item} />
           </ImageListItem>

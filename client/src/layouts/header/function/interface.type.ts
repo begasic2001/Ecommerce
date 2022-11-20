@@ -3,7 +3,6 @@ import React, { ReactNode } from 'react';
 interface ISearch {
   showSearch: boolean;
   searchRef: ISearchRef;
-  handleSearch: (params: ISearchParams) => void;
 }
 interface IUser {
   anchorEl: HTMLElement | null;
@@ -16,10 +15,6 @@ interface ISearchParams {
   name_like: string;
   _page: number;
   _limit: number;
-}
-
-export interface IFunctionProps {
-  handleSearch: (params: ISearchParams) => void;
 }
 
 export interface ISearchRef {

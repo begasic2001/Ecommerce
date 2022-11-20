@@ -6,6 +6,7 @@ import {
 import 'swiper/css';
 import s from './booking.module.scss';
 import { ISummaryPartProps } from './interface';
+import { useProductDetailContext } from '~/store/product-detail.store';
 
 export function SummaryComponent({
   maxQuantity,
@@ -13,18 +14,28 @@ export function SummaryComponent({
   handleQuantityBtn,
   handleQuantityCurrent,
 }: ISummaryPartProps) {
+  const theme = useProductDetailContext();
+
+  const formatCurrency = new Intl.NumberFormat('vi-VN', {
+    style: 'currency',
+    currency: 'VND',
+  });
+
+  const price = formatCurrency.format(Number(theme?.productDetail?.product.price));
+  const newPrice = formatCurrency.format(Number(theme?.productDetail?.product.newPrice));
+
   return (
     <section className={s.summary}>
-      <h3>Hoa hướng dương</h3>
+      <h3>{theme?.productDetail?.product.name}</h3>
       <table className={s.table}>
         <tbody>
           <tr>
             <th>Mã sản phẩm</th>
-            <td className={s['table__code']}>HHD001</td>
+            <td className={s['table__code']}>{theme?.productDetail?.product.code}</td>
           </tr>
           <tr>
             <td colSpan={2} className={s['table-price']}>
-              <del>1.450.000đ</del> 1.235.000đ
+              <del>{price}</del> {newPrice}
             </td>
           </tr>
           <tr>

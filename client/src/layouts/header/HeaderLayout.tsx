@@ -1,19 +1,26 @@
-import Container from '@mui/material/Container';
-import Stack from '@mui/material/Stack';
+import { Container, Stack } from '@mui/material';
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { getProductListBySearch, toggleSearch } from '~/app/productSlice';
+import { IProductParams } from '~/interface/api.type';
 import FunctionComp from './function';
 import s from './header.module.scss';
 import MenuComp from './menu';
+import HeaderProvider from '~/store/header.store';
 
 function HeaderLayout() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [scrollPage, setScrollPage] = useState<boolean>(false);
 
-  const handleSearch = (params: any) => {
+  const handleSearch = async (params: IProductParams) => {
     try {
-      const stringifyParams = JSON.stringify(params);
-      sessionStorage.setItem('queryParams', stringifyParams);
-      window.location.replace('/products');
+      const action: any = getProductListBySearch(params);
+      await dispatch(toggleSearch(Object.keys(params).length > 0 && true));
+      await dispatch(action);
+      await navigate('/products');
     } catch (err: any) {
       console.log('ERROR!!!', err.message);
     }
@@ -31,14 +38,16 @@ function HeaderLayout() {
   }, [scrollPage, setScrollPage]);
 
   return (
-    <header className={clsx(s.header, scrollPage && s.headerScrolled)}>
-      <Container className={s.container}>
-        <Stack direction="row" className={s.row}>
-          <MenuComp />
-          <FunctionComp handleSearch={handleSearch} />
-        </Stack>
-      </Container>
-    </header>
+    <HeaderProvider handleSearch={handleSearch}>
+      <header className={clsx(s.header, scrollPage && s.headerScrolled)}>
+        <Container className={s.container}>
+          <Stack direction="row" className={s.row}>
+            <MenuComp />
+            <FunctionComp />
+          </Stack>
+        </Container>
+      </header>
+    </HeaderProvider>
   );
 }
 

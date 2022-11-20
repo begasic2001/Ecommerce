@@ -1,7 +1,7 @@
 import Stack from '@mui/material/Stack';
 import { useNavigate } from 'react-router-dom';
 import s from './big-sale.module.scss';
-import { IBigSaleItemProps } from './interface.type';
+import { IBigSaleItemProps } from '~/interface/props.type';
 
 function BigSale({ bigSale }: IBigSaleItemProps) {
   const formatCurrency = new Intl.NumberFormat('vi-VN', {
@@ -21,7 +21,7 @@ function BigSale({ bigSale }: IBigSaleItemProps) {
   return (
     <Stack onClick={() => navigateToSpecificProduct(bigSale.id)} className={s.big}>
       <section className={s.image}>
-        <img src={bigSale.images[0]} alt="big sale flower" />
+        <img src={bigSale.images[0].image} alt="big sale flower" />
       </section>
       <p className={s.name}>{bigSale.name}</p>
       <p className={s.price}>

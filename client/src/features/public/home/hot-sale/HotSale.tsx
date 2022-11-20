@@ -1,10 +1,10 @@
 import { Container, useMediaQuery, useTheme } from '@mui/material';
 import BigSaleComp from './big';
 import s from './hot-sale.module.scss';
-import { IHotSaleProps } from './interface';
+import { IHotSaleArrayItemProps } from '~/interface/props.type';
 import OtherSaleComp from './other/OtherSale';
 
-function HotSaleFeature({ hotSaleList }: IHotSaleProps) {
+function HotSaleFeature({ hotSaleList }: IHotSaleArrayItemProps) {
   const theme = useTheme();
   const upXlMedia = useMediaQuery<boolean>(theme.breakpoints.up('xl'));
 

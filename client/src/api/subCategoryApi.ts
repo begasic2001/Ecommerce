@@ -3,16 +3,12 @@ import { ICategoryParams } from '~/interface/api.type';
 
 const categorytApi = {
   getAll() {
-    const url = '/categories';
+    const url = '/subCategories';
     return axiosClient.get(url);
   },
   getByQueryParams(params: ICategoryParams) {
-    const url = '/categories';
+    const url = '/subCategories';
     return axiosClient.get(url, { params });
-  },
-  getSpecific(id: any) {
-    const url = `/categories/${id}`;
-    return axiosClient.get(url);
   },
 };
 

@@ -30,12 +30,18 @@ router.render = (req, res) => {
   if (req.method === 'GET' && totalCountHeader) {
     const queryParams = queryString.parse(req._parsedOriginalUrl.query);
 
+    const _page = Number(queryParams._page) || 1;
+    const _limit = Number(queryParams._limit) || 12;
+    const _totalRows = Number(totalCountHeader);
+    const _totalPages = Math.ceil(_totalRows / _limit);
+
     const result = {
       data: res.locals.data,
       pagination: {
-        _page: Number(queryParams._page) || 1,
-        _limit: Number(queryParams._limit) || 10,
-        _totalRows: Number(totalCountHeader),
+        _page,
+        _limit,
+        _totalPages,
+        _totalRows,
       },
     };
 

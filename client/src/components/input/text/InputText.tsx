@@ -1,7 +1,7 @@
 import TextField from '@mui/material/TextField';
 import { forwardRef } from 'react';
 import { Controller } from 'react-hook-form';
-import { IInputText } from './interface.type';
+import { IInputText } from '~/interface/form.type';
 
 export const CustomTextField = forwardRef((props: IInputText, ref: any) => {
   const { control, name, defaultValue } = props;

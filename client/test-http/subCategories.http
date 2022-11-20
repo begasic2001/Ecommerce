@@ -3,8 +3,10 @@
 
 # @name getAllCategories
 
-GET {{baseUrl}}/categories
+GET {{baseUrl}}/subCategories
+
+###
 
 # @name getSpecificCategories
 
-GET {{baseUrl}}/categories?name[]=Keyboard&name[]=Bacon
+GET {{baseUrl}}/subCategories?name[]=Fish&name[]=Keyboard

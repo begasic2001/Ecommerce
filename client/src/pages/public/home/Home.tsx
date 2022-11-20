@@ -4,15 +4,15 @@ import HotSaleFeature from '~/features/public/home/hot-sale';
 import { NewProductsFeature } from '~/features/public/home/new-products';
 import SlideshowFeature from '~/features/public/home/slideshow';
 import { SpecialFeature } from '~/features/public/home/special';
-import { IInitialList } from './interface.type';
+import { IInitialFetch } from '~/interface/state.type';
 
 function Homepage() {
-  const [hotSaleList, setHotSaleList] = useState<IInitialList>({
+  const [hotSaleList, setHotSaleList] = useState<IInitialFetch>({
     loading: true,
     data: [],
     err: null,
   });
-  const [newList, setNewList] = useState<IInitialList>({
+  const [newList, setNewList] = useState<IInitialFetch>({
     loading: true,
     data: [],
     err: null,
@@ -22,7 +22,7 @@ function Homepage() {
     const getHotList = async () => {
       try {
         const response = await productApi.getHotList();
-        const { data, statusText } = response;
+        const { data } = response;
         const dataRes = data.data;
         setHotSaleList({
           ...hotSaleList,
@@ -46,7 +46,7 @@ function Homepage() {
     const getNewList = async () => {
       try {
         const response = await productApi.getNewList();
-        const { data, statusText } = response;
+        const { data } = response;
         const dataRes = data.data;
         setNewList({
           ...newList,

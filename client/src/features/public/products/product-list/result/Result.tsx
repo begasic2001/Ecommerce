@@ -6,22 +6,21 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import Pagination from '@mui/material/Pagination';
 import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { ProductItem } from '~/components/product-item';
+import { IProductItem } from '~/interface/props.type';
+import { useProductContext } from '~/store/products.store';
 import FilterContent from '../filter';
-import { IResultPartProps } from './interface.type';
+import { IFilterPartProps } from './interface.type';
 import s from './result.module.scss';
 
-function Result({ resultPartProps, filterPartProps, productList }: IResultPartProps) {
-  const { currentPage, handleChangeCurrentPage } = resultPartProps;
-
+function Result({ filterPartProps }: IFilterPartProps) {
   const theme = useTheme();
   const media = {
     downLg: useMediaQuery<boolean>(theme.breakpoints.down('lg')),
     upMd: useMediaQuery<boolean>(theme.breakpoints.up('md')),
     downSm: useMediaQuery<boolean>(theme.breakpoints.down('sm')),
   };
-
+  const productTheme = useProductContext();
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
 
   const isFilterDrawer: boolean = true;
@@ -56,16 +55,16 @@ function Result({ resultPartProps, filterPartProps, productList }: IResultPartPr
         )}
       </section>
       <ImageList cols={media.upMd ? 4 : media.downSm ? 2 : 3} gap={20}>
-        {productList.map((item) => (
+        {productTheme?.productData.map((item: IProductItem) => (
           <ImageListItem key={item.id}>
             <ProductItem item={item} />
           </ImageListItem>
         ))}
       </ImageList>
       <Pagination
-        count={5}
-        page={currentPage}
-        onChange={handleChangeCurrentPage}
+        count={productTheme?.pagination._totalPages}
+        page={productTheme?.currentPage}
+        onChange={productTheme?.handleChangeCurrentPage}
         className={s.resultPagination}
       />
     </section>

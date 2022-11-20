@@ -1,19 +1,18 @@
 import axiosClient from './axiosClient';
-
-interface ISearchParams {
-  name_like?: string;
-  _page: 1;
-  _limit: 12;
-}
+import { IProductParams } from '~/interface/api.type';
 
 const productApi = {
   getAll() {
     const url = '/products';
     return axiosClient.get(url);
   },
-  getByQueryParams(params: ISearchParams) {
+  getByQueryParams(params: IProductParams) {
     const url = '/products';
     return axiosClient.get(url, { params });
+  },
+  getSpecific(id: any) {
+    const url = `/products/${id}`;
+    return axiosClient.get(url);
   },
   getHotList() {
     const url = '/products';

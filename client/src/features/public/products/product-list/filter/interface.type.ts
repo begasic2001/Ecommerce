@@ -10,14 +10,15 @@ interface ICategory {
   updatedAt: number;
 }
 
+interface ISubCategory extends ICategory {
+  categoryId: string;
+}
+
 interface IFilterPart {
-  categoryData: ICategory[];
   sliderPriceValue: number[];
   handleChangeSliderPrice: (e: Event, newValue: number | number[], activeThumb: number) => void;
   arrangePrice: IInitArrangePrice;
   handleChangeInputPrice: (e: React.ChangeEvent<HTMLInputElement>, num: number) => void;
-  handleCategoryChecked: (e: React.SyntheticEvent<Element, Event>, checked: boolean) => void;
-  handleSubCategoryChecked: (e: React.SyntheticEvent<Element, Event>, checked: boolean) => void;
   isDrawer?: boolean;
 }
 

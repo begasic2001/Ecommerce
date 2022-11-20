@@ -3,20 +3,19 @@ import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import s from './booking.module.scss';
 import { IGalleryPartProps } from './interface';
+import { useProductDetailContext } from '~/store/product-detail.store';
 
-export function GalleryComponent({
-  arrGallery,
-  imgGallerySelect,
-  handleGallerySelect,
-}: IGalleryPartProps) {
+export function GalleryComponent({ imgGallerySelect, handleGallerySelect }: IGalleryPartProps) {
+  const theme = useProductDetailContext();
+
   return (
     <section className={s.gallery}>
       <section className={s['gallery-spec']}>
-        <img src={arrGallery[imgGallerySelect].url} alt="image" />
+        <img src={theme?.productDetail?.product.images[imgGallerySelect].image} alt="image" />
       </section>
       <section className={s['gallery-list']}>
         <Swiper direction="horizontal" spaceBetween={20} slidesPerView={4}>
-          {arrGallery.map((item, index) => (
+          {theme?.productDetail?.product.images.map((item: any, index: number) => (
             <SwiperSlide key={item.id}>
               <section
                 onClick={() => handleGallerySelect(index)}
@@ -25,7 +24,7 @@ export function GalleryComponent({
                   imgGallerySelect === index && s['gallery-list__item--selected']
                 )}
               >
-                <img src={item.url} alt="image item" />
+                <img src={item.image} alt="image item" />
               </section>
             </SwiperSlide>
           ))}

@@ -9,7 +9,10 @@ interface IData {
   color: string[];
   size: number;
   detail: string;
-  images: string[];
+  images: {
+    id: string;
+    image: string;
+  }[];
   price: number;
   newPrice: number;
   new: boolean;
@@ -39,10 +42,3 @@ export interface IInitArrangePrice {
 export interface IFilterPartProps {
   filterPartProps: IFilterPart;
 }
-
-export interface IResultPartProps {
-  resultPartProps: IResultPart;
-  filterPartProps: IFilterPart;
-  productList: IData[];
-}
-

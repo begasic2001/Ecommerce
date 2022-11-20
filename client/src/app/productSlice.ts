@@ -1,50 +1,36 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { productApi } from '~/api';
-
-interface ISearchParams {
-  name_like: string;
-  _page: 1;
-  _limit: 12;
-}
+import { IProductParams } from '~/interface/api.type';
+import { IProductInitial } from '~/interface/redux.type';
 
 export const getProductListBySearch = createAsyncThunk(
   'product/search',
-  async (params: ISearchParams) => {
+  async (params: IProductParams) => {
     const response: any = await productApi.getByQueryParams(params);
     return response;
   }
 );
 
-interface IInitialState {
-  queryParams: any;
-  data: any[];
-  pagination: {
-    _page: number;
-    _limit: number;
-    _totalRows: number;
-  };
-  loading: boolean;
-  err: any | null;
-}
-
-const initialState: IInitialState = {
-  queryParams: null,
+const initialState: IProductInitial = {
+  loading: true,
   data: [],
+  err: null,
+  isSearch: false,
   pagination: {
     _page: 0,
     _limit: 0,
+    _totalPages: 0,
     _totalRows: 0,
   },
-  loading: true,
-  err: null,
 };
 
 const productSlice = createSlice({
   name: 'product',
   initialState,
   reducers: {
-    addSearchParams(state, action) {
-      state.queryParams = action.payload;
+    toggleSearch(state, action) {
+      if (action.payload) state.isSearch = false;
+      else state.isSearch = true;
     },
   },
   extraReducers: (builder) => {
@@ -66,5 +52,5 @@ const productSlice = createSlice({
   },
 });
 
-export const { addSearchParams } = productSlice.actions;
+export const { toggleSearch } = productSlice.actions;
 export default productSlice.reducer;

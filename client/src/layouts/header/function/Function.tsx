@@ -2,9 +2,9 @@ import { useMediaQuery, useTheme } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import { useEffect, useRef, useState } from 'react';
 import { Search, UserMenu } from './components';
-import { IFunctionProps, ISearchRef } from './interface.type';
+import { ISearchRef } from './interface.type';
 
-function Function({ handleSearch }: IFunctionProps) {
+function Function() {
   const theme = useTheme();
   const upXlMedia = useMediaQuery<boolean>(theme.breakpoints.up('xl'));
 
@@ -46,7 +46,6 @@ function Function({ handleSearch }: IFunctionProps) {
   const searchProps = {
     showSearch,
     searchRef,
-    handleSearch,
   };
 
   const userProps = {

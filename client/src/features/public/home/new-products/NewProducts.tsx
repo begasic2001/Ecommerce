@@ -5,10 +5,10 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { ProductItem } from '~/components/product-item';
-import { INewItem, INewItemProps } from './interface.type';
+import { INewListArrayItemProps } from '~/interface/props.type';
 import s from './new-products.module.scss';
 
-function NewProductsFeature({ newList }: INewItemProps) {
+function NewProductsFeature({ newList }: INewListArrayItemProps) {
   const theme = useTheme();
   const media = {
     betweenLgXl: useMediaQuery<boolean>(theme.breakpoints.between('lg', 'xl')),
@@ -27,7 +27,7 @@ function NewProductsFeature({ newList }: INewItemProps) {
             slidesPerView={media.downSm ? 2 : media.betweenSmLg ? 3 : media.betweenLgXl ? 4 : 5}
             navigation
           >
-            {newList.map((item: INewItem) => (
+            {newList.map((item) => (
               <SwiperSlide key={item.id}>
                 <ProductItem item={item} />
               </SwiperSlide>

@@ -7,17 +7,13 @@ import { CheckboxFilter } from './CheckboxFilter';
 import s from './filter.module.scss';
 import { InputNumberFilter } from './InputNumberFilter';
 import { IFilterPartProps } from './interface.type';
+import { useProductContext } from '~/store/products.store';
 
 function Filter({ filterPartProps }: IFilterPartProps) {
-  const {
-    categoryData,
-    arrangePrice,
-    handleChangeSliderPrice,
-    handleChangeInputPrice,
-    sliderPriceValue,
-    handleCategoryChecked,
-    handleSubCategoryChecked,
-  } = filterPartProps;
+  const { arrangePrice, handleChangeSliderPrice, handleChangeInputPrice, sliderPriceValue } =
+    filterPartProps;
+
+  const theme = useProductContext();
 
   return (
     <section className={clsx(s.filter, filterPartProps?.isDrawer && s.filterIsDrawer)}>
@@ -28,12 +24,12 @@ function Filter({ filterPartProps }: IFilterPartProps) {
       <section className={s.filterBox}>
         <p className={s.filterBoxTitle}>Các ngày lễ</p>
         <FormGroup>
-          {categoryData.map((item) => (
+          {theme?.categoryData.map((item) => (
             <CheckboxFilter
               key={item.id}
               value={item.id}
               label={item.name}
-              onChange={handleCategoryChecked}
+              onChange={theme?.handleCategoryChecked}
             />
           ))}
         </FormGroup>
@@ -42,8 +38,14 @@ function Filter({ filterPartProps }: IFilterPartProps) {
       <section className={s.filterBox}>
         <p className={s.filterBoxTitle}>Các kệ hoa</p>
         <FormGroup>
-          <CheckboxFilter value="d" label="Kệ sinh nhật" onChange={handleSubCategoryChecked} />
-          <CheckboxFilter value="e" label="Kệ khai trương" onChange={handleSubCategoryChecked} />
+          {theme?.subCategoryData.map((item) => (
+            <CheckboxFilter
+              key={item.id}
+              value={item.id}
+              label={item.name}
+              onChange={theme?.handleSubCategoryChecked}
+            />
+          ))}
         </FormGroup>
       </section>
       <Divider />

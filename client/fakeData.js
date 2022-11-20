@@ -83,7 +83,7 @@ const generateProductList = (brandList, categoryList, subCategoryList, n) => {
             name: faker.commerce.productName(),
             code: faker.datatype.uuid(),
             amount: faker.datatype.number({ min: 0, max: 1000 }),
-            detail: faker.lorem.paragraph(),
+            detail: faker.lorem.paragraphs(5),
             price,
             newPrice,
             color: [
@@ -94,9 +94,18 @@ const generateProductList = (brandList, categoryList, subCategoryList, n) => {
             ],
             size: faker.datatype.number({ min: 1, max: 100 }),
             images: [
-              faker.image.imageUrl(500, 500),
-              faker.image.imageUrl(500, 500),
-              faker.image.imageUrl(500, 500),
+              {
+                id: faker.datatype.uuid(),
+                image: faker.image.imageUrl(500, 500),
+              },
+              {
+                id: faker.datatype.uuid(),
+                image: faker.image.imageUrl(500, 500),
+              },
+              {
+                id: faker.datatype.uuid(),
+                image: faker.image.imageUrl(500, 500),
+              },
             ],
             hotTrend: faker.datatype.boolean(),
             new: faker.datatype.boolean(),

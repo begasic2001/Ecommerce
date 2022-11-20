@@ -3,13 +3,14 @@ import { useState } from 'react';
 import 'swiper/css';
 import s from './booking.module.scss';
 import { GalleryComponent } from './GalleryComp';
-import { IArrGalleryProps } from './interface';
 import { SummaryComponent } from './Summary';
+import { useProductDetailContext } from '~/store/product-detail.store';
 
-function BookingFeature({ arrGallery }: IArrGalleryProps) {
+function BookingFeature() {
+  const theme = useProductDetailContext();
   const [imgGallerySelect, setImgGallerySelect] = useState<number>(0);
   const [quantity, setQuantity] = useState<number>(1);
-  const [maxQuantity, setMaxQuantity] = useState<number>(300);
+  const [maxQuantity, setMaxQuantity] = useState<number>(() => Number(theme?.productDetail?.product.amount));
 
   const handleGallerySelect = (num: number) => {
     setImgGallerySelect(num);
@@ -41,7 +42,6 @@ function BookingFeature({ arrGallery }: IArrGalleryProps) {
       <Container className={s['booking__container']}>
         <section className={s['booking__row']}>
           <GalleryComponent
-            arrGallery={arrGallery}
             imgGallerySelect={imgGallerySelect}
             handleGallerySelect={handleGallerySelect}
           />

@@ -3,7 +3,7 @@ import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import { useState } from 'react';
 import FilterComp from './filter';
-import { IInitArrangePrice, IProductListProps } from './interface.type';
+import { IInitArrangePrice } from './interface.type';
 import s from './product-list.module.scss';
 import ResultComp from './result';
 
@@ -11,13 +11,10 @@ const minPriceDistance = 10;
 const initMinPrice = 0;
 const initMaxPrice = 100;
 
-const ProductList = ({ productListProps }: IProductListProps) => {
-  const { handleCategoryChecked, handleSubCategoryChecked, productData, categoryData } = productListProps;
-
+function ProductList() {
   const theme = useTheme();
   const upLgMedia = useMediaQuery<boolean>(theme.breakpoints.up('lg'));
 
-  const [currentPage, setCurrentPage] = useState<number>(1);
   const [sliderPriceValue, setSliderPriceValue] = useState<number[]>([initMinPrice, initMaxPrice]);
   const [arrangePrice, setArrangePrice] = useState<IInitArrangePrice>({
     min: initMinPrice * 10000,
@@ -84,23 +81,11 @@ const ProductList = ({ productListProps }: IProductListProps) => {
     }
   };
 
-  const handleChangeCurrentPage = (e: React.ChangeEvent<unknown>, value: number) => {
-    setCurrentPage(value);
-  };
-
   const filterPartProps = {
-    categoryData,
     sliderPriceValue,
     handleChangeSliderPrice,
     arrangePrice,
     handleChangeInputPrice,
-    handleCategoryChecked,
-    handleSubCategoryChecked,
-  };
-
-  const resultPartProps = {
-    currentPage,
-    handleChangeCurrentPage,
   };
 
   return (
@@ -108,15 +93,11 @@ const ProductList = ({ productListProps }: IProductListProps) => {
       <Container className={s.container}>
         <Stack direction="row" className={s.row}>
           {upLgMedia && <FilterComp filterPartProps={filterPartProps} />}
-          <ResultComp
-            resultPartProps={resultPartProps}
-            filterPartProps={filterPartProps}
-            productList={productData}
-          />
+          <ResultComp filterPartProps={filterPartProps} />
         </Stack>
       </Container>
     </section>
   );
-};
+}
 
 export default ProductList;
