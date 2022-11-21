@@ -1,52 +1,69 @@
 import {
-  Visibility as VisbilityIcon,
+  Visibility as VisibilityIcon,
   VisibilityOff as VisibilityOffIcon,
 } from '@mui/icons-material';
-import { useEffect, useRef, useState } from 'react';
+import { IconButton } from '@mui/material';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { CustomTextField } from '~/components/input';
 import s from './login-form.module.scss';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { IHandleFormSubmitLogin } from '~/interface/props.type';
 
-function LoginFormFeature() {
-  const togglePassRef: any = useRef(null);
-  const inputPassRef: any = useRef(null);
+const schema = yup.object({
+  email: yup
+    .string()
+    .required('Vui lòng nhập vào')
+    .email('Nhập đúng định dạng Email, vd @gmail.com'),
+  password: yup
+    .string()
+    .required('Vui lòng nhập vào')
+    .min(8, 'Phải ít nhất 8 ký tự')
+    .matches(/[A-Z]/, 'Phải có ít nhất 1 ký tự in hoa'),
+});
+
+function LoginFormFeature({ handleFormSubmit }: IHandleFormSubmitLogin) {
   const [toggleShowPass, setToggleShowPass] = useState<boolean>(false);
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   const togglePass = () => {
     setToggleShowPass(!toggleShowPass);
   };
 
-  useEffect(() => {
-    const togglePassType = () => {
-      const nodeInput = inputPassRef.current;
-      if (nodeInput && toggleShowPass) nodeInput.setAttribute('type', 'text');
-      else nodeInput.setAttribute('type', 'password');
-    };
-
-    document.addEventListener('click', togglePassType);
-    return () => document.removeEventListener('click', togglePassType);
-  }, [toggleShowPass, setToggleShowPass]);
-
   return (
     <section className={s.login}>
       <section className={s.box}>
         <h3 className={s['box__title']}>Đăng nhập</h3>
-        <form className={s.form}>
-          <section className={s['form-item']}>
-            <input type="text" placeholder=" " className={s['form-item__input']} />
-            <label className={s['form-item__label']}>Email</label>
-          </section>
-          <section className={s['form-item']}>
-            <input
-              type="password"
-              placeholder=" "
-              ref={inputPassRef}
-              className={s['form-item__input']}
-            />
-            <label className={s['form-item__label']}>Mật khẩu</label>
-            <div className={s['form-item__toggle']} onClick={togglePass} ref={togglePassRef}>
-              {toggleShowPass ? <VisbilityIcon /> : <VisibilityOffIcon />}
-            </div>
-          </section>
+        <form onSubmit={handleSubmit(handleFormSubmit)} className={s.form}>
+          <CustomTextField
+            control={control}
+            name="email"
+            label="Email"
+            className={s['form-item']}
+          />
+          <CustomTextField
+            type={toggleShowPass ? 'text' : 'password'}
+            control={control}
+            name="password"
+            label="Password"
+            InputProps={{
+              endAdornment: (
+                <IconButton onClick={togglePass} edge="end">
+                  {toggleShowPass ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                </IconButton>
+              ),
+            }}
+            className={s['form-item']}
+          />
           <section className={s.forgot}>
             <Link to={'/account/forgot'}>Quên mật khẩu</Link>
           </section>

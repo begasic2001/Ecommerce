@@ -40,3 +40,7 @@ export interface IOtherSaleArrayItemProps {
 export interface INewListArrayItemProps {
   newList: IProductItem[];
 }
+
+export interface IHandleFormSubmitLogin {
+  handleFormSubmit: (value: any) => void;
+}

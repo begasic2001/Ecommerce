@@ -122,13 +122,41 @@ const generateProductList = (brandList, categoryList, subCategoryList, n) => {
   return productList;
 };
 
+const generateUserList = (n) => {
+  if (n <= 0) return [];
+
+  const userList = [];
+
+  Array.from(new Array(n)).forEach((item) => {
+    const firstName = faker.name.firstName();
+    const lastName = faker.name.lastName();
+
+    const userItem = {
+      id: faker.datatype.uuid(),
+      email: faker.internet.email(firstName, lastName),
+      password: faker.internet.password(),
+      name: `${firstName} ${lastName}`,
+      phone: faker.phone.number('09# ### ####'),
+      avatar: faker.internet.avatar(),
+      createAt: Date.now(),
+      updatedAt: Date.now(),
+    };
+
+    userList.push(userItem);
+  });
+
+  return userList;
+};
+
 (() => {
   const brandList = generateBrandList(3);
   const categoryList = generateCategoryList(3);
   const subCategoryList = generateSubCategoryList(categoryList, 3);
   const productList = generateProductList(brandList, categoryList, subCategoryList, 3);
+  const userList = generateUserList(5);
 
   const db = {
+    users: userList,
     brands: brandList,
     categories: categoryList,
     subCategories: subCategoryList,

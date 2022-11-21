@@ -1,12 +1,17 @@
 import { Route, Routes } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { FooterLayout } from '~/layouts/footer';
-import  HeaderLayout  from '~/layouts/header';
+import HeaderLayout from '~/layouts/header';
 import { LoginPage } from '~/pages/account/login';
-import { ILogRoutes } from './interface';
 import { RegisterPage } from '~/pages/account/register';
 import { NewInfoPage } from '~/pages/account/info';
 import { ResetPage } from '~/pages/account/reset';
+
+export interface ILogRoutes {
+  id: string;
+  path: string;
+  component: () => JSX.Element;
+}
 
 const logRoutes: ILogRoutes[] = [
   { id: uuidv4(), path: 'login', component: LoginPage },

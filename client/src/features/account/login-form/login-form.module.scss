@@ -36,58 +36,18 @@
   }
 
   &-item {
-    position: relative;
+    width: 100%;
 
+    & :global(.MuiFormLabel-root) {
+      font-size: 1.4rem;
+    }
+
+    & :global(.MuiInputBase-input) {
+      font-size: 1.4rem;
+    }
+    
     & + & {
       margin-top: 2.5rem;
-    }
-
-    &__input {
-      @include utils.boxSize(100%, 5rem);
-      padding: 0 2rem;
-      border: solid 1px utils.$border-primary-color;
-      border-radius: utils.$border-radius-02-model;
-      transition: utils.$transition-02-effect;
-
-      &:focus {
-        border: solid 2px #d29eff;
-      }
-
-      &:not(:placeholder-shown) ~ label,
-      &:focus ~ label {
-        top: 0;
-        left: 1rem;
-        padding: 0 1rem;
-        background-color: #fff;
-        color: #d29eff;
-        font-size: 1.2rem;
-      }
-    }
-
-    &__label {
-      top: 50%;
-      position: absolute;
-      left: 2rem;
-      color: #ccc;
-      pointer-events: none;
-      transform: translateY(-50%);
-      transition: utils.$transition-02-effect;
-    }
-
-    &__toggle {
-      @include utils.flexCenter();
-      @include utils.boxSize(3rem);
-
-      position: absolute;
-      top: 50%;
-      right: 2rem;
-      z-index: 3;
-      background-color: #fff;
-      transform: translateY(-50%);
-
-      &:hover {
-        cursor: pointer;
-      }
     }
   }
 }

@@ -9,3 +9,8 @@ export interface IProductParams {
   _page: number;
   _limit: number;
 }
+
+export interface IUserParams {
+  name: string;
+  password: string;
+}
