@@ -43,4 +43,5 @@ export interface INewListArrayItemProps {
 
 export interface IHandleFormSubmitLogin {
   handleFormSubmit: (value: any) => void;
+  notExist: boolean;
 }

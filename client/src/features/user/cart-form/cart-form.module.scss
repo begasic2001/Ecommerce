@@ -22,7 +22,6 @@
   }
 
   th {
-
     &:nth-child(1) {
       width: 5%;
     }
@@ -46,6 +45,24 @@
     @include utils.boxSize(30%);
     display: block;
     margin: 0 auto;
+  }
+}
+
+.submit {
+  display: flex;
+
+  &__btn {
+    margin-top: 3rem;
+    margin-left: auto;
+    padding: 1rem;
+    border: none;
+    min-width: 10rem;
+    background-color: #f00;
+    color: #fff;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 

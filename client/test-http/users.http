@@ -6,4 +6,4 @@ GET {{baseUrl}}/users
 ###
 
 # @name GetSpecific
-GET {{baseUrl}}/users?email=AnhQun.Trng4@yahoo.com&password=F1Lm_6t0Re17eYJ
+GET {{baseUrl}}/users?email=PhngTrang_Phng@yahoo.com&password=XD2OBDyWnhdo0sn

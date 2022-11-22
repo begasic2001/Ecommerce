@@ -35,6 +35,12 @@
     }
   }
 
+  &-section {
+    & + & {
+      margin-top: 2rem;
+    }
+  }
+
   &-item {
     width: 100%;
 
@@ -45,9 +51,12 @@
     & :global(.MuiInputBase-input) {
       font-size: 1.4rem;
     }
-    
-    & + & {
-      margin-top: 2.5rem;
+
+    &__error {
+      margin-top: 1rem;
+      color: #f00;
+      font-style: italic;
+      font-weight: bold;
     }
   }
 }

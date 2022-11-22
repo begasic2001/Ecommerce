@@ -1,5 +1,9 @@
 @use '~/styles/utils' as utils;
 
+.row {
+  align-items: center;
+}
+
 .search {
   width: 25rem;
 

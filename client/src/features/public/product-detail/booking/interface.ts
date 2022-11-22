@@ -8,4 +8,5 @@ export interface ISummaryPartProps {
   quantity: number;
   handleQuantityBtn: (action: string) => void;
   handleQuantityCurrent: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  addItemToCart: () => void;
 }

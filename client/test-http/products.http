@@ -1,7 +1,7 @@
 @baseUrl = http://localhost:9000/api
 
 # @name getAllProducts
-GET {{baseUrl}}/products/d03c7465-7cd2-4c6f-8981-d1786a94984c
+GET {{baseUrl}}/products/a39fd410-12ab-42fc-b007-a27dbb690cc8
 
 ###
 

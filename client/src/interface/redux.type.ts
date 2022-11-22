@@ -12,3 +12,12 @@ export interface IProductInitial {
   isSearch: boolean;
   pagination: IPagination;
 }
+
+export interface ICartInitial {
+  id: string;
+  name: string;
+  image: string;
+  amount: number;
+  price: number;
+  total: number;
+}

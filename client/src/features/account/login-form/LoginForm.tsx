@@ -24,7 +24,7 @@ const schema = yup.object({
     .matches(/[A-Z]/, 'Phải có ít nhất 1 ký tự in hoa'),
 });
 
-function LoginFormFeature({ handleFormSubmit }: IHandleFormSubmitLogin) {
+function LoginFormFeature({ handleFormSubmit, notExist }: IHandleFormSubmitLogin) {
   const [toggleShowPass, setToggleShowPass] = useState<boolean>(false);
 
   const {
@@ -44,26 +44,35 @@ function LoginFormFeature({ handleFormSubmit }: IHandleFormSubmitLogin) {
       <section className={s.box}>
         <h3 className={s['box__title']}>Đăng nhập</h3>
         <form onSubmit={handleSubmit(handleFormSubmit)} className={s.form}>
-          <CustomTextField
-            control={control}
-            name="email"
-            label="Email"
-            className={s['form-item']}
-          />
-          <CustomTextField
-            type={toggleShowPass ? 'text' : 'password'}
-            control={control}
-            name="password"
-            label="Password"
-            InputProps={{
-              endAdornment: (
-                <IconButton onClick={togglePass} edge="end">
-                  {toggleShowPass ? <VisibilityOffIcon /> : <VisibilityIcon />}
-                </IconButton>
-              ),
-            }}
-            className={s['form-item']}
-          />
+          <section className={s['form-section']}>
+            <CustomTextField
+              control={control}
+              name="email"
+              label="Email"
+              className={s['form-item']}
+            />
+            {errors?.email && <p className={s['form-item__error']}>{errors?.email?.message}</p>}
+            {notExist && <p className={s['form-item__error']}>Tài khoản không tồn tại</p>}
+          </section>
+          <section className={s['form-section']}>
+            <CustomTextField
+              type={toggleShowPass ? 'text' : 'password'}
+              control={control}
+              name="password"
+              label="Password"
+              InputProps={{
+                endAdornment: (
+                  <IconButton onClick={togglePass} edge="end">
+                    {toggleShowPass ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                  </IconButton>
+                ),
+              }}
+              className={s['form-item']}
+            />
+            {errors?.password && (
+              <p className={s['form-item__error']}>{errors?.password?.message}</p>
+            )}
+          </section>
           <section className={s.forgot}>
             <Link to={'/account/forgot'}>Quên mật khẩu</Link>
           </section>

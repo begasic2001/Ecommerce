@@ -4,15 +4,16 @@ import {
   Remove as MinusIcon,
 } from '@mui/icons-material';
 import 'swiper/css';
+import { useProductDetailContext } from '~/store/product-detail.store';
 import s from './booking.module.scss';
 import { ISummaryPartProps } from './interface';
-import { useProductDetailContext } from '~/store/product-detail.store';
 
 export function SummaryComponent({
   maxQuantity,
   quantity,
   handleQuantityBtn,
   handleQuantityCurrent,
+  addItemToCart,
 }: ISummaryPartProps) {
   const theme = useProductDetailContext();
 
@@ -64,7 +65,7 @@ export function SummaryComponent({
           </tr>
         </tbody>
       </table>
-      <button>Thêm vào giỏ hàng</button>
+      <button onClick={addItemToCart}>Thêm vào giỏ hàng</button>
     </section>
   );
 }

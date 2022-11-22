@@ -2,6 +2,7 @@ import { Container } from '@mui/material';
 import { NavLink, useLocation } from 'react-router-dom';
 import { ContactComponent } from './contact/ContactComp';
 import { ChangePassComponent } from './change-pass/ChangePassComp';
+import { HistoryComponent } from './history/History';
 import s from './info.module.scss';
 
 const InfoFeature = () => {
@@ -28,6 +29,7 @@ const InfoFeature = () => {
           <section className={s.content}>
             {pathName === '/user/info' && <ContactComponent />}
             {pathName === '/user/change-pass' && <ChangePassComponent />}
+            {pathName === '/user/history' && <HistoryComponent />}
           </section>
         </section>
       </Container>

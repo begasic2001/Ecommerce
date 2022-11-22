@@ -1,12 +1,17 @@
+import { ShoppingCart as ShoppingCartIcon } from '@mui/icons-material';
 import { useMediaQuery, useTheme } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import { useEffect, useRef, useState } from 'react';
 import { Search, UserMenu } from './components';
 import { ISearchRef } from './interface.type';
+import Cookies from 'js-cookie';
+import s from './function.module.scss';
+import { Link } from 'react-router-dom';
 
 function Function() {
   const theme = useTheme();
   const upXlMedia = useMediaQuery<boolean>(theme.breakpoints.up('xl'));
+  const checkLogin = !!Cookies.get('isLogin');
 
   const searchRef: ISearchRef = {
     btn: useRef(null),
@@ -28,7 +33,7 @@ function Function() {
   };
 
   useEffect(() => {
-    const toggleSearch = (e: { target: any; }) => {
+    const toggleSearch = (e: { target: any }) => {
       const nodeSearch = searchRef.btn.current;
       const nodeInput = searchRef.input.current;
       const nodeInputBtn = searchRef.inputBtn.current;
@@ -56,8 +61,13 @@ function Function() {
   };
 
   return (
-    <Stack direction="row">
+    <Stack direction="row" className={s.row}>
       <Search searchProps={searchProps} />
+      {checkLogin && (
+        <Link to="/user/cart">
+          <ShoppingCartIcon sx={{ width: '2rem', height: '2rem', ml: '2rem' }} />
+        </Link>
+      )}
       {upXlMedia && <UserMenu userProps={userProps} />}
     </Stack>
   );
