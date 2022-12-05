@@ -1,13 +1,13 @@
 {
-	"emmet.includeLanguages": {
-		"javascript": "javascriptreact"
-	},
-	"editor.formatOnSave": true,
-	"editor.defaultFormatter": "esbenp.prettier-vscode",
-	"editor.quickSuggestions": {
-		"other": "on",
-		"comments": "off",
-		"strings": "off"
-	},
-	"editor.quickSuggestionsDelay": 10
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.quickSuggestions": {
+    "other": "on",
+    "comments": "off",
+    "strings": "off"
+  },
+  "editor.quickSuggestionsDelay": 10
 }

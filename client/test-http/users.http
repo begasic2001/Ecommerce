@@ -1,9 +1,0 @@
-@baseUrl = http://localhost:9000/api
-
-# @name GetAll
-GET {{baseUrl}}/users
-
-###
-
-# @name GetSpecific
-GET {{baseUrl}}/users?email=PhngTrang_Phng@yahoo.com&password=XD2OBDyWnhdo0sn
