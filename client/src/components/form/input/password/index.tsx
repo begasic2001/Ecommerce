@@ -1,28 +1,35 @@
 import { IconButton, TextField } from '@mui/material';
+import { ForwardedRef, forwardRef } from 'react';
 import { Control, Controller, FieldValues } from 'react-hook-form';
 import { EyeIcon, EyeSlashIcon } from '~/components/icons';
 
-interface CustomTextField {
+interface CustomPassField {
   control: Control<FieldValues, any>;
   name: string;
   showPass: boolean;
   togglePass: () => null | void;
   defaultValue?: string;
-  error?: string;
+  error?: any;
   label?: string;
   margin?: 'none' | 'dense' | 'normal' | undefined;
+  ref?: any;
 }
 
-function CustomTextField({
-  control,
-  name,
-  defaultValue = '',
-  error = '',
-  margin = 'none',
-  togglePass = () => null,
-  showPass = false,
-  ...props
-}: CustomTextField) {
+type ElementRef = ForwardedRef<HTMLInputElement>;
+
+function CustomPassField(
+  {
+    control,
+    name,
+    defaultValue = '',
+    error = '',
+    margin = 'none',
+    togglePass = () => null,
+    showPass = false,
+    ...props
+  }: CustomPassField,
+  ref: ElementRef
+) {
   return (
     <section className="form-input">
       <Controller
@@ -47,6 +54,7 @@ function CustomTextField({
             }}
             fullWidth
             margin={margin}
+            inputRef={ref}
             {...props}
           />
         )}
@@ -56,4 +64,4 @@ function CustomTextField({
   );
 }
 
-export default CustomTextField;
+export default forwardRef(CustomPassField);

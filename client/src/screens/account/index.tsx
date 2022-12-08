@@ -1,12 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
-import { InfoPage, LoginPage, RegisterPage, ResetPage } from '~/pages/account';
+import { LoginPage, RegisterPage, ResetPage } from '~/pages/account';
 
 const accountRoutes = [
   { path: 'login', component: LoginPage },
   { path: 'register', component: RegisterPage },
   { path: 'reset', component: ResetPage },
-  { path: 'info', component: InfoPage },
 ];
 
 function AccountScreens() {

@@ -1,39 +1,26 @@
-import { IconButton, TextField } from '@mui/material';
+import { ChangeEvent } from 'react';
 import { Control, Controller, FieldValues } from 'react-hook-form';
-import { EyeIcon, EyeSlashIcon } from '~/components/icons';
 
 interface CustomFileField {
   control: Control<FieldValues, any>;
   name: string;
-  defaultValue?: string;
-  error?: string;
+  error?: any;
   margin?: 'none' | 'dense' | 'normal' | undefined;
+  fullWidth?: boolean;
+  accept?: string;
 }
 
-function CustomFileField({
-  control,
-  name,
-  defaultValue = '',
-  error = '',
-  margin = 'none',
-  ...props
-}: CustomFileField) {
+function CustomFileField({ control, name, error = '', accept = '', ...props }: CustomFileField) {
   return (
     <section className="form-input">
       <Controller
         control={control}
         name={name}
-        defaultValue={defaultValue}
-        render={({ field: { value, onChange } }) => (
-          <TextField
+        render={({ field: { onChange } }) => (
+          <input
             type="file"
-            value={value}
-            onChange={onChange}
-            InputProps={{
-              className: 'text-14',
-            }}
-            fullWidth
-            margin={margin}
+            accept={accept}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => onChange(e.target.files)}
             {...props}
           />
         )}

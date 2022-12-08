@@ -67,7 +67,7 @@
   }
 
   .title-product-detail {
-    @apply mb-20 bg-[#f8f8f8] py-15 py-20 text-20;
+    @apply mb-20 bg-[#f8f8f8] py-20 text-20;
   }
 
   .sub-title-product-detail {
@@ -75,7 +75,7 @@
   }
 
   .text-product-detail {
-    @apply text-justify leading-6 leading-normal;
+    @apply text-justify leading-normal;
   }
 
   .form-item-error {

@@ -5,7 +5,7 @@ interface CustomTextField {
   control: Control<FieldValues, any>;
   name: string;
   defaultValue?: string;
-  error?: string;
+  error?: any;
   label?: string;
   margin?: 'none' | 'dense' | 'normal' | undefined;
 }
