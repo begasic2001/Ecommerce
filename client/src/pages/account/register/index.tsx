@@ -43,7 +43,7 @@ function Register() {
       enqueueSnackbar(response.data.message, { variant: 'success' });
       setTimeout(() => {
         navigate('/account/login');
-      }, 3000);
+      }, 2000);
     } catch (err: any) {
       enqueueSnackbar(err.data.message, { variant: 'error' });
       console.error('Some error was found in register:', err);

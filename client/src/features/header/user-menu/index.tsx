@@ -2,7 +2,14 @@ import { Divider, IconButton, ListItemIcon, Menu, MenuItem } from '@mui/material
 import clsx from 'clsx';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { LoginIcon, RegisterIcon, UserBorderIcon } from '~/components/icons';
+import {
+  LoginIcon,
+  RegisterIcon,
+  UserBorderIcon,
+  LogoutIcon,
+  UserNoBorderIcon,
+  HistoryIcon,
+} from '~/components/icons';
 
 interface UserMenuItem {
   path: string;
@@ -10,7 +17,11 @@ interface UserMenuItem {
   children: string;
 }
 
-function UserMenu() {
+interface UserMenuProps {
+  isLogin: boolean;
+}
+
+function UserMenu({ isLogin }: UserMenuProps) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const openMenu: boolean = Boolean(anchorEl);
@@ -39,17 +50,40 @@ function UserMenu() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <UserMenuItem path="/account/login" icon={<LoginIcon />}>
-          Login
-        </UserMenuItem>
-        <Divider />
-        <UserMenuItem path="/account/register" icon={<RegisterIcon />}>
-          Register
-        </UserMenuItem>
+        {!isLogin && <MenuIsNotLogin />}
+        {isLogin && <MenuIsLogin />}
       </Menu>
     </section>
   );
 }
+
+const MenuIsNotLogin = () => (
+  <>
+    <UserMenuItem path="/account/login" icon={<LoginIcon />}>
+      Login
+    </UserMenuItem>
+    <Divider />
+    <UserMenuItem path="/account/register" icon={<RegisterIcon />}>
+      Register
+    </UserMenuItem>
+  </>
+);
+
+const MenuIsLogin = () => (
+  <>
+    <UserMenuItem path="/user/info" icon={<UserNoBorderIcon />}>
+      Tài khoản thông tin
+    </UserMenuItem>
+    <Divider />
+    <UserMenuItem path="/user/history" icon={<HistoryIcon />}>
+      Lịch sử giao dịch
+    </UserMenuItem>
+    <Divider />
+    <UserMenuItem path="/account/register" icon={<LogoutIcon />}>
+      Đăng xuất
+    </UserMenuItem>
+  </>
+);
 
 const UserMenuItem = ({ path, icon, children }: UserMenuItem) => (
   <MenuItem>

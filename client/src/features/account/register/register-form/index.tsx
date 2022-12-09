@@ -19,6 +19,7 @@ const schemaValidate = yup.object({
     .string()
     .required('* Không được bỏ trống')
     .min(8, '* Nhập trên 8 ký tự')
+    .matches(/(?!.* )/, '* Không được có khoảng trắng')
     .matches(/(.*[a-z].*)/, '* Phải có ít nhất 1 chữ thường')
     .matches(/(.*[A-Z].*)/, '* Phải có ít nhất 1 chữ in hoa')
     .matches(/(.*\d.*)/, '* Phải có ít nhất 1 chữ số'),
@@ -41,6 +42,7 @@ const schemaValidate = yup.object({
 });
 
 const checkValidTxt = [
+  'Không có khoảng trắng',
   'Trên 8 ký tự',
   'Có ít nhất 1 chữ thường',
   'Có ít nhất 1 chữ in hoa',
@@ -82,12 +84,14 @@ function RegisterForm({ submitForm }: RegisterFormProps) {
         lowercase: false,
         uppercase: false,
         digit: false,
+        whitespace: false,
       };
 
       if (passRefValue.length >= 8) checkValid.length = true;
       if (/(.*[a-z].*)/.test(passRefValue)) checkValid.lowercase = true;
       if (/(.*[A-Z].*)/.test(passRefValue)) checkValid.uppercase = true;
       if (/(.*\d.*)/.test(passRefValue)) checkValid.digit = true;
+      if (/(?!.* )/.test(passRefValue)) checkValid.whitespace = true;
 
       setValidPassword(checkValid);
     };
