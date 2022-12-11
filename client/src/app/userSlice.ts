@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { userApi } from '~/api';
-import { RegisterSubmitValue } from '~/pages/account/register';
 import Cookies from 'js-cookie';
+import { userApi } from '~/api';
 import { LoginSubmitValue } from '~/pages/account/login';
+import { RegisterSubmitValue } from '~/pages/account/register';
 
 export interface CounterState {
   loading: boolean;
@@ -44,6 +44,23 @@ const loginUser = createAsyncThunk(
   }
 );
 
+const logoutUser = createAsyncThunk(
+  'user/logout',
+  async (refreshToken: string, { rejectWithValue }) => {
+    try {
+      const res = await userApi.logout(refreshToken);
+      return res;
+    } catch (err: any) {
+      return rejectWithValue({
+        message: err.message,
+        data: err.response.data,
+        status: err.response.status,
+        headers: err.response.headers,
+      });
+    }
+  }
+);
+
 const initialState: CounterState = {
   loading: true,
   data: JSON.parse(Cookies.get('user') || '{}'),
@@ -56,6 +73,7 @@ export const counterSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(registerUser.pending, (state) => {
+      state.loading = true;
       state.err = null;
     });
     builder.addCase(registerUser.fulfilled, (state) => {
@@ -67,6 +85,7 @@ export const counterSlice = createSlice({
       state.err = action.payload;
     });
     builder.addCase(loginUser.pending, (state) => {
+      state.loading = true;
       state.err = null;
     });
     builder.addCase(loginUser.fulfilled, (state, action) => {
@@ -82,8 +101,19 @@ export const counterSlice = createSlice({
       state.data = {};
       state.err = action.payload;
     });
+    builder.addCase(logoutUser.fulfilled, (state) => {
+      state.loading = false;
+      state.data = {};
+      state.err = null;
+
+      Cookies.remove('user');
+    });
+    builder.addCase(logoutUser.rejected, (state, action) => {
+      state.loading = false;
+      state.err = action.payload;
+    });
   },
 });
 
-export { registerUser, loginUser };
+export { registerUser, loginUser, logoutUser };
 export default counterSlice.reducer;

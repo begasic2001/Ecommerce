@@ -1,11 +1,11 @@
-import { Stack } from '@mui/material';
+import { Stack, Skeleton } from '@mui/material';
 import clsx from 'clsx';
 import InitialImg from '~/assets/images/400x500.png';
+import { formatCurrency } from '~/utils/format-currency';
 
 interface ProductItemProps {
-  image?: string;
-  name: string;
-  price: string;
+  data?: any;
+  isLoading?: boolean;
 }
 
 const styles = {
@@ -22,16 +22,40 @@ const styles = {
   price: 'mt-30',
 };
 
-function ProductItem({ image = InitialImg, name, price }: ProductItemProps) {
+function ProductItem({ data, isLoading = true }: ProductItemProps) {
   return (
-    <Stack className={clsx(styles.item.group, styles.item.base, styles.item.hover)}>
-      <div>
-        <img src={image} alt="other hot sale flower" className={clsx(styles.img.groupHover, styles.img.base)} />
-      </div>
-      <p className={styles.name}>{name}</p>
-      <p className={styles.price}>{price}</p>
-    </Stack>
+    <>
+      {isLoading && <ProductIsLoading />}
+      {!isLoading && <ProductIsNotLoading data={data} />}
+    </>
   );
 }
+
+const ProductIsNotLoading = ({ data }: ProductItemProps) => (
+  <Stack className={clsx(styles.item.group, styles.item.base, styles.item.hover)}>
+    <div>
+      <img
+        src={data.img_one || InitialImg}
+        alt="other hot sale flower"
+        className={clsx(styles.img.groupHover, styles.img.base)}
+      />
+    </div>
+    <p className={styles.name}>{data.pro_name}</p>
+    <p className="mt-50 text-center font-bold text-red-1">
+      <em className="mr-10 text-txt-4 line-through decoration-[#ccc] decoration-1">
+        {formatCurrency.format(data.selling_price)}
+      </em>
+      {formatCurrency.format(data.discount_price)}
+    </p>
+  </Stack>
+);
+
+const ProductIsLoading = () => (
+  <Stack className={clsx(styles.item.group, styles.item.base, styles.item.hover)}>
+    <Skeleton variant="rectangular" width="100%" height={200} />
+    <Skeleton variant="text" width="100%" height={20} className="mt-auto" />
+    <Skeleton variant="text" width="100%" height={20} className="mt-30" />
+  </Stack>
+);
 
 export default ProductItem;

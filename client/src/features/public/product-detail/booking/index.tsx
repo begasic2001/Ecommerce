@@ -1,16 +1,23 @@
 import { Container, Stack, Table, TableBody, TableCell, TableRow, TextField } from '@mui/material';
 import clsx from 'clsx';
-import { useState } from 'react';
-import { SwiperSlide, Swiper } from 'swiper/react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { v4 as uuidv4 } from 'uuid';
 import FallbackImg from '~/assets/images/400x500.png';
 import { AddIcon, MinusIcon, TruckIcon } from '~/components/icons';
+import { useState } from 'react';
 
-function Booking() {
+interface ImageBookingProps {
+  selected: number;
+}
+
+function Booking({ data }: any) {
+  const [imageSelect, setImgSelect] = useState<number>(0);
+
   return (
     <section className={clsx('booking', 'mt-50 h-[50rem]')}>
       <Container className="container">
         <Stack direction="row" className="justify-between">
-          <ImageBooking />
+          <ImageBooking selected={imageSelect} />
           <InformationBooking />
         </Stack>
       </Container>
@@ -18,15 +25,19 @@ function Booking() {
   );
 }
 
-const ImageBooking = () => (
+const ImageBooking = ({ selected }: ImageBookingProps) => (
   <Stack className="h-[inherit] w-[35%] basis-[35%] justify-between">
     <section className="h-[40rem] w-full">
-      <img src={FallbackImg} alt="image" className="block h-[inherit] w-full object-cover object-center" />
+      <img
+        src={FallbackImg}
+        alt="image"
+        className="block h-[inherit] w-full object-cover object-center"
+      />
     </section>
     <section className="mt-20 h-[8rem] w-full">
       <Swiper direction="horizontal" spaceBetween={20} slidesPerView={4} className="h-[inherit]">
         {Array.from(new Array(5)).map(() => (
-          <SwiperSlide>
+          <SwiperSlide key={uuidv4()}>
             <section className="h-[inherit] hover:cursor-pointer">
               <img src={FallbackImg} alt="image item" className="block h-[inherit] w-full" />
             </section>
@@ -50,7 +61,10 @@ const InformationBooking = () => (
         </TableRow>
         <TableRow>
           <TableCell colSpan={2} className="border-none bg-[#fafafa] text-35 text-red-1">
-            <del className="mr-15 text-20 text-txt-2 line-through decoration-txt-2 decoration-1">100đ</del>50đ
+            <del className="mr-15 text-20 text-txt-2 line-through decoration-txt-2 decoration-1">
+              100đ
+            </del>
+            50đ
           </TableCell>
         </TableRow>
         <TableRow>

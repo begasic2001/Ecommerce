@@ -17,11 +17,15 @@ interface UserMenuItem {
   children: string;
 }
 
-interface UserMenuProps {
+interface MenuItemLogout {
+  handleLogout: () => void;
+}
+
+interface UserMenuProps extends MenuItemLogout {
   isLogin: boolean;
 }
 
-function UserMenu({ isLogin }: UserMenuProps) {
+function UserMenu({ isLogin, handleLogout }: UserMenuProps) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const openMenu: boolean = Boolean(anchorEl);
@@ -51,7 +55,7 @@ function UserMenu({ isLogin }: UserMenuProps) {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         {!isLogin && <MenuIsNotLogin />}
-        {isLogin && <MenuIsLogin />}
+        {isLogin && <MenuIsLogin handleLogout={handleLogout} />}
       </Menu>
     </section>
   );
@@ -69,7 +73,7 @@ const MenuIsNotLogin = () => (
   </>
 );
 
-const MenuIsLogin = () => (
+const MenuIsLogin = ({ handleLogout }: MenuItemLogout) => (
   <>
     <UserMenuItem path="/user/info" icon={<UserNoBorderIcon />}>
       Tài khoản thông tin
@@ -79,9 +83,14 @@ const MenuIsLogin = () => (
       Lịch sử giao dịch
     </UserMenuItem>
     <Divider />
-    <UserMenuItem path="/account/register" icon={<LogoutIcon />}>
-      Đăng xuất
-    </UserMenuItem>
+    <MenuItem>
+      <section onClick={handleLogout} className="flex text-14 text-black no-underline">
+        <ListItemIcon>
+          <LogoutIcon />
+        </ListItemIcon>
+        Đăng xuất
+      </section>
+    </MenuItem>
   </>
 );
 

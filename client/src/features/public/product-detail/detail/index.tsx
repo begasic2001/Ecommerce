@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { DataGuide, DataTransport } from './partial-data';
+import { v4 as uuidv4 } from 'uuid';
 
 interface TabItem {
   children: string;
@@ -26,7 +27,7 @@ function Detail() {
         <section className="border-b-solid border-b-2 border-b-black">
           <Swiper direction="horizontal" spaceBetween={0} slidesPerView={3}>
             {tabSliderItem.map((tabItem, index) => (
-              <SwiperSlide onClick={() => handleGallerySelect(index)}>
+              <SwiperSlide onClick={() => handleGallerySelect(index)} key={uuidv4()}>
                 <TabItem isSelected={imgSelect} index={index}>
                   {tabItem}
                 </TabItem>
@@ -61,7 +62,7 @@ const DataInfo = () => (
       <Table className="w-full text-left">
         <TableBody>
           {tableHeadInfo.map((headItem) => (
-            <TableRow>
+            <TableRow key={uuidv4()}>
               <TableCell variant="head" className="w-1/5 border-none py-15 text-14 font-bold">
                 {headItem}
               </TableCell>
@@ -74,9 +75,9 @@ const DataInfo = () => (
     <section className="content-product-detail">
       <h3 className="title-product-detail">Mô tả sản phẩm</h3>
       <p className="text-product-detail">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam quis dignissimos ipsa dolorum excepturi distinctio
-        velit repellat, fugiat exercitationem unde maiores sequi recusandae? Voluptas harum debitis quam enim. Nobis,
-        nesciunt!
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam quis dignissimos ipsa dolorum
+        excepturi distinctio velit repellat, fugiat exercitationem unde maiores sequi recusandae?
+        Voluptas harum debitis quam enim. Nobis, nesciunt!
       </p>
     </section>
   </section>
