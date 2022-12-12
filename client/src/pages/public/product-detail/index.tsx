@@ -1,7 +1,7 @@
-import { BookingFeature, DetailFeature } from '~/features/public/product-detail';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { productApi } from '~/api';
-import { useState, useEffect } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { BookingFeature, DetailFeature } from '~/features/public/product-detail';
 
 interface ProductAsyncData {
   loading: boolean;
@@ -25,7 +25,7 @@ function ProductDetail() {
         setProduct({
           ...product,
           loading: false,
-          data: res.data,
+          data: res.data.productData.rows[0],
         });
       } catch (err: any) {
         const errAnnounce = {
