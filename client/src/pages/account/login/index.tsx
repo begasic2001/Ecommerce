@@ -22,7 +22,7 @@ function Login() {
       unwrapResult(actionResult);
       enqueueSnackbar('Login success!!! 🎉🎉🎉', { variant: 'success' });
       setTimeout(() => {
-        navigate('/home');
+        window.location.assign('/home');
       }, 2000);
     } catch (err: any) {
       console.error('Something wrong with login', err);

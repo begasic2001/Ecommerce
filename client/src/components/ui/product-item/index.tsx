@@ -41,12 +41,19 @@ const ProductIsNotLoading = ({ data }: ProductItemProps) => (
       />
     </div>
     <p className={styles.name}>{data.pro_name}</p>
-    <p className="mt-50 text-center font-bold text-red-1">
-      <em className="mr-10 text-txt-4 line-through decoration-[#ccc] decoration-1">
+    {data.discount_price === 0 && (
+      <p className="mt-50 text-center font-bold text-red-1">
         {formatCurrency.format(data.selling_price)}
-      </em>
-      {formatCurrency.format(data.discount_price)}
-    </p>
+      </p>
+    )}
+    {data.discount_price !== 0 && (
+      <p className="mt-50 text-center font-bold text-red-1">
+        <em className="mr-10 text-txt-4 line-through decoration-[#ccc] decoration-1">
+          {formatCurrency.format(data.selling_price)}
+        </em>
+        {formatCurrency.format(data.discount_price)}
+      </p>
+    )}
   </Stack>
 );
 

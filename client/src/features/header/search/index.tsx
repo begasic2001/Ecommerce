@@ -1,9 +1,17 @@
-import { InputAdornment, TextField } from '@mui/material';
+import { InputAdornment } from '@mui/material';
+import { Control, FieldValues } from 'react-hook-form';
+import { CustomTextField } from '~/components/form/input';
 import { SearchIcon } from '~/components/icons';
 
-function Search() {
+interface SearchProps {
+  control: Control<FieldValues, any>
+}
+
+function Search({ control }: SearchProps) {
   return (
-    <TextField
+    <CustomTextField
+      control={control}
+      name="search"
       placeholder="Nhập hoa, chậu yêu thích..."
       InputProps={{
         startAdornment: (
@@ -13,9 +21,9 @@ function Search() {
         ),
         className: 'text-14',
       }}
-      className="w-250"
     />
   );
 }
 
 export { Search };
+

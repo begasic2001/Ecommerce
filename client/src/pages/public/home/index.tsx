@@ -22,7 +22,7 @@ function Home() {
       <SlideshowFeature />
       <SaleFeature hotProductList={hotProductSelector} />
       <SpecialFeature />
-      <NewFeature />
+      <NewFeature hotProductList={hotProductSelector} />
     </section>
   );
 }

@@ -50,7 +50,7 @@ function ProductDetail() {
   return (
     <section className="product-detail">
       <BookingFeature data={product.data} />
-      <DetailFeature />
+      <DetailFeature data={product.data} />
     </section>
   );
 }

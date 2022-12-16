@@ -8,6 +8,13 @@ interface CustomTextField {
   error?: any;
   label?: string;
   margin?: 'none' | 'dense' | 'normal' | undefined;
+  fullWidth?: boolean;
+  type?: string;
+  placeholder?: string;
+  InputProps?: {
+    startAdornment: JSX.Element;
+    className: string;
+  }
 }
 
 function CustomTextField({
@@ -16,6 +23,7 @@ function CustomTextField({
   defaultValue = '',
   error = '',
   margin = 'none',
+  fullWidth = true,
   ...props
 }: CustomTextField) {
   return (
@@ -28,7 +36,7 @@ function CustomTextField({
           <TextField
             value={value}
             onChange={onChange}
-            fullWidth
+            fullWidth={fullWidth}
             InputProps={{
               className: 'text-14',
             }}

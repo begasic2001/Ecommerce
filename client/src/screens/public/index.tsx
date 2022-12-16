@@ -1,11 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
-import { HomePage, ProductDetailPage, ProductsPage } from '~/pages/public';
+import { HomePage, ProductDetailPage, ProductsPage, SearchProductsPage } from '~/pages/public';
 
 const publicRoutes = [
   { path: '/home', component: HomePage },
   { path: '/products', component: ProductsPage },
   { path: '/products/:productId', component: ProductDetailPage },
+  { path: '/search', component: SearchProductsPage },
 ];
 
 function PublicScreens() {

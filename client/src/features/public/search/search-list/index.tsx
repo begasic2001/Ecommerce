@@ -19,7 +19,7 @@ function ProductList({ currentPage, handleChangeCurrentPage, productList }: Prod
   };
 
   return (
-    <section className={clsx('product-List', 'w-9/12 basis-9/12')}>
+    <section className="product-List w-full">
       <h3 className="mb-20 text-25">Kết quả tìm kiếm</h3>
       <ImageList cols={4} gap={20}>
         {productList.data.map((item: any) => (

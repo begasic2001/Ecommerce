@@ -19,6 +19,21 @@ export interface CounterState {
   };
 }
 
+const getFilterProducts = createAsyncThunk('product/all', async (params: any, { rejectWithValue }) => {
+  try {
+    const res = await productApi.getAll(params);
+    return res;
+  } catch (err: any) {
+    return rejectWithValue({
+      message: err.message,
+      data: err.response.data,
+      status: err.response.status,
+      headers: err.response.headers,
+    });
+  }
+});
+
+
 const getHotProducts = createAsyncThunk('product/hot', async (params, { rejectWithValue }) => {
   try {
     const res = await productApi.getHotProducts();
@@ -64,8 +79,16 @@ export const productSlice = createSlice({
       state.hot.loading = false;
       state.hot.err = action.payload;
     });
+    builder.addCase(getFilterProducts.fulfilled, (state, action) => {
+      state.filter.loading = false;
+      state.filter.data = action.payload.data.productData;
+    });
+    builder.addCase(getFilterProducts.rejected, (state, action) => {
+      state.filter.loading = false;
+      state.filter.err = action.payload;
+    });
   },
 });
 
-export { getHotProducts };
+export { getHotProducts, getFilterProducts };
 export default productSlice.reducer;

@@ -14,7 +14,6 @@ function Sale({ hotProductList }: any) {
 
   const bigSaleData = data?.rows?.[0] || [];
   const listSaleData = data.rows || [];
-  console.log('bigSaleData', data.rows);
 
   return (
     <section className="sale">

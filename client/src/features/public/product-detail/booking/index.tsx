@@ -1,11 +1,27 @@
-import { Container, Stack, Table, TableBody, TableCell, TableRow, TextField } from '@mui/material';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Container, Stack, Table, TableBody, TableCell, TableRow } from '@mui/material';
 import clsx from 'clsx';
-import { ChangeEvent, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import FallbackImg from '~/assets/images/400x500.png';
-import { AddIcon, MinusIcon, TruckIcon } from '~/components/icons';
-import { formatCurrency } from '~/utils/format-currency';
+import Cookies from 'js-cookie';
 import { useSnackbar } from 'notistack';
+import { useState } from 'react';
+import {
+  Control,
+  FieldErrorsImpl,
+  FieldValues,
+  useForm,
+  UseFormHandleSubmit,
+  UseFormSetValue
+} from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import * as yup from 'yup';
+import { paymentApi } from '~/api';
+import { add } from '~/app/cartSlice';
+import FallbackImg from '~/assets/images/400x500.png';
+import { CustomQuantityField } from '~/components/form/input';
+import { TruckIcon } from '~/components/icons';
+import { formatCurrency } from '~/utils/format-currency';
+import { useSelector } from 'react-redux';
 
 interface ImageBookingProps {
   selected: string;
@@ -18,18 +34,39 @@ interface ImageBookingProps {
 
 interface InformationBookingProps {
   data: any;
-  quantity: number;
-  handleQuantity: (e: ChangeEvent<HTMLInputElement>) => void;
-  handleBtnQuantity: (action: string) => void;
-  handleAddToCart: (e: React.SyntheticEvent) => void;
+  control: Control<FieldValues, any>;
+  setValue: UseFormSetValue<FieldValues>;
+  handleAddToCart: (value: any) => void;
+  handleSubmit: UseFormHandleSubmit<FieldValues>;
+  errors: Partial<
+    FieldErrorsImpl<{
+      [x: string]: any;
+    }>
+  >;
 }
 
 function Booking({ data }: any) {
-  console.log('data', data);
+  const schemaValidate = yup.object({
+    quantity: yup
+      .number()
+      .min(1, 'Không được bé hơn 1')
+      .max(data.pro_quantity, 'Không được vượt quá số lượng'),
+  });
+
   const { enqueueSnackbar } = useSnackbar();
+  const userSelector = useSelector((state: any) => state.user.data);
+  console.log('userSelector', userSelector);
+  const {
+    control,
+    setValue,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schemaValidate),
+  });
+  const dispatch = useDispatch();
 
   const [imageSelect, setImgSelect] = useState<string>(data.img_one);
-  const [quantity, setQuantity] = useState<number>(1);
 
   const imgList = [
     { img: data.img_one, signal: 'one' },
@@ -41,28 +78,26 @@ function Booking({ data }: any) {
     setImgSelect(data[`img_${num}`]);
   };
 
-  const handleBtnQuantity = (action: string) => {
-    if (action === 'add') {
-      if (quantity >= data.pro_quantity) setQuantity(data.pro_quantity);
-      else setQuantity((prevState) => prevState + 1);
-    } else if (action === 'minus') {
-      if (quantity <= 1) setQuantity(1);
-      else setQuantity((prevState) => prevState - 1);
+  const handleAddToCart = async (value: any) => {
+    try {
+      if (Cookies.get('user') === undefined) throw 'Bạn chưa đăng nhập !!! ❌❌❌';
+
+      const productItem = {
+        id: data.id,
+        code: data.pro_code,
+        name: data.pro_name,
+        image: data.img_one,
+        basePrice: Number(data.discount_price) || Number(data.selling_price),
+        price: Number(data.discount_price) || Number(data.selling_price),
+        quantity: Number(value.quantity),
+      };
+
+      dispatch(add(productItem));
+      await paymentApi.addCart(data.id, userSelector.accessToken);
+      enqueueSnackbar('Thêm vào giỏ hàng thành công!!! 🎉🎉🎉', { variant: 'success' });
+    } catch (err: any) {
+      enqueueSnackbar(err, { variant: 'error' });
     }
-  };
-
-  const handleQuantity = (e: ChangeEvent<HTMLInputElement>) => {
-    const quantityInput = Number(e.target.value);
-
-    if (quantityInput > data.pro_quantity) setQuantity(data.pro_quantity);
-    else if (quantityInput < 1) setQuantity(1);
-    else setQuantity(Number(e.target.value));
-  };
-
-  const handleAddToCart = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    enqueueSnackbar('Đã thêm thành công!!! 🎉🎉🎉', { variant: 'success' });
-    console.log('ok');
   };
 
   return (
@@ -76,10 +111,11 @@ function Booking({ data }: any) {
           />
           <InformationBooking
             data={data}
-            quantity={quantity}
-            handleQuantity={handleQuantity}
-            handleBtnQuantity={handleBtnQuantity}
+            control={control}
+            setValue={setValue}
             handleAddToCart={handleAddToCart}
+            handleSubmit={handleSubmit}
+            errors={errors}
           />
         </Stack>
       </Container>
@@ -119,86 +155,82 @@ const ImageBooking = ({ data, selected, handleImgSelected }: ImageBookingProps) 
 
 const InformationBooking = ({
   data,
-  quantity,
-  handleQuantity,
-  handleBtnQuantity,
+  control,
+  setValue,
+  errors,
+  handleSubmit,
   handleAddToCart,
 }: InformationBookingProps) => (
   <section className="w-[60%] basis-[60%]">
-    <h3 className="text-40">{data.pro_name}</h3>
-    <Table className="mt-20 w-full text-left">
-      <TableBody>
-        <TableRow className="border-b-none">
-          <TableCell variant="head" className="w-1/5 border-none text-16">
-            Mã sản phẩm
-          </TableCell>
-          <TableCell className="border-none text-16 italic text-txt-2">{data.id}</TableCell>
-        </TableRow>
-        <TableRow>
-          {data.discount_price && (
-            <TableCell colSpan={2} className="border-none bg-[#fafafa] text-35 text-red-1">
-              <del className="mr-15 text-20 text-txt-2 line-through decoration-txt-2 decoration-1">
+    <form onSubmit={handleSubmit(handleAddToCart)}>
+      <h3 className="text-40">{data.pro_name}</h3>
+      <Table className="mt-20 w-full text-left">
+        <TableBody>
+          <TableRow className="border-b-none">
+            <TableCell variant="head" className="w-1/5 border-none text-16">
+              Mã sản phẩm
+            </TableCell>
+            <TableCell className="border-none text-16 italic text-txt-2">{data.pro_code}</TableCell>
+          </TableRow>
+          <TableRow>
+            {data.discount_price && (
+              <TableCell colSpan={2} className="border-none bg-[#fafafa] text-35 text-red-1">
+                <del className="mr-15 text-20 text-txt-2 line-through decoration-txt-2 decoration-1">
+                  {formatCurrency.format(data.selling_price)}
+                </del>
+                {formatCurrency.format(data.discount_price)}
+              </TableCell>
+            )}
+            {!data.discount_price && (
+              <TableCell colSpan={2} className="border-none bg-[#fafafa] text-35 text-red-1">
                 {formatCurrency.format(data.selling_price)}
-              </del>
-              {formatCurrency.format(data.discount_price)}
+              </TableCell>
+            )}
+          </TableRow>
+          <TableRow>
+            <TableCell variant="head" className="w-1/5 border-none text-16">
+              Vận chuyển
             </TableCell>
-          )}
-          {!data.discount_price && (
-            <TableCell colSpan={2} className="border-none bg-[#fafafa] text-35 text-red-1">
-              {formatCurrency.format(data.selling_price)}
+            <TableCell className="flex items-center border-none text-16">
+              <span className="mr-10">
+                <TruckIcon />
+              </span>
+              Miễn phí vận chuyển
             </TableCell>
-          )}
-        </TableRow>
-        <TableRow>
-          <TableCell variant="head" className="w-1/5 border-none text-16">
-            Vận chuyển
-          </TableCell>
-          <TableCell className="flex items-center border-none text-16">
-            <span className="mr-10">
-              <TruckIcon />
-            </span>
-            Miễn phí vận chuyển
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell variant="head" className="w-1/5 border-none text-16">
-            Số lượng
-          </TableCell>
-          <TableCell className="flex items-center border-none">
-            <TextField
-              type="number"
-              value={quantity}
-              onChange={handleQuantity}
-              InputProps={{
-                startAdornment: (
-                  <section className="mr-10" onClick={() => handleBtnQuantity('minus')}>
-                    <MinusIcon />
-                  </section>
-                ),
-                endAdornment: (
-                  <section className="ml-10" onClick={() => handleBtnQuantity('add')}>
-                    <AddIcon />
-                  </section>
-                ),
-                className: 'text-14 w-150',
-              }}
-            />
-            <p className="ml-15 text-12 italic text-bd-1">Có {data.pro_quantity} sản phẩm có sẵn</p>
-          </TableCell>
-        </TableRow>
-      </TableBody>
-    </Table>
-    <button
-      type="submit"
-      className={clsx(
-        'mt-40 min-h-[5rem] min-w-[20rem] border-none bg-black text-white-1 duration-2',
-        'hover:cursor-pointer hover:bg-white-2 hover:text-black'
-      )}
-      onClick={handleAddToCart}
-    >
-      Thêm vào giỏ hàng
-    </button>
+          </TableRow>
+          <TableRow>
+            <TableCell variant="head" className="w-1/5 border-none text-16">
+              Số lượng
+            </TableCell>
+            <TableCell className="flex items-center border-none">
+              <CustomQuantityField
+                control={control}
+                name="quantity"
+                defaultValue="1"
+                setValue={setValue}
+                min={1}
+                max={data.pro_quantity}
+                error={errors.quantity?.message}
+              />
+              <p className="ml-15 text-12 italic text-bd-1">
+                Có {data.pro_quantity} sản phẩm có sẵn
+              </p>
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+      <button
+        type="submit"
+        className={clsx(
+          'mt-40 min-h-[5rem] min-w-[20rem] border-none bg-black text-white-1 duration-2',
+          'hover:cursor-pointer hover:bg-white-2 hover:text-black'
+        )}
+      >
+        Thêm vào giỏ hàng
+      </button>
+    </form>
   </section>
 );
 
 export { Booking };
+
